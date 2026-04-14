@@ -7,7 +7,7 @@
 
 **AeroXplore** is a passion-driven platform dedicated to aviation and aerospace insights. It focuses on simplifying complex aerospace concepts, analyzing industry developments, and sharing ideas that inspire curiosity about flight and space exploration.
 
-Aviation has always been more than machines and mathematics to me — it is the closest thing humanity has to a physical metaphor for ambition.
+Aviation has always been more than machines and mathematics to me, it is the closest thing humanity has to a physical metaphor for ambition.
 
 Growing up in India, I was mesmerised by the contrails streaking across the sky, each one a silent argument that the universe is larger and more navigable than we imagine.
 
