@@ -10,8 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000', 'https://aeroxplore.in'],
-  methods: ['GET', 'POST'],
+  origin: ['http://localhost:5173', 'http://localhost:3000', 'https://aeroxplore.in', 'https://www.aeroxplore.in'],
+  methods: ['GET', 'POST', 'OPTIONS'],
   credentials: true,
 }));
 
