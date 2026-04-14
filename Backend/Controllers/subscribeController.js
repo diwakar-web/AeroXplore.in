@@ -21,13 +21,15 @@ const subscribe = async (req, res) => {
       }
       existing.active = true;
       await existing.save();
-      await sendWelcomeEmail(email);
+      sendWelcomeEmail(email).catch(err => console.error('Background welcome email error:', err));
       return res.status(200).json({ success: true, message: 'Welcome back! Re-subscribed successfully.' });
     }
 
     const subscriber = new Subscriber({ email: email.toLowerCase() });
     await subscriber.save();
-    await sendWelcomeEmail(email);
+    
+    // Send email asynchronously so user doesn't wait for the SMTP handshakes
+    sendWelcomeEmail(email).catch(err => console.error('Background welcome email error:', err));
 
     return res.status(201).json({ success: true, message: 'Subscribed successfully! Welcome aboard.' });
   } catch (err) {
