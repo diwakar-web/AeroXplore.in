@@ -1,0 +1,92 @@
+/* ═══════════════════════════════════════════════════════════
+   ANIMATIONS.CSS — AeroXplore Scroll-Reveal System
+   Works with useScrollReveal.js (IntersectionObserver hook).
+
+   Usage on any element:
+     data-reveal="fade-up"    — slide in from below
+     data-reveal="fade-down"  — slide in from above
+     data-reveal="fade-left"  — slide in from the left
+     data-reveal="fade-right" — slide in from the right
+     data-reveal="fade-in"    — pure opacity fade
+     data-reveal="scale-up"   — subtle scale + fade
+     data-reveal="zoom-in"    — zoom from slightly smaller
+     style="--reveal-delay: 0.2s"  — optional stagger delay
+═══════════════════════════════════════════════════════════ */
+
+/* ─── Base Hidden State ──────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-duration: 0.72s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+/* ─── Reveal Variants (hidden positions) ─────────────────── */
+[data-reveal="fade-up"] {
+  transform: translateY(38px);
+}
+
+[data-reveal="fade-down"] {
+  transform: translateY(-28px);
+}
+
+[data-reveal="fade-left"] {
+  transform: translateX(-44px);
+}
+
+[data-reveal="fade-right"] {
+  transform: translateX(44px);
+}
+
+[data-reveal="fade-in"] {
+  transform: none;
+}
+
+/* opacity only */
+[data-reveal="scale-up"] {
+  transform: scale(0.93) translateY(22px);
+}
+
+[data-reveal="zoom-in"] {
+  transform: scale(0.95);
+}
+
+/* ─── Revealed State — added by JS when element enters view ─ */
+[data-reveal].revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── Page-entry animation (no scroll trigger needed) ───── */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.65s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ─── Respect reduced-motion preference ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  [data-reveal],
+  [data-reveal].revealed {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .page-enter {
+    animation: none !important;
+  }
+}

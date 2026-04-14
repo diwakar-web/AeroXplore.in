@@ -1,0 +1,944 @@
+
+
+:root {
+  --gold: #d4a84b;
+  --gold-light: #e8c06a;
+  --paper-bg: #f0e6cc;
+  --paper-ink: #1a0f05;
+  --paper-rule: #2c1810;
+  --bg: #080808;
+  --bg-secondary: #101010;
+  --text-primary: #f0f0f0;
+  --text-secondary: #a0a0a0;
+  --input-bg: #1a1a1a;
+  --input-border: rgba(212, 168, 75, 0.3);
+  --transition-base: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aeroxplain-root {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.newspaper-section {
+  position: relative;
+  background-color: var(--paper-bg);
+  overflow: hidden;
+  padding: 3.5rem 0 4rem;
+}
+
+.paper-texture-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px, transparent 24px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px, transparent 100%);
+}
+
+.newspaper-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  width: 85%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.newspaper-masthead {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.masthead-rule {
+  width: 100%;
+  border: none;
+}
+
+.masthead-rule.thick {
+  border-top: 4px solid var(--paper-rule);
+  margin-bottom: 3px;
+}
+
+.masthead-rule.thin {
+  border-top: 1.5px solid var(--paper-rule);
+  margin: 4px 0;
+}
+
+.masthead-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 900;
+  color: var(--paper-ink);
+  line-height: 1;
+  padding: 0.2rem 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.masthead-title {
+  
+  line-height: 0;
+  padding: 0;
+}
+
+.masthead-logo-img {
+  display: block;
+  margin: 0.35rem auto;
+  width: clamp(260px, 52vw, 640px);
+  height: auto;
+  
+}
+
+.masthead-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--paper-ink);
+  opacity: 0.75;
+  margin: 0.25rem 0;
+}
+
+.masthead-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.masthead-info {
+  font-family: 'IM Fell English', serif;
+  font-size: 0.8rem;
+  color: var(--paper-ink);
+  opacity: 0.75;
+}
+
+.section-label-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0 1.2rem;
+}
+
+.section-label-line {
+  flex: 1;
+  height: 1.5px;
+  background: var(--paper-rule);
+  opacity: 0.45;
+}
+
+.section-label-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--paper-ink);
+  white-space: nowrap;
+}
+
+.featured-article {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.featured-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+  font-weight: 900;
+  color: var(--paper-ink);
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+}
+
+.featured-byline {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--paper-ink);
+  opacity: 0.75;
+  margin-bottom: 0.75rem;
+}
+
+.byline-sep {
+  opacity: 0.45;
+}
+
+.featured-rule {
+  width: 100%;
+  border-top: 1.5px solid var(--paper-rule);
+  opacity: 0.4;
+  margin-bottom: 1.1rem;
+}
+
+.featured-para {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  line-height: 1.85;
+  color: var(--paper-ink);
+  text-align: justify;
+  hyphens: auto;
+  margin-bottom: 1rem;
+}
+
+.read-more-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--paper-ink);
+  border-bottom: 1.5px solid var(--paper-ink);
+  padding-bottom: 2px;
+  transition: opacity 0.2s ease, letter-spacing 0.2s ease;
+  text-decoration: none;
+}
+
+.read-more-link:hover {
+  opacity: 0.65;
+  letter-spacing: 0.12em;
+}
+
+.featured-photo-frame {
+  border: 2px solid var(--paper-rule);
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.featured-photo {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  filter: sepia(20%) contrast(1.05);
+}
+
+.featured-caption {
+  font-family: 'IM Fell English', serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  text-align: center;
+  color: var(--paper-ink);
+  opacity: 0.7;
+  padding: 6px 4px 2px;
+  line-height: 1.4;
+}
+
+.blog-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.view-all-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.view-all-btn {
+  display: inline-block;
+  padding: 0.75rem 2.6rem;
+  background: transparent;
+  border: 2px solid var(--paper-rule);
+  color: var(--paper-ink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.28s ease, color 0.28s ease, box-shadow 0.28s ease, letter-spacing 0.2s ease;
+}
+
+.view-all-btn:hover {
+  background: var(--paper-ink);
+  color: var(--paper-bg);
+  box-shadow: 0 6px 22px rgba(44, 24, 16, 0.22);
+  letter-spacing: 0.32em;
+}
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1.5px solid rgba(44, 24, 16, 0.2);
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--paper-ink);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(44, 24, 16, 0.18);
+  border-color: rgba(44, 24, 16, 0.5);
+}
+
+.blog-card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 170px;
+}
+
+.blog-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(15%) contrast(1.05);
+  transition: transform 0.5s ease;
+}
+
+.blog-card:hover .blog-card-img {
+  transform: scale(1.06);
+}
+
+.blog-card-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--paper-ink);
+  color: var(--paper-bg);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+}
+
+.blog-card-body {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1.5px solid rgba(44, 24, 16, 0.2);
+}
+
+.blog-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--paper-ink);
+  line-height: 1.4;
+}
+
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--paper-ink);
+  opacity: 0.65;
+}
+
+.blog-card-sep {
+  opacity: 0.4;
+}
+
+.motive-section {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  padding: 6rem 2rem;
+  
+}
+
+.motive-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.motive-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.motive-rule {
+  flex: 1;
+  height: 1.5px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+.motive-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.motive-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.motive-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.motive-subheading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.motive-para {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.9;
+  color: var(--gold-light);
+  text-align: justify;
+  hyphens: auto;
+}
+
+.motive-para strong {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.motive-para em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.social-links-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+.social-chip {
+  padding: 0.4rem 1.1rem;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.social-chip:hover {
+  background: var(--gold);
+  color: #080808;
+}
+
+.newsletter-box {
+  margin-top: 4rem;
+  border: 1.5px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212, 168, 75, 0.04), rgba(212, 168, 75, 0.02));
+  pointer-events: none;
+}
+
+.newsletter-box-inner {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.newsletter-icon {
+  font-size: 2.2rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.newsletter-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.newsletter-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 540px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 0.5rem;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 0.8rem 1.2rem;
+  background: var(--input-bg);
+  border: 1.5px solid var(--gold);
+  border-right: none;
+  color: var(--text-primary);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  outline: none;
+}
+
+.newsletter-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.newsletter-input:focus {
+  background: rgba(212, 168, 75, 0.05);
+}
+
+.newsletter-btn {
+  padding: 0.8rem 1.8rem;
+  background: var(--gold);
+  color: #080808;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1.5px solid var(--gold);
+  transition: background 0.25s ease, transform 0.15s ease;
+}
+
+.newsletter-btn:hover {
+  background: var(--gold-light);
+  transform: translateX(2px);
+}
+
+.form-success-msg {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 0.3rem;
+}
+
+.form-error-msg {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #e05a5a;
+  margin-top: 0.3rem;
+}
+
+.newsletter-btn:disabled,
+.contact-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.newsletter-input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@keyframes btn-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+.btn-loading {
+  animation: btn-pulse 1.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.contact-section {
+  background-color: var(--bg-secondary);
+  padding: 6rem 2rem;
+}
+
+.contact-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.contact-subheading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.contact-rule {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 1.5rem auto 0;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.3rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.85rem 1.1rem;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  color: var(--text-primary);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 2px;
+  resize: vertical;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  background: rgba(212, 168, 75, 0.04);
+}
+
+.contact-submit-btn {
+  align-self: flex-start;
+  padding: 0.9rem 2.5rem;
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-submit-btn:hover {
+  background: var(--gold);
+  color: #080808;
+  box-shadow: 0 4px 20px rgba(212, 168, 75, 0.3);
+}
+
+.footer {
+  position: relative;
+  background-color: #ece0c2;
+  overflow: hidden;
+}
+
+.footer-paper-texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px, transparent 24px);
+}
+
+.footer-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 1.5rem;
+}
+
+.footer-masthead-rule {
+  width: 100%;
+  border: none;
+}
+
+.footer-masthead-rule.thick {
+  border-top: 4px solid var(--paper-rule);
+  margin-bottom: 3px;
+}
+
+.footer-masthead-rule.thin {
+  border-top: 1.5px solid var(--paper-rule);
+  margin: 4px 0 8px;
+}
+
+.footer-tagline {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--paper-ink);
+  opacity: 0.65;
+  margin: 0.5rem 0;
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1.5fr;
+  gap: 2.5rem;
+  padding: 1.5rem 0;
+}
+
+.footer-col-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper-ink);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(44, 24, 16, 0.25);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  font-family: 'IM Fell English', serif;
+  font-size: 0.88rem;
+  color: var(--paper-ink);
+  opacity: 0.75;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+}
+
+.footer-bio {
+  font-family: 'IM Fell English', serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--paper-ink);
+  opacity: 0.75;
+  line-height: 1.65;
+  margin-bottom: 0.9rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.footer-social-link {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(44, 24, 16, 0.4);
+  color: var(--paper-ink);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.footer-social-link:hover {
+  background: var(--paper-ink);
+  color: var(--paper-bg);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.78rem;
+  color: var(--paper-ink);
+  opacity: 0.65;
+}
+
+.footer-bottom-right {
+  font-style: italic;
+}
+
+@media (max-width: 1024px) {
+  .featured-article {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-right {
+    max-width: 480px;
+  }
+
+  .blog-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-col:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .masthead-info:nth-child(1),
+  .masthead-info:nth-child(2) {
+    display: none;
+  }
+
+  .motive-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .motive-rule {
+    width: 80px;
+  }
+
+  .motive-heading {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-input {
+    border-right: 1.5px solid var(--gold);
+    border-bottom: none;
+  }
+
+  .contact-submit-btn {
+    align-self: stretch;
+    text-align: center;
+  }
+
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-col:last-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .newspaper-inner {
+    padding: 0 1rem;
+  }
+
+  .masthead-title {
+    font-size: 3rem;
+  }
+
+  .featured-headline {
+    font-size: 1.4rem;
+  }
+
+  .newsletter-box-inner {
+    padding: 2rem 1.2rem;
+  }
+
+  .motive-section,
+  .contact-section {
+    padding: 4rem 1.2rem;
+  }
+}

@@ -1,0 +1,258 @@
+
+
+:root {
+  --paper-bg: #f0e6cc;
+  --paper-ink: #1a0f05;
+  --paper-rule: #2c1810;
+}
+
+.bp-root {
+  background-color: #080808;
+  min-height: 100vh;
+}
+
+.bp-main {
+  padding: 4rem 0 5rem;
+  background-color: #f0e6cc;
+}
+
+.bp-inner {
+  width: 70%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.bp-top-back-link {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--paper-ink);
+  text-decoration: none;
+  margin-bottom: 1.2rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.bp-top-back-link:hover {
+  opacity: 0.6;
+  transform: translateX(-4px);
+}
+
+.bp-paper {
+  background-color: #f2e8d0;
+  padding: 3rem 3.5rem;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.022) 1px, transparent 1px, transparent 28px);
+}
+
+.bp-paper-rule {
+  width: 100%;
+  border: none;
+  margin: 0.5rem 0;
+}
+
+.bp-paper-rule.thick {
+  border-top: 4px solid var(--paper-rule);
+}
+
+.bp-paper-rule.thin {
+  border-top: 1.5px solid var(--paper-rule);
+  margin: 0.6rem 0;
+  opacity: 0.5;
+}
+
+.bp-meta-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--paper-ink);
+}
+
+.bp-category {
+  background: var(--paper-ink);
+  color: var(--paper-bg);
+  padding: 3px 10px;
+}
+
+.bp-date {
+  opacity: 0.65;
+}
+
+.bp-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  font-weight: 900;
+  color: var(--paper-ink);
+  line-height: 1.2;
+  margin: 1rem 0 0.75rem;
+}
+
+.bp-byline {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--paper-ink);
+  opacity: 0.75;
+  margin-bottom: 0.4rem;
+}
+
+.bp-byline strong {
+  font-weight: 700;
+  font-style: normal;
+}
+
+.bp-byline-sep {
+  opacity: 0.4;
+}
+
+.bp-read-time {
+  font-style: normal;
+}
+
+.bp-hero-img-wrap {
+  margin: 1.2rem 0;
+  border: 2px solid var(--paper-rule);
+  padding: 6px;
+}
+
+.bp-hero-img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+  filter: sepia(15%) contrast(1.05);
+}
+
+.bp-content {
+  margin: 1.4rem 0;
+}
+
+.bp-para {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--paper-ink);
+  text-align: justify;
+  hyphens: auto;
+  margin-bottom: 1.6rem;
+  text-indent: 2em;
+}
+
+.bp-para:first-child {
+  text-indent: 0;
+}
+
+.bp-closing-thought {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--paper-ink);
+  line-height: 1.7;
+  margin: 2.5rem auto 1rem;
+  padding: 1.4rem 2rem;
+  border-top: 1.5px solid rgba(44, 24, 16, 0.3);
+  border-bottom: 1.5px solid rgba(44, 24, 16, 0.3);
+  max-width: 82%;
+}
+
+.bp-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0 0;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.bp-back-link {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--paper-ink);
+  border-bottom: 1.5px solid var(--paper-ink);
+  padding-bottom: 2px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.bp-back-link:hover {
+  opacity: 0.6;
+}
+
+.bp-author-sig {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--paper-ink);
+  opacity: 0.65;
+}
+
+.bp-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 1rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  color: #f0f0f0;
+}
+
+@media (max-width: 900px) {
+  .bp-inner {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .bp-inner {
+    width: 95%;
+  }
+
+  .bp-paper {
+    padding: 2rem 1.5rem;
+  }
+
+  .bp-hero-img {
+    height: 220px;
+  }
+
+  .bp-closing-thought {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bp-inner {
+    padding: 0 1rem;
+  }
+
+  .bp-paper {
+    padding: 1.5rem 1rem;
+  }
+
+  .bp-title {
+    font-size: 1.4rem;
+  }
+
+  .bp-main {
+    padding: 2rem 0 3rem;
+  }
+}
