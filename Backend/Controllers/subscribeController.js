@@ -21,15 +21,15 @@ const subscribe = async (req, res) => {
       }
       existing.active = true;
       await existing.save();
-      sendWelcomeEmail(email).catch(err => console.error('Background welcome email error:', err));
+      await sendWelcomeEmail(email);
       return res.status(200).json({ success: true, message: 'Welcome back! Re-subscribed successfully.' });
     }
 
     const subscriber = new Subscriber({ email: email.toLowerCase() });
     await subscriber.save();
     
-    // Send email asynchronously so user doesn't wait for the SMTP handshakes
-    sendWelcomeEmail(email).catch(err => console.error('Background welcome email error:', err));
+    // In Vercel serverless, we must await the email sending, otherwise the function freezes before the email goes out!
+    await sendWelcomeEmail(email);
 
     return res.status(201).json({ success: true, message: 'Subscribed successfully! Welcome aboard.' });
   } catch (err) {
