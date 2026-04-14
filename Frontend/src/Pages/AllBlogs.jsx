@@ -6,7 +6,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth — keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
-    id: 'tejas-1',
+    id: 'tejas_1',
     title: " Tejas: Pride, Payloads, and Production Bottlenecks",
     date: 'April 14, 2026',
     author: 'Diwakar Nagar',
