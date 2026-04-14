@@ -1,13 +1,20 @@
 const mongoose = require('mongoose');
 
+let isConnected = false;
+
 const connectDB = async () => {
+  if (isConnected) {
+    return;
+  }
   try {
-    await mongoose.connect(process.env.Mongo_DB);
+    const db = await mongoose.connect(process.env.Mongo_DB);
+    isConnected = db.connections[0].readyState === 1;
     console.log('✅ MongoDB connected successfully');
   } catch (err) {
     console.error('❌ MongoDB connection error:', err.message);
-    // process.exit(1) is removed for Vercel serverless compatibility
+    throw err;
   }
 };
 
 module.exports = connectDB;
+

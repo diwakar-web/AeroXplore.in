@@ -22,6 +22,15 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'AeroXplore Backend is running ✅' });
 });
 
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Database connection error' });
+  }
+});
+
 app.use('/api', subscribeRoutes);
 app.use('/api', contactRoutes);
 
@@ -35,7 +44,7 @@ app.use((err, req, res, next) => {
 });
 
 // Vercel Serverless environments expect the app to be exported
-connectDB();
+// connectDB() is now handled by middleware above
 
 if (require.main === module) {
   app.listen(PORT, () => {
