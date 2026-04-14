@@ -34,11 +34,13 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal server error.' });
 });
 
-const start = async () => {
-  await connectDB();
+// Vercel Serverless environments expect the app to be exported
+connectDB();
+
+if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`🚀 AeroXplore Backend running on http://localhost:${PORT}`);
   });
-};
+}
 
-start();
+module.exports = app;
