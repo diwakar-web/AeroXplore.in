@@ -6,8 +6,16 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth — keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'f-15',
+    title: "The Eagle’s Dominion: The Unrivaled Legacy of the F-15",
+    date: 'April 18, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/f-15.jpg',
+    category: 'Defence Aviation',
+  },
+  {
     id: 'tejas_1',
-    title: " Tejas: Pride, Payloads, and Production Bottlenecks",
+    title: "Tejas: Pride, Payloads, and Production Bottlenecks",
     date: 'April 14, 2026',
     author: 'Diwakar Nagar',
     image: '/images/tejas.jpg',

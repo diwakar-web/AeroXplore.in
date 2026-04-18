@@ -4,8 +4,23 @@ import '../CSS/BlogPost.css';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 const postData = {
+  'f-15': {
+    title: "The Eagle’s Dominion: The Unrivaled Legacy of the F-15",
+    date: 'April 14, 2026',
+    author: 'Diwakar Nagar',
+    category: 'Defence Aviation',
+    image: '/images/f-15.jpg',
+    thought: "The supreme art of war is to subdue the enemy without fighting.",
+    content: [
+      "The McDonnell Douglas (now Boeing) F-15 Eagle remains the undisputed king of the skies, a reputation cemented by its legendary combat score of 104-0. Over five decades of operation, no F-15 has ever been shot down by an enemy aircraft in aerial combat. The aircraft's journey began with the F-15A (single-seat) and F-15B (two-seat trainer), which were pure air-superiority machines designed under the strict philosophy of \"not a pound for air-to-ground.\" These were followed by the F-15C and F-15D, which introduced the \"Production Eagle Package,\" including increased internal fuel and the ability to carry conformal fuel tanks, significantly extending their range and endurance for long-range patrols.",
+      "At high altitudes, the Eagle can attain a blistering speed of Mach 2.5 (approximately 1,900 mph), powered by its twin-engine configuration. The platform has historically relied on two primary powerplants: the Pratt & Whitney F100 series, which powered the original A through D models, and the General Electric F110-GE-129, which has become the \"engine of choice\" for the newest heavy-duty variants. These engines provide the massive thrust-to-weight ratio required to out-accelerate almost any threat, allowing the Eagle to maintain its dominance even as newer generations of fighters emerge.",
+      "The Eagle’s lethality comes from its staggering payload and diverse weaponry. The evolution from the air-superiority models to the F-15E Strike Eagle transformed the jet into a multi-role beast capable of deep-strike missions. The latest iteration, the F-15EX Eagle II, acts as a \"missile truck\" with a payload capacity of 29,500 pounds across 23 hardpoints. It can carry a massive mix of air-to-air weapons, including up to 12 AIM-120 AMRAAMs and AIM-9X Sidewinders. For strike missions, it deploys a terrifying array of precision munitions like JDAMs, Small Diameter Bombs (SDBs), and even outsized standoff weapons like the AGM-158 JASSM or hypersonic missiles.",
+      "Despite its perfection in dogfights, the F-15's history is marked by somber tragedies, particularly involving Iran and friendly-fire incidents. In the 1970s, the U.S. planned to sell F-15s to the Imperial Iranian Air Force, but the 1979 Revolution ended the deal, leaving Iran to rely on the F-14 Tomcat. More recently, in early 2026, reports surfaced of F-15E Strike Eagles involved in a tragic friendly-fire engagement over Iranian airspace during regional tensions, highlighting the extreme dangers of operating in high-threat environments. Historically, the aircraft also suffered the \"Black Hawk Incident\" in 1994, where two F-15Cs mistakenly downed two U.S. Army helicopters, a dark chapter in its otherwise stellar service.",
+      "To ensure it remains relevant, the Eagle has undergone radical upgrades, transitioning from the analog cockpits of the F-15A/C to the fully digital architecture of the F-15EX. This newest model features a \"digital backbone,\" fly-by-wire flight controls, and the EPAWSS (Eagle Passive Active Warning Survivability System) for advanced electronic warfare. These upgrades have secured its spot in the hangars of elite air forces worldwide. Beyond the United States Air Force, the Eagle is a strategic pillar for Israel, Japan, Saudi Arabia, South Korea, Qatar, and Singapore. With a structural life now extended to 20,000 hours, the F-15 is set to remain operational well past 2040."
+    ],
+  },
   'tejas_1': {
-    title: " Tejas: Pride, Payloads, and Production Bottlenecks",
+    title: "Tejas: Pride, Payloads, and Production Bottlenecks",
     date: 'April 14, 2026',
     author: 'Diwakar Nagar',
     category: 'Defence Aviation',
@@ -143,7 +158,7 @@ export default function BlogPost() {
         </div>
       </main>
       <div style={{ textAlign: 'center', padding: '10px', fontSize: '0.75rem', color: '#888', background: '#0a0a0a' }}>
-I'm here to help spark ideas and provide a great starting point, but for anything mission-critical, it’s always a good move to double-check with official documentation or expert sources just to be safe!      </div>
+        I'm here to help spark ideas and provide a great starting point, but for anything mission-critical, it’s always a good move to double-check with official documentation or expert sources just to be safe!      </div>
     </div>
   );
 }

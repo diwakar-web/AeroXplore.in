@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.png';
 
 const featuredPost = {
-  id: 'tejas_1',
-  title: " Tejas: Pride, Payloads, and Production Bottlenecks",
-  date: 'April 14, 2026',
+  id: 'f-15',
+  title: "The Eagle’s Dominion: The Unrivaled Legacy of the F-15",
+  date: 'April 18, 2026',
   author: 'Diwakar Nagar',
-  caption: 'HAL TEJAS',
-  para1: `For decades, the Indian Air Force relied heavily on foreign workhorses to guard its skies, but the HAL Tejas, India’s indigenous Light Combat Aircraft (LCA), has fundamentally rewritten that narrative. As a 4.5-generation, delta-wing fighter, the Tejas is far more than a replacement for the aging MiG-21 fleet; it is the cornerstone of India's Atmanirbhar (self-reliant) aerospace ecosystem. By fostering a domestic network of hundreds of private suppliers and laboratories, the Tejas program retains critical defense capital within the country, ensuring that India isn't just a buyer of global defense technology, but a sovereign creator of it.`,
-  para2: `The aircraft is currently evolving through three primary versions to meet the IAF's expanding needs. The Mk1 served as the proof of concept, proving that India could master a supersonic, fly-by-wire fighter. Its successor, the Mk1A, is the current production standard, featuring over 40 major improvements like the indigenous Uttam AESA Radar and an advanced Electronic Warfare suite. Looking ahead, the Mk2 is being developed as a \"Medium Weight Fighter.\" Expected to have its first flight by the end of 2026, the Mk2 will be larger, carry a much heavier payload, and use the more powerful GE F414 engine, bridging the gap between light interceptors and heavy strike fighters.`,
+  caption: 'McDonnell Douglas F-15',
+  para1:`The McDonnell Douglas (now Boeing) F-15 Eagle remains the undisputed king of the skies, a reputation cemented by its legendary combat score of 104-0. Over five decades of operation, no F-15 has ever been shot down by an enemy aircraft in aerial combat. The aircraft's journey began with the F-15A (single-seat) and F-15B (two-seat trainer), which were pure air-superiority machines designed under the strict philosophy of \"not a pound for air-to-ground.\" These were followed by the F-15C and F-15D, which introduced the \"Production Eagle Package,\" including increased internal fuel and the ability to carry conformal fuel tanks, significantly extending their range and endurance for long-range patrols.`,
+  para2:`At high altitudes, the Eagle can attain a blistering speed of Mach 2.5 (approximately 1,900 mph), powered by its twin-engine configuration. The platform has historically relied on two primary powerplants: the Pratt & Whitney F100 series, which powered the original A through D models, and the General Electric F110-GE-129, which has become the \"engine of choice\" for the newest heavy-duty variants. These engines provide the massive thrust-to-weight ratio required to out-accelerate almost any threat, allowing the Eagle to maintain its dominance even as newer generations of fighters emerge.`
 };
 
 const blogPosts = [
+  {
+    id: 'tejas_1',
+    title: 'Tejas: Pride, Payloads, and Production Bottlenecks',
+    date: 'April 14, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/tejas.jpg',
+    category: 'Defence Aviation',
+  },
   {
     id: '5th gen',
     title: 'The Fifth-Generation Dilemma: Su-57 Felon vs. F-35 Lightning II',
@@ -31,14 +39,7 @@ const blogPosts = [
     image: '/images/drone.jpg',
     category: 'Unmanned Systems',
   },
-  {
-    id: 'engine',
-    title: "The Heart of the Machine: How a Fighter Jet Engine Generates Supersonic Thrust",
-    date: 'April 13, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/engine.png',
-    category: 'Engineering Corner',
-  }
+  
 ];
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
@@ -160,7 +161,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/tejas.jpg"
+                    src="/images/f-15.jpg"
                     alt="Featured Article"
                     className="featured-photo"
                   />
