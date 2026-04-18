@@ -1,52 +1,112 @@
 // broadcast-newsletter.js
-// Run this script whenever you want to email your subscribers!
-// Command to run (inside Backend folder): node broadcast-newsletter.js
+// ============================================================
+// HOW TO USE: Every week, edit the 3 values below, then run:
+//   node broadcast-newsletter.js
+// ============================================================
 
-// =====================================================================
-// STEP 1: EDIT THESE 3 VARIABLES BEFORE YOU RUN THE SCRIPT
-// =====================================================================
-const ARTICLE_TITLE = "The Heart of the Machine: How a Fighter Jet Engine Generates Supersonic Thrust";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/f-15";
+// ✏️ EDIT THESE 3 LINES EVERY WEEK:
+const ARTICLE_TITLE   = "The Eagle’s Dominion: The Unrivaled Legacy of the F-15";
+const ARTICLE_LINK    = "https://www.aeroxplore.in/blog/f-15";
 const ARTICLE_EXCERPT = "From the raw Mach 2.5 power of the classic F-15A to the high-tech \"missile truck\" capabilities of the new F-15EX, the Eagle has never been shot down in air combat. Explore the evolution, the massive 29,500lb payload, and the legendary history of the world's most lethal fighter.";
 
-
-// =====================================================================
-// STEP 2: DO NOT TOUCH THIS PART (Unless you change passwords/URLs)
-// =====================================================================
-const API_URL = "https://aero-xplore-in-jxjv.vercel.app/api/notify-subscribers";
-
+// ============================================================
+// DO NOT EDIT BELOW THIS LINE
+// ============================================================
 require('dotenv').config();
-const NOTIFY_SECRET = process.env.NOTIFY_SECRET;
+const mongoose = require('mongoose');
+const { Resend } = require('resend');
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+const FROM_ADDRESS = 'AeroXplore ✈ <newsletter@aeroxplore.in>';
+
+// Inline the Subscriber model so this script is self-contained
+const subscriberSchema = new mongoose.Schema({ email: String, active: Boolean });
+const Subscriber = mongoose.model('Subscriber', subscriberSchema);
 
 async function sendNewsletter() {
-  console.log(`🚀 Sending email blast for: "${ARTICLE_TITLE}"...`);
-  console.log(`⏳ Please wait, contacting Vercel server...`);
-
-  try {
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        secret: NOTIFY_SECRET,
-        title: ARTICLE_TITLE,
-        link: ARTICLE_LINK,
-        excerpt: ARTICLE_EXCERPT
-      })
-    });
-
-    const data = await response.json();
-    
-    if (response.ok) {
-        console.log("✅ SUCCESS! Your email has been delivered to all subscribers.");
-    } else {
-        console.error("❌ FAILED:", data.message || data);
-    }
-  } catch(error) {
-     console.error("❌ Connection Error:", error.message);
-     console.log("Are you sure you are connected to the internet?");
+  if (!ARTICLE_TITLE || ARTICLE_TITLE === "Your Article Title Here") {
+    console.error('❌ Please set ARTICLE_TITLE, ARTICLE_LINK, and ARTICLE_EXCERPT before running!');
+    process.exit(1);
   }
+
+  console.log(`\n🚀 Starting newsletter blast for: "${ARTICLE_TITLE}"`);
+  console.log('⏳ Connecting to MongoDB...');
+
+  await mongoose.connect(process.env.Mongo_DB);
+  console.log('✅ Connected to MongoDB.');
+
+  const subscribers = await Subscriber.find({ active: true }).select('email -_id');
+  const emails = subscribers.map((s) => s.email);
+
+  if (emails.length === 0) {
+    console.log('ℹ️  No active subscribers found. Exiting.');
+    await mongoose.disconnect();
+    return;
+  }
+
+  console.log(`📬 Found ${emails.length} subscriber(s). Sending emails via Resend...`);
+
+  const emailHtml = `
+    <!DOCTYPE html>
+    <html>
+    <body style="margin:0;padding:0;background:#0a0a0a;font-family:'Segoe UI',Arial,sans-serif;">
+      <div style="max-width:600px;margin:40px auto;background:#111;border:1px solid #222;border-radius:12px;overflow:hidden;">
+        <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:40px 32px;text-align:center;border-bottom:2px solid #e2b96f;">
+          <h1 style="color:#e2b96f;font-size:28px;letter-spacing:4px;margin:0;text-transform:uppercase;">✈ AeroXplore</h1>
+          <p style="color:#a0a0a0;font-size:12px;letter-spacing:2px;margin:8px 0 0;">New Dispatch Available</p>
+        </div>
+        <div style="padding:36px 32px;">
+          <p style="color:#a0a0a0;font-size:12px;letter-spacing:1px;margin:0 0 12px;text-transform:uppercase;">Latest Article</p>
+          <h2 style="color:#ffffff;font-size:22px;margin:0 0 16px;line-height:1.4;">${ARTICLE_TITLE}</h2>
+          <p style="color:#c0c0c0;line-height:1.7;margin:0 0 28px;">${ARTICLE_EXCERPT}</p>
+          <div style="text-align:center;margin:0 0 28px;">
+            <a href="${ARTICLE_LINK}" style="display:inline-block;background:linear-gradient(135deg,#e2b96f,#c9963c);color:#0a0a0a;text-decoration:none;padding:14px 36px;border-radius:6px;font-weight:700;font-size:14px;letter-spacing:1px;">
+              Read Full Article →
+            </a>
+          </div>
+          <div style="border-top:1px solid #222;padding-top:24px;">
+            <p style="color:#888;font-size:12px;margin:0;text-align:center;">
+              You are receiving this because you subscribed to AeroXplore dispatches.<br/>
+              Visit <strong style="color:#a0a0a0;">aeroxplore.in</strong> to explore more.
+            </p>
+          </div>
+        </div>
+        <div style="background:#0a0a0a;padding:16px 32px;text-align:center;border-top:1px solid #222;">
+          <p style="color:#555;font-size:11px;margin:0;">© 2026 AeroXplore · Diwakar Nagar · All Rights Reserved</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  // Send in batches of 100 (Resend batch limit)
+  const BATCH_SIZE = 100;
+  let totalSent = 0;
+
+  for (let i = 0; i < emails.length; i += BATCH_SIZE) {
+    const batch = emails.slice(i, i + BATCH_SIZE).map((email) => ({
+      from: FROM_ADDRESS,
+      to: email,
+      subject: `New on AeroXplore: ${ARTICLE_TITLE}`,
+      html: emailHtml,
+    }));
+
+    const { data, error } = await resend.batch.send(batch);
+
+    if (error) {
+      console.error(`❌ Batch ${Math.floor(i / BATCH_SIZE) + 1} failed:`, error.message);
+    } else {
+      totalSent += batch.length;
+      console.log(`✅ Batch ${Math.floor(i / BATCH_SIZE) + 1} sent — ${batch.length} emails delivered.`);
+    }
+  }
+
+  console.log(`\n🎉 Done! Newsletter sent to ${totalSent}/${emails.length} subscriber(s).`);
+  await mongoose.disconnect();
 }
 
-sendNewsletter();
+sendNewsletter().catch((err) => {
+  console.error('❌ Fatal error:', err.message);
+  mongoose.disconnect();
+  process.exit(1);
+});
