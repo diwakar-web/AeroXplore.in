@@ -26,10 +26,10 @@ const sendWelcomeEmail = async (toEmail) => {
           <div style="padding:36px 32px;">
             <h2 style="color:#ffffff;font-size:22px;margin:0 0 16px;">Thank You for Subscribing! 🛫</h2>
             <p style="color:#c0c0c0;line-height:1.7;margin:0 0 16px;">
-              You're now on the manifest. Welcome aboard the AeroXplore community — your curiosity about the skies just got a dedicated inbox companion.
+              You're now on the manifest. Welcome aboard the AeroXplore community, your curiosity about the skies just got a dedicated inbox companion.
             </p>
             <p style="color:#c0c0c0;line-height:1.7;margin:0 0 24px;">
-              From now on, every time a new article drops — be it an engineering breakdown, a defense mission deep-dive, or a space exploration exclusive — you'll be among the first to know. Stay curious, stay aloft.
+              From now on, every time a new article drops, be it an engineering breakdown, a defense mission deep-dive, or a space exploration exclusive, you'll be among the first to know. Stay curious, stay aloft.
             </p>
             <div style="background:#1a1a2e;border-left:4px solid #e2b96f;padding:16px 20px;border-radius:6px;margin:0 0 28px;">
               <p style="color:#e2b96f;margin:0;font-style:italic;font-size:14px;">
