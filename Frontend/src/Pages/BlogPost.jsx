@@ -6,7 +6,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const postData = {
   'f-15': {
     title: "The Eagle’s Dominion: The Unrivaled Legacy of the F-15",
-    date: 'April 14, 2026',
+    date: 'April 18, 2026',
     author: 'Diwakar Nagar',
     category: 'Defence Aviation',
     image: '/images/f-15.jpg',
