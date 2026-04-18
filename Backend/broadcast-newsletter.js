@@ -5,9 +5,9 @@
 // =====================================================================
 // STEP 1: EDIT THESE 3 VARIABLES BEFORE YOU RUN THE SCRIPT
 // =====================================================================
-const ARTICLE_TITLE = "Trial Mail";
-const ARTICLE_LINK = "https://youtube.com";
-const ARTICLE_EXCERPT = "This is a quick summary of my post!";
+const ARTICLE_TITLE = "The Heart of the Machine: How a Fighter Jet Engine Generates Supersonic Thrust";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/f-15";
+const ARTICLE_EXCERPT = "From the raw Mach 2.5 power of the classic F-15A to the high-tech \"missile truck\" capabilities of the new F-15EX, the Eagle has never been shot down in air combat. Explore the evolution, the massive 29,500lb payload, and the legendary history of the world's most lethal fighter.";
 
 
 // =====================================================================
