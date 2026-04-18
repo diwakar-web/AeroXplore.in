@@ -69,45 +69,54 @@ const sendNewArticleNotification = async (emails, article) => {
   if (!emails || emails.length === 0) return;
   const transporter = createTransporter();
 
-  const mailOptions = {
-    from: `"AeroXplore ✈" <${process.env.Mail}>`,
-    bcc: emails,
-    subject: 'New Article available on Aeroxplore.in, click here to read it..',
-    html: `
-      <!DOCTYPE html>
-      <html>
-      <body style="margin:0;padding:0;background:#0a0a0a;font-family:'Segoe UI',Arial,sans-serif;">
-        <div style="max-width:600px;margin:40px auto;background:#111;border:1px solid #222;border-radius:12px;overflow:hidden;">
-          <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:40px 32px;text-align:center;border-bottom:2px solid #e2b96f;">
-            <h1 style="color:#e2b96f;font-size:28px;letter-spacing:4px;margin:0;text-transform:uppercase;">✈ AeroXplore</h1>
-            <p style="color:#a0a0a0;font-size:12px;letter-spacing:2px;margin:8px 0 0;">New Dispatch Available</p>
-          </div>
-          <div style="padding:36px 32px;">
-            <p style="color:#a0a0a0;font-size:12px;letter-spacing:1px;margin:0 0 12px;text-transform:uppercase;">Latest Article</p>
-            <h2 style="color:#ffffff;font-size:22px;margin:0 0 16px;line-height:1.4;">${article.title}</h2>
-            <p style="color:#c0c0c0;line-height:1.7;margin:0 0 28px;">${article.excerpt}</p>
-            <div style="text-align:center;margin:0 0 28px;">
-              <a href="${article.link}" style="display:inline-block;background:linear-gradient(135deg,#e2b96f,#c9963c);color:#0a0a0a;text-decoration:none;padding:14px 36px;border-radius:6px;font-weight:700;font-size:14px;letter-spacing:1px;">
-                Read Full Article →
-              </a>
+  // Send individually instead of BCC to avoid spam filters
+  const sendPromises = emails.map(email => {
+    const mailOptions = {
+      from: `"AeroXplore ✈" <${process.env.Mail}>`,
+      to: email,
+      subject: 'New Article available on Aeroxplore.in, click here to read it..',
+      html: `
+        <!DOCTYPE html>
+        <html>
+        <body style="margin:0;padding:0;background:#0a0a0a;font-family:'Segoe UI',Arial,sans-serif;">
+          <div style="max-width:600px;margin:40px auto;background:#111;border:1px solid #222;border-radius:12px;overflow:hidden;">
+            <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:40px 32px;text-align:center;border-bottom:2px solid #e2b96f;">
+              <h1 style="color:#e2b96f;font-size:28px;letter-spacing:4px;margin:0;text-transform:uppercase;">✈ AeroXplore</h1>
+              <p style="color:#a0a0a0;font-size:12px;letter-spacing:2px;margin:8px 0 0;">New Dispatch Available</p>
             </div>
-            <div style="border-top:1px solid #222;padding-top:24px;">
-              <p style="color:#888;font-size:12px;margin:0;text-align:center;">
-                You are receiving this because you subscribed to AeroXplore dispatches.<br/>
-                Visit <strong style="color:#a0a0a0;">aeroxplore.in</strong> to explore more.
-              </p>
+            <div style="padding:36px 32px;">
+              <p style="color:#a0a0a0;font-size:12px;letter-spacing:1px;margin:0 0 12px;text-transform:uppercase;">Latest Article</p>
+              <h2 style="color:#ffffff;font-size:22px;margin:0 0 16px;line-height:1.4;">${article.title}</h2>
+              <p style="color:#c0c0c0;line-height:1.7;margin:0 0 28px;">${article.excerpt}</p>
+              <div style="text-align:center;margin:0 0 28px;">
+                <a href="${article.link}" style="display:inline-block;background:linear-gradient(135deg,#e2b96f,#c9963c);color:#0a0a0a;text-decoration:none;padding:14px 36px;border-radius:6px;font-weight:700;font-size:14px;letter-spacing:1px;">
+                  Read Full Article →
+                </a>
+              </div>
+              <div style="border-top:1px solid #222;padding-top:24px;">
+                <p style="color:#888;font-size:12px;margin:0;text-align:center;">
+                  You are receiving this because you subscribed to AeroXplore dispatches.<br/>
+                  Visit <strong style="color:#a0a0a0;">aeroxplore.in</strong> to explore more.
+                </p>
+              </div>
+            </div>
+            <div style="background:#0a0a0a;padding:16px 32px;text-align:center;border-top:1px solid #222;">
+              <p style="color:#555;font-size:11px;margin:0;">© 2026 AeroXplore · Diwakar Nagar · All Rights Reserved</p>
             </div>
           </div>
-          <div style="background:#0a0a0a;padding:16px 32px;text-align:center;border-top:1px solid #222;">
-            <p style="color:#555;font-size:11px;margin:0;">© 2026 AeroXplore · Diwakar Nagar · All Rights Reserved</p>
-          </div>
-        </div>
-      </body>
-      </html>
-    `,
-  };
+        </body>
+        </html>
+      `,
+    };
 
-  await transporter.sendMail(mailOptions);
+    // We catch errors per-email so one failure doesn't crash the whole batch
+    return transporter.sendMail(mailOptions).catch(err => {
+      console.error(`Failed to send to ${email}:`, err.message);
+    });
+  });
+
+  // Wait for all emails to attempt sending
+  await Promise.all(sendPromises);
 };
 
 /**
