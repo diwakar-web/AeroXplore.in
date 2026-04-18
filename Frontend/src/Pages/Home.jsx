@@ -127,7 +127,7 @@ export default function Home() {
               <p className="masthead-subtitle">The Premier Aviation &amp; Aerospace Chronicle</p>
               <div className="masthead-rule thin"></div>
               <div className="masthead-info-row">
-                <span className="masthead-info">Est. 13 April, 2026</span>
+                <span className="masthead-info">Est. April, 2026</span>
                 <span className="masthead-info">Vol. I · No. 47</span>
                 <span className="masthead-info">
                   {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}

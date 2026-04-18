@@ -44,8 +44,7 @@ const allBlogPosts = [
     author: 'Diwakar Nagar',
     image: '/images/engine.png',
     category: 'Engineering Corner',
-  },
-  
+  }  
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
