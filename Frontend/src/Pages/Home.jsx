@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.png';
 
 const featuredPost = {
-  id: 'f-15',
-  title: "The Eagle’s Dominion: The Unrivaled Legacy of the F-15",
-  date: 'April 18, 2026',
+  id: 'ic-814',
+  title: "The Kandahar Crisis: A Turning Point in Aviation Security",
+  date: 'April 24, 2026',
   author: 'Diwakar Nagar',
-  caption: 'McDonnell Douglas F-15',
-  para1:`The McDonnell Douglas (now Boeing) F-15 Eagle remains the undisputed king of the skies, a reputation cemented by its legendary combat score of 104-0. Over five decades of operation, no F-15 has ever been shot down by an enemy aircraft in aerial combat. The aircraft's journey began with the F-15A (single-seat) and F-15B (two-seat trainer), which were pure air-superiority machines designed under the strict philosophy of \"not a pound for air-to-ground.\" These were followed by the F-15C and F-15D, which introduced the \"Production Eagle Package,\" including increased internal fuel and the ability to carry conformal fuel tanks, significantly extending their range and endurance for long-range patrols.`,
-  para2:`At high altitudes, the Eagle can attain a blistering speed of Mach 2.5 (approximately 1,900 mph), powered by its twin-engine configuration. The platform has historically relied on two primary powerplants: the Pratt & Whitney F100 series, which powered the original A through D models, and the General Electric F110-GE-129, which has become the \"engine of choice\" for the newest heavy-duty variants. These engines provide the massive thrust-to-weight ratio required to out-accelerate almost any threat, allowing the Eagle to maintain its dominance even as newer generations of fighters emerge.`
+  caption: 'The Kandahar Crisis: A Turning Point in Aviation Security',
+  para1:`On December 24, 1999, Indian Airlines Flight IC 814, an Airbus A300, departed from Tribhuvan International Airport in Kathmandu, Nepal, bound for Indira Gandhi International Airport in Delhi. Shortly after entering Indian airspace, the aircraft was seized by five masked hijackers. The flight plan was forcibly altered several times as the aircraft was diverted to Amritsar, then Lahore, and Dubai, before finally landing in Kandahar, Afghanistan, a territory then controlled by the Taliban. The hijackers’ primary objective was the release of three high-profile militants held in Indian prisons: Masood Azhar, Ahmed Omar Saeed Sheikh, and Mushtaq Ahmed Zargar.`,
+  para2:`The hijacking occurred due to a combination of security lapses at the point of origin and the tactical timing of the captors. Once the plane reached Kandahar, India faced a complex geopolitical dilemma. The options were severely limited: a military rescue operation was deemed nearly impossible due to the hostile terrain and the lack of diplomatic recognition of the Taliban regime. Communication was strained, and the hijackers used the safety of the 176 passengers and 15 crew members as leverage. The standoff stretched into a grueling week of psychological warfare, with the hostages held in cramped, deteriorating conditions.`
 };
 
 const blogPosts = [
+  {
+    id: 'f-15',
+    title: 'The Eagle’s Dominion: The Unrivaled Legacy of the F-15',
+    date: 'April 18, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/f-15.jpg',
+    category: 'Defence Aviation',
+  },
   {
     id: 'tejas_1',
     title: 'Tejas: Pride, Payloads, and Production Bottlenecks',
@@ -25,21 +33,13 @@ const blogPosts = [
   },
   {
     id: '5th gen',
-    title: 'The Fifth-Generation Dilemma: Su-57 Felon vs. F-35 Lightning II',
-    date: 'April 13, 2026',
+    title: "The Fifth-Generation Dilemma: Su-57 Felon vs. F-35 Lightning II",
+    date: 'Apri 13, 2026',
     author: 'Diwakar Nagar',
     image: '/images/su57-f35.jpg',
     category: 'Defence Aviation',
   },
-  {
-    id: 'drone',
-    title: "The Drone Revolution: Precision, Attrition, and India's Path to Sovereignty",
-    date: 'Apri 13, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/drone.jpg',
-    category: 'Unmanned Systems',
-  },
-  
+
 ];
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
@@ -161,7 +161,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/f-15.jpg"
+                    src="/images/ic-814.jpg"
                     alt="Featured Article"
                     className="featured-photo"
                   />
@@ -405,7 +405,7 @@ export default function Home() {
         </div>
       </footer>
       <div style={{ textAlign: 'center', padding: '10px', fontSize: '0.75rem', color: '#888', background: '#0a0a0a' }}>
-I'm here to help spark ideas and provide a great starting point, but for anything mission-critical, it’s always a good move to double-check with official documentation or expert sources just to be safe!      </div>
+        I'm here to help spark ideas and provide a great starting point, but for anything mission-critical, it’s always a good move to double-check with official documentation or expert sources just to be safe!      </div>
 
     </div>
   );

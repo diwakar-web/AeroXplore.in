@@ -6,6 +6,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth — keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'ic-814',
+    title: "The Kandahar Crisis: A Turning Point in Aviation Security",
+    date: 'April 24, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/ic-814.jpg',
+    category: 'Aviation Security',
+  },
+  {
     id: 'f-15',
     title: "The Eagle’s Dominion: The Unrivaled Legacy of the F-15",
     date: 'April 18, 2026',

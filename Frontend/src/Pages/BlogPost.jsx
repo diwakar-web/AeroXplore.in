@@ -4,6 +4,21 @@ import '../CSS/BlogPost.css';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 const postData = {
+  'ic-814': {
+    title: "The Kandahar Crisis: A Turning Point in Aviation Security",
+    date: 'April 24, 2026',
+    author: 'Diwakar Nagar',
+    category: 'Aviation Security',
+    image: '/images/ic-814.jpg',
+    thought: "If, however, you do not fight this righteous war, then you will fail in your duty, lose your reputation, and incur sin.",
+    content: [
+      "On December 24, 1999, Indian Airlines Flight IC 814, an Airbus A300, departed from Tribhuvan International Airport in Kathmandu, Nepal, bound for Indira Gandhi International Airport in Delhi. Shortly after entering Indian airspace, the aircraft was seized by five masked hijackers. The flight plan was forcibly altered several times as the aircraft was diverted to Amritsar, then Lahore, and Dubai, before finally landing in Kandahar, Afghanistan, a territory then controlled by the Taliban. The hijackers’ primary objective was the release of three high-profile militants held in Indian prisons: Masood Azhar, Ahmed Omar Saeed Sheikh, and Mushtaq Ahmed Zargar.",
+      "The hijacking occurred due to a combination of security lapses at the point of origin and the tactical timing of the captors. Once the plane reached Kandahar, India faced a complex geopolitical dilemma. The options were severely limited: a military rescue operation was deemed nearly impossible due to the hostile terrain and the lack of diplomatic recognition of the Taliban regime. Communication was strained, and the hijackers used the safety of the 176 passengers and 15 crew members as leverage. The standoff stretched into a grueling week of psychological warfare, with the hostages held in cramped, deteriorating conditions.",
+      "The crisis finally reached its conclusion on December 31, 1999. After seven days of intense negotiations and the tragic killing of one passenger, Rupin Katyal, the Indian government, then led by the National Democratic Alliance under Prime Minister Atal Bihari Vajpayee, agreed to a prisoner exchange. The three militants were flown to Kandahar, and the remaining victims were finally released to return home. While the immediate threat to the passengers was over, the consequences of this decision were profound. The released individuals went on to lead militant groups that orchestrated major future attacks, including the 2001 Parliament attack and the 2008 Mumbai attacks.",
+      "Domestically, the incident led to a massive overhaul of India’s security apparatus. India learned that \"reactive\" security was insufficient, leading to the creation of the Anti Hijacking Act and the deployment of Sky Marshals on commercial flights. It also underscored the necessity of the \"Amritsar Lesson\", the failure to immobilize the plane while it was on Indian soil, which led to stricter Standard Operating Procedures (SOPs) for Crisis Management Groups. If a similar hijacking were to occur in today’s hyper-connected world, the impact would be instantaneous. Modern satellite tracking and real-time social media would put immense public pressure on governments to act within minutes.",
+      "Today, India's stance has shifted toward a policy of \"no negotiation\" with terrorists, backed by specialized units like the National Security Guard (NSG) trained specifically for aircraft intervention. The Kandahar incident remains a somber case study in the challenges of balancing human life against national security. It serves as a reminder that aviation security is a continuous evolution of technology, intelligence, and political will, aimed at ensuring that the tragedy of December 1999 is never repeated.",
+    ],
+  },
   'f-15': {
     title: "The Eagle’s Dominion: The Unrivaled Legacy of the F-15",
     date: 'April 18, 2026',
