@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE   = "The Eagle’s Dominion: The Unrivaled Legacy of the F-15";
-const ARTICLE_LINK    = "https://www.aeroxplore.in/blog/f-15";
-const ARTICLE_EXCERPT = "From the raw Mach 2.5 power of the classic F-15A to the high-tech \"missile truck\" capabilities of the new F-15EX, the Eagle has never been shot down in air combat. Explore the evolution, the massive 29,500lb payload, and the legendary history of the world's most lethal fighter.";
+const ARTICLE_TITLE   = "The Kandahar Crisis: A Turning Point in Aviation Security";
+const ARTICLE_LINK    = "https://www.aeroxplore.in/blog/ic-814";
+const ARTICLE_EXCERPT = "In our latest deep dive, we revisit the 1999 Kandahar Hijacking, a defining moment in India’s defense history. From the critical minutes on the tarmac at Amritsar to the grueling negotiations in Taliban-controlled Afghanistan, we explore the tactical failures and the impossible choices that faced the nation.";
 
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
