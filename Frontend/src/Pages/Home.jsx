@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.png';
 
 const featuredPost = {
-  id: 'ic-814',
-  title: "The Kandahar Crisis: A Turning Point in Aviation Security",
-  date: 'April 24, 2026',
+  id: 'missile',
+  title: "Missile Decoding 101: From BVRAAMs to ICBMs",
+  date: 'May 2, 2026',
   author: 'Diwakar Nagar',
-  caption: 'The Kandahar Crisis',
-  para1:`On December 24, 1999, Indian Airlines Flight IC 814, an Airbus A300, departed from Tribhuvan International Airport in Kathmandu, Nepal, bound for Indira Gandhi International Airport in Delhi. Shortly after entering Indian airspace, the aircraft was seized by five masked hijackers. The flight plan was forcibly altered several times as the aircraft was diverted to Amritsar, then Lahore, and Dubai, before finally landing in Kandahar, Afghanistan, a territory then controlled by the Taliban. The hijackers’ primary objective was the release of three high-profile militants held in Indian prisons: Masood Azhar, Ahmed Omar Saeed Sheikh, and Mushtaq Ahmed Zargar.`,
-  para2:`The hijacking occurred due to a combination of security lapses at the point of origin and the tactical timing of the captors. Once the plane reached Kandahar, India faced a complex geopolitical dilemma. The options were severely limited: a military rescue operation was deemed nearly impossible due to the hostile terrain and the lack of diplomatic recognition of the Taliban regime. Communication was strained, and the hijackers used the safety of the 176 passengers and 15 crew members as leverage. The standoff stretched into a grueling week of psychological warfare, with the hostages held in cramped, deteriorating conditions.`
+  caption: 'Pinaka Multi-Barrel Rocket Launcher (MBRL) system',
+  para1:`Do you ever find yourself scrolling through defense news and getting completely tripped up by acronyms like BVRAAM, ASM, or SAM? It feels like reading a secret code where every letter represents a different way something flies through the air. At its core, a missile is essentially a guided self-propelled weapon system, but the \"alphabet soup\" of categories actually tells us exactly where the missile starts its journey and where it’s intended to end it.`,
+  para2:`The most common starting point for many is the Air-to-Air Missile (AAM). These are launched from one aircraft to take down another. You’ll often hear about BVRAAMs (Beyond Visual Range Air-to-Air Missiles), which are the long-distance runners of the sky, using radar to hit targets miles away before the pilot even sees them. A classic example is the American AIM-120 AMRAAM. On the flip side, there are short-range \"dogfighting\" missiles like the British AIM-132 ASRAAM, designed for high-speed maneuvers in close-quarter combat.`
 };
 
 const blogPosts = [
+  {
+    id: 'ic-814',
+    title: "The Kandahar Crisis: A Turning Point in Aviation Security",
+    date: ' April 24, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/ic-814.jpg',
+    category: 'Aviation Security',
+  },
   {
     id: 'f-15',
     title: 'The Eagle’s Dominion: The Unrivaled Legacy of the F-15',
@@ -31,14 +39,7 @@ const blogPosts = [
     image: '/images/tejas.jpg',
     category: 'Defence Aviation',
   },
-  {
-    id: '5th gen',
-    title: "The Fifth-Generation Dilemma: Su-57 Felon vs. F-35 Lightning II",
-    date: 'Apri 13, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/su57-f35.jpg',
-    category: 'Defence Aviation',
-  },
+  
 
 ];
 
@@ -161,7 +162,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/ic-814.jpg"
+                    src="/images/missile.jpg"
                     alt="Featured Article"
                     className="featured-photo"
                   />

@@ -6,6 +6,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth — keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'missile',
+    title: "Missile Decoding 101: From BVRAAMs to ICBMs",
+    date: 'May 2, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/missile.jpg',
+    category: 'Strategic Weapons',
+  },
+  {
     id: 'ic-814',
     title: "The Kandahar Crisis: A Turning Point in Aviation Security",
     date: 'April 24, 2026',
