@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE   = "The Kandahar Crisis: A Turning Point in Aviation Security";
-const ARTICLE_LINK    = "https://www.aeroxplore.in/blog/ic-814";
-const ARTICLE_EXCERPT = "In our latest deep dive, we revisit the 1999 Kandahar Hijacking, a defining moment in India’s defense history. From the critical minutes on the tarmac at Amritsar to the grueling negotiations in Taliban-controlled Afghanistan, we explore the tactical failures and the impossible choices that faced the nation.";
+const ARTICLE_TITLE   = "Missile Decoding 101: From BVRAAMs to ICBMs";
+const ARTICLE_LINK    = "https://www.aeroxplore.in/blog/missile";
+const ARTICLE_EXCERPT = "Ever felt lost in the \"alphabet soup\" of defense acronyms like BVRAAM, ASM, or SAM? Behind these complex labels lies the fascinating engineering of guided self-propelled weapon systems,the precision tools of modern aerospace and defense. From the supersonic speed of the BrahMos to the global reach of ICBMs, understanding these categories is key to grasping how air superiority and national security work today.";
 
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
