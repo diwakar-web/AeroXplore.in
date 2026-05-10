@@ -9,7 +9,7 @@ const postData = {
     date: 'May 10, 2026',
     author: 'Diwakar Nagar',
     category: 'Defence Aviation',
-    image: '/images/f-35.jpg',
+    image: '/images/f-35.webp',
     thought: "The true measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy.",
     content: [
     "The Lockheed Martin F-35 Lightning II is the definitive fifth-generation multirole fighter, designed to dominate the 21st-century battlefield through a combination of stealth, advanced sensors, and unprecedented data fusion. Born from the Joint Strike Fighter (JSF) program in the late 1990s, the aircraft was conceived as a versatile platform to replace several aging legacy jets like the F-16 and A-10. Since its first flight in 2006, it has evolved into a global security cornerstone. As of 2026, the F-35 is operated by a vast network of allies, including the United States, United Kingdom, Israel, Italy, Japan, Australia, Norway, and the Netherlands, with nations like Germany, Switzerland, and Singapore having integrated or ordered the jet to fortify their national defense.",
@@ -24,7 +24,7 @@ const postData = {
     date: 'May 2, 2026',
     author: 'Diwakar Nagar',
     category: 'Strategic Weapons',
-    image: '/images/missile.jpg',
+    image: '/images/missile.webp',
     thought: "The object of war is not to die for your country but to make the other bastard die for his.",
     content: [
       "Do you ever find yourself scrolling through defense news and getting completely tripped up by acronyms like BVRAAM, ASM, or SAM? It feels like reading a secret code where every letter represents a different way something flies through the air. At its core, a missile is essentially a guided self-propelled weapon system, but the \"alphabet soup\" of categories actually tells us exactly where the missile starts its journey and where it’s intended to end it.",
@@ -40,7 +40,7 @@ const postData = {
     date: 'April 24, 2026',
     author: 'Diwakar Nagar',
     category: 'Aviation Security',
-    image: '/images/ic-814.jpg',
+    image: '/images/ic-814.webp',
     thought: "If, however, you do not fight this righteous war, then you will fail in your duty, lose your reputation, and incur sin.",
     content: [
       "On December 24, 1999, Indian Airlines Flight IC 814, an Airbus A300, departed from Tribhuvan International Airport in Kathmandu, Nepal, bound for Indira Gandhi International Airport in Delhi. Shortly after entering Indian airspace, the aircraft was seized by five masked hijackers. The flight plan was forcibly altered several times as the aircraft was diverted to Amritsar, then Lahore, and Dubai, before finally landing in Kandahar, Afghanistan, a territory then controlled by the Taliban. The hijackers’ primary objective was the release of three high-profile militants held in Indian prisons: Masood Azhar, Ahmed Omar Saeed Sheikh, and Mushtaq Ahmed Zargar.",
@@ -55,7 +55,7 @@ const postData = {
     date: 'April 18, 2026',
     author: 'Diwakar Nagar',
     category: 'Defence Aviation',
-    image: '/images/f-15.jpg',
+    image: '/images/f-15.webp',
     thought: "The supreme art of war is to subdue the enemy without fighting.",
     content: [
       "The McDonnell Douglas (now Boeing) F-15 Eagle remains the undisputed king of the skies, a reputation cemented by its legendary combat score of 104-0. Over five decades of operation, no F-15 has ever been shot down by an enemy aircraft in aerial combat. The aircraft's journey began with the F-15A (single-seat) and F-15B (two-seat trainer), which were pure air-superiority machines designed under the strict philosophy of \"not a pound for air-to-ground.\" These were followed by the F-15C and F-15D, which introduced the \"Production Eagle Package,\" including increased internal fuel and the ability to carry conformal fuel tanks, significantly extending their range and endurance for long-range patrols.",
@@ -70,7 +70,7 @@ const postData = {
     date: 'April 14, 2026',
     author: 'Diwakar Nagar',
     category: 'Defence Aviation',
-    image: '/images/tejas.jpg',
+    image: '/images/tejas.webp',
     thought: "The trajectory of Indian aerospace points only upward — and the world is finally paying attention.",
     content: [
       "For decades, the Indian Air Force relied heavily on foreign workhorses to guard its skies, but the HAL Tejas, India’s indigenous Light Combat Aircraft (LCA), has fundamentally rewritten that narrative. As a 4.5-generation, delta-wing fighter, the Tejas is far more than a replacement for the aging MiG-21 fleet; it is the cornerstone of India's Atmanirbhar (self-reliant) aerospace ecosystem. By fostering a domestic network of hundreds of private suppliers and laboratories, the Tejas program retains critical defense capital within the country, ensuring that India isn't just a buyer of global defense technology, but a sovereign creator of it.",
@@ -85,7 +85,7 @@ const postData = {
     date: 'April 13, 2026',
     author: 'Diwakar Nagar',
     category: 'Defence Aviation',
-    image: '/images/su57-f35.jpg',
+    image: '/images/su57-f35.webp',
     thought: "Breakthrough science doesn't require the deepest pockets, only the deepest commitment.",
     content: [
       "In the high-stakes arena of modern aerial warfare, the Sukhoi Su-57 Felon and the Lockheed Martin F-35 Lightning II represent two fundamentally different philosophies of combat. The Su-57 is a larger, twin-engine \"heavyweight \" that prioritizes kinetic dominance, measuring approximately 20.1 meters in length with a massive internal payload capacity of up to 10,000 kg, designed to carry heavy, long-range munitions. In contrast, the F-35 is a more compact, single-engine \"multi-role\" platform with a payload of 8,160 kg, engineered around a \"stealth-first\" doctrine. While the Su-57 boasts superior top speeds (Mach 2.0 vs. Mach 1.6) and hyper-maneuverability, the F-35 remains the undisputed king of radar presence, its 0.001 m² radar cross-section (RCS) is significantly smaller than the Su-57’s estimated 0.1, 1.0 m², making it nearly invisible to modern sensors compared to its Russian rival.",
@@ -99,7 +99,7 @@ const postData = {
     date: 'April 13, 2026',
     author: 'Diwakar Nagar',
     category: 'Unmanned Systems',
-    image: '/images/drone.jpg',
+    image: '/images/drone.webp',
     thought: "Home-grown engineering, given patience and belief, does not merely survive, it soars.",
     content: [
       "The modern battlefield has undergone a radical transformation, shifting from high, value, manned platforms to the era of \"attritable\" mass, where drones are treated as expendable as ammunition. In the Russia, Ukraine war, drones have become the primary instrument of attrition, with FPV (First-Person View) drones and loitering munitions like the Lancet and Shahed-136 replacing traditional artillery in precision roles and providing constant, \"unblinking\" overhead surveillance. Similarly, the U.S., Iran tensions in early 2026 highlighted a different facet of drone warfare, where Iranian-made Shahed drones demonstrated the ability to overwhelm sophisticated air defenses through sheer volume, while U.S. forces utilized high-end interceptors and AI-driven counter-UAS systems to protect regional assets. This shift underscores a critical reality: in modern warfare, the side that can produce the most low, cost, autonomous drones, and the systems to jam them, holds the tactical edge.",
@@ -111,7 +111,7 @@ const postData = {
     date: 'April 13, 2026',
     author: 'Diwakar Nagar',
     category: 'Engineering Corner',
-    image: '/images/engine.png',
+    image: '/images/engine.webp',
     thought: "The engine is the heart of a fighter, and as long as that heart is foreign, the aircraft's pulse is controlled by someone else.",
     content: [
       "A fighter jet engine, specifically a low, bypass turbofan, operates on the core principle of the Brayton cycle: intake, compression, combustion, and exhaust. The process begins when the massive fan at the front sucks in air, splitting it into two paths. A small portion of air bypasses the engine core for cooling and slight thrust, while the majority enters the high, pressure compressor. Here, rows of rapidly spinning blades squash the air into a tiny fraction of its original volume, massively increasing its temperature and pressure before it enters the heart of the machine.",

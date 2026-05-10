@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE   = "Missile Decoding 101: From BVRAAMs to ICBMs";
-const ARTICLE_LINK    = "https://www.aeroxplore.in/blog/missile";
-const ARTICLE_EXCERPT = "Ever felt lost in the \"alphabet soup\" of defense acronyms like BVRAAM, ASM, or SAM? Behind these complex labels lies the fascinating engineering of guided self-propelled weapon systems,the precision tools of modern aerospace and defense. From the supersonic speed of the BrahMos to the global reach of ICBMs, understanding these categories is key to grasping how air superiority and national security work today.";
+const ARTICLE_TITLE   = "Phantom of the Skies: The Dominance of the F-35 Lightning II";
+const ARTICLE_LINK    = "https://www.aeroxplore.in/blog/f-35";
+const ARTICLE_EXCERPT = "The F-35 Lightning II has officially redefined modern air power. Whether it's the recent rollout of Block 4 upgrades or its evolving role as the \"quarterback of the sky,\" this aircraft remains the most discussed—and technologically complex—fighter in the world.We have just published a comprehensive analysis of the F-35, covering its journey from the Joint Strike Fighter program to its current global dominance.";
 
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../CSS/Home.css';
 import useScrollReveal from '../hooks/useScrollReveal';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.webp';
 
 const featuredPost = {
   id: 'f-35',
@@ -20,7 +20,7 @@ const blogPosts = [
     title: "Missile Decoding 101: From BVRAAMs to ICBMs",
     date: 'May 2, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/missile.jpg',
+    image: '/images/missile.webp',
     category: 'Strategic Weapons'
   },
   {
@@ -28,7 +28,7 @@ const blogPosts = [
     title: "The Kandahar Crisis: A Turning Point in Aviation Security",
     date: ' April 24, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/ic-814.jpg',
+    image: '/images/ic-814.webp',
     category: 'Aviation Security',
   },
   {
@@ -36,7 +36,7 @@ const blogPosts = [
     title: 'The Eagle’s Dominion: The Unrivaled Legacy of the F-15',
     date: 'April 18, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/f-15.jpg',
+    image: '/images/f-15.webp',
     category: 'Defence Aviation',
   },
 
@@ -161,7 +161,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/f-35.jpg"
+                    src="/images/f-35.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />

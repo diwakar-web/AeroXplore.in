@@ -10,7 +10,7 @@ const allBlogPosts = [
     title: "Phantom of the Skies: The Dominance of the F-35 Lightning II",
     date: 'May 10, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/f-35.jpg',
+    image: '/images/f-35.webp',
     category: 'Defence Aviation',
   },
   {
@@ -18,7 +18,7 @@ const allBlogPosts = [
     title: "Missile Decoding 101: From BVRAAMs to ICBMs",
     date: 'May 2, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/missile.jpg',
+    image: '/images/missile.webp',
     category: 'Strategic Weapons',
   },
   {
@@ -26,7 +26,7 @@ const allBlogPosts = [
     title: "The Kandahar Crisis: A Turning Point in Aviation Security",
     date: 'April 24, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/ic-814.jpg',
+    image: '/images/ic-814.webp',
     category: 'Aviation Security',
   },
   {
@@ -34,7 +34,7 @@ const allBlogPosts = [
     title: "The Eagle’s Dominion: The Unrivaled Legacy of the F-15",
     date: 'April 18, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/f-15.jpg',
+    image: '/images/f-15.webp',
     category: 'Defence Aviation',
   },
   {
@@ -42,7 +42,7 @@ const allBlogPosts = [
     title: "Tejas: Pride, Payloads, and Production Bottlenecks",
     date: 'April 14, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/tejas.jpg',
+    image: '/images/tejas.webp',
     category: 'Defence Aviation',
   },
   {
@@ -50,7 +50,7 @@ const allBlogPosts = [
     title: "The Fifth-Generation Dilemma: Su-57 Felon vs. F-35 Lightning II",
     date: 'April 13, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/su57-f35.jpg',
+    image: '/images/su57-f35.webp',
     category: 'Defence Aviation',
   },
   {
@@ -58,7 +58,7 @@ const allBlogPosts = [
     title: "The Drone Revolution: Precision, Attrition, and India's Path to Sovereignty",
     date: 'April 13, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/drone.jpg',
+    image: '/images/drone.webp',
     category: 'Unmanned Systems',
   },
   {
@@ -66,7 +66,7 @@ const allBlogPosts = [
     title: "The Heart of the Machine: How a Fighter Jet Engine Generates Supersonic Thrust",
     date: 'April 13, 2026',
     author: 'Diwakar Nagar',
-    image: '/images/engine.png',
+    image: '/images/engine.webp',
     category: 'Engineering Corner',
   }  
 ];
