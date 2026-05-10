@@ -5,6 +5,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 
 // ─── Blog Data (single source of truth — keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
+   {
+    id: 'f-35',
+    title: "Phantom of the Skies: The Dominance of the F-35 Lightning II",
+    date: 'May 10, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/f-35.jpg',
+    category: 'Defence Aviation',
+  },
   {
     id: 'missile',
     title: "Missile Decoding 101: From BVRAAMs to ICBMs",

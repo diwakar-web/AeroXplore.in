@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.png';
 
 const featuredPost = {
-  id: 'missile',
-  title: "Missile Decoding 101: From BVRAAMs to ICBMs",
-  date: 'May 2, 2026',
+  id: 'f-35',
+  title: "Phantom of the Skies: The Dominance of the F-35 Lightning II",
+  date: 'May 10, 2026',
   author: 'Diwakar Nagar',
-  caption: 'Pinaka Multi-Barrel Rocket Launcher (MBRL) system',
-  para1:`Do you ever find yourself scrolling through defense news and getting completely tripped up by acronyms like BVRAAM, ASM, or SAM? It feels like reading a secret code where every letter represents a different way something flies through the air. At its core, a missile is essentially a guided self-propelled weapon system, but the \"alphabet soup\" of categories actually tells us exactly where the missile starts its journey and where it’s intended to end it.`,
-  para2:`The most common starting point for many is the Air-to-Air Missile (AAM). These are launched from one aircraft to take down another. You’ll often hear about BVRAAMs (Beyond Visual Range Air-to-Air Missiles), which are the long-distance runners of the sky, using radar to hit targets miles away before the pilot even sees them. A classic example is the American AIM-120 AMRAAM. On the flip side, there are short-range \"dogfighting\" missiles like the British AIM-132 ASRAAM, designed for high-speed maneuvers in close-quarter combat.`
+  caption: 'Lockheed Martin F-35',
+  para1: `The Lockheed Martin F-35 Lightning II is the definitive fifth-generation multirole fighter, designed to dominate the 21st-century battlefield through a combination of stealth, advanced sensors, and unprecedented data fusion. Born from the Joint Strike Fighter (JSF) program in the late 1990s, the aircraft was conceived as a versatile platform to replace several aging legacy jets like the F-16 and A-10. Since its first flight in 2006, it has evolved into a global security cornerstone. As of 2026, the F-35 is operated by a vast network of allies, including the United States, United Kingdom, Israel, Italy, Japan, Australia, Norway, and the Netherlands, with nations like Germany, Switzerland, and Singapore having integrated or ordered the jet to fortify their national defense.`,
+  para2: `Technologically, the F-35 is a \"flying supercomputer.\" Its history is marked by a shift from traditional dogfighting toward \"informationized\" warfare, where its AN/APG-81 AESA radar and Distributed Aperture System (DAS) allow the pilot to see 360 degrees around the aircraft, even through the cockpit floor. Its primary strength lies in its low-observable (stealth) profile, which allows it to penetrate sophisticated enemy air defenses undetected. However, this journey was not without \"growing pains\", the program famously faced years of delays and cost overruns before maturing into the combat-proven platform it is today, having seen active service in conflicts across the Middle East and beyond.`
 };
 
 const blogPosts = [
+  {
+    id: 'missile',
+    title: "Missile Decoding 101: From BVRAAMs to ICBMs",
+    date: 'May 2, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/missile.jpg',
+    category: 'Strategic Weapons'
+  },
   {
     id: 'ic-814',
     title: "The Kandahar Crisis: A Turning Point in Aviation Security",
@@ -31,15 +39,6 @@ const blogPosts = [
     image: '/images/f-15.jpg',
     category: 'Defence Aviation',
   },
-  {
-    id: 'tejas_1',
-    title: 'Tejas: Pride, Payloads, and Production Bottlenecks',
-    date: 'April 14, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/tejas.jpg',
-    category: 'Defence Aviation',
-  },
-  
 
 ];
 
@@ -162,7 +161,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/missile.jpg"
+                    src="/images/f-35.jpg"
                     alt="Featured Article"
                     className="featured-photo"
                   />

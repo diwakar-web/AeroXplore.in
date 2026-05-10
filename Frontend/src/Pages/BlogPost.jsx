@@ -4,6 +4,21 @@ import '../CSS/BlogPost.css';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 const postData = {
+  'f-35': {
+    title: "Phantom of the Skies: The Dominance of the F-35 Lightning II",
+    date: 'May 10, 2026',
+    author: 'Diwakar Nagar',
+    category: 'Defence Aviation',
+    image: '/images/f-35.jpg',
+    thought: "The true measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy.",
+    content: [
+    "The Lockheed Martin F-35 Lightning II is the definitive fifth-generation multirole fighter, designed to dominate the 21st-century battlefield through a combination of stealth, advanced sensors, and unprecedented data fusion. Born from the Joint Strike Fighter (JSF) program in the late 1990s, the aircraft was conceived as a versatile platform to replace several aging legacy jets like the F-16 and A-10. Since its first flight in 2006, it has evolved into a global security cornerstone. As of 2026, the F-35 is operated by a vast network of allies, including the United States, United Kingdom, Israel, Italy, Japan, Australia, Norway, and the Netherlands, with nations like Germany, Switzerland, and Singapore having integrated or ordered the jet to fortify their national defense.",
+    "Technologically, the F-35 is a \"flying supercomputer.\" Its history is marked by a shift from traditional dogfighting toward \"informationized\" warfare, where its AN/APG-81 AESA radar and Distributed Aperture System (DAS) allow the pilot to see 360 degrees around the aircraft, even through the cockpit floor. Its primary strength lies in its low-observable (stealth) profile, which allows it to penetrate sophisticated enemy air defenses undetected. However, this journey was not without \"growing pains\", the program famously faced years of delays and cost overruns before maturing into the combat-proven platform it is today, having seen active service in conflicts across the Middle East and beyond.",
+    "One of the jet's most versatile features is its payload capability. In its \"Stealth Mode\", it carries weapons internally to maintain a clean radar signature, typically holding two air-to-air missiles (like the AIM-120 AMRAAM) and two 2,000-pound guided bombs (such as the GBU-31 JDAM). For missions where stealth is less critical, it can enter \"Beast Mode\", utilizing external pylons to carry up to 18,000 lbs (8,160 kg) of total ordnance. Its arsenal is diverse, ranging from air-to-ground missiles and laser-guided bombs to specialized payloads like the B61-12 nuclear bomb, making it a vital deterrent in strategic defense.",
+    "The future of the Lightning II is defined by the Block 4 upgrade and Technology Refresh 3 (TR-3). These modifications act as a massive \"brain transplant\" for the aircraft, increasing its onboard processing power by 25 times and its memory capacity significantly. These upgrades will enable the F-35 to act as a \"quarterback of the sky\", controlling teams of autonomous drones known as Collaborative Combat Aircraft (CCAs). Future mods also include improved electronic warfare suites and the ability to integrate next-generation long-range precision weapons, ensuring the jet stays ahead of evolving cyber and kinetic threats.",
+    "In the global arena, the F-35 faces competition from other high-tech platforms, though few match its integrated sensor ecosystem. Its primary rivals include the Russian Sukhoi Su-57 and the Chinese Chengdu J-20, both of which claim stealth capabilities. In the export market, it also competes with European 4.5-generation jets like the Eurofighter Typhoon and the Dassault Rafale. However, the F-35’s unique advantage remains its interoperability; because so many allied nations fly the same jet, they can share data in real-time on the battlefield, creating a unified and nearly impenetrable digital wall that no other single fighter can currently replicate."
+    ]
+  },
   'missile': {
     title: "Missile Decoding 101: From BVRAAMs to ICBMs",
     date: 'May 2, 2026',
