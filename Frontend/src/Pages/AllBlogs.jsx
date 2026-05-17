@@ -3,9 +3,17 @@ import { Link } from 'react-router-dom';
 import '../CSS/AllBlogs.css';
 import useScrollReveal from '../hooks/useScrollReveal';
 
-// ─── Blog Data (single source of truth — keep in sync with Home.jsx) ──────────
+// ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
-   {
+  {
+    id: 'typhoon',
+    title: "The Whispering Death: Mighty Eurofighter Typhoon",
+    date: 'May 17, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/typhoon.webp',
+    category: 'Defence Aviation',
+  },
+  {
     id: 'f-35',
     title: "Phantom of the Skies: The Dominance of the F-35 Lightning II",
     date: 'May 10, 2026',
@@ -68,7 +76,7 @@ const allBlogPosts = [
     author: 'Diwakar Nagar',
     image: '/images/engine.webp',
     category: 'Engineering Corner',
-  }  
+  }
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────

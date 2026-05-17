@@ -5,16 +5,25 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'f-35',
-  title: "Phantom of the Skies: The Dominance of the F-35 Lightning II",
-  date: 'May 10, 2026',
+  id: 'typhoon',
+  title: "The Whispering Death: Mighty Eurofighter Typhoon",
+  date: 'May 17, 2026',
   author: 'Diwakar Nagar',
-  caption: 'Lockheed Martin F-35',
-  para1: `The Lockheed Martin F-35 Lightning II is the definitive fifth-generation multirole fighter, designed to dominate the 21st-century battlefield through a combination of stealth, advanced sensors, and unprecedented data fusion. Born from the Joint Strike Fighter (JSF) program in the late 1990s, the aircraft was conceived as a versatile platform to replace several aging legacy jets like the F-16 and A-10. Since its first flight in 2006, it has evolved into a global security cornerstone. As of 2026, the F-35 is operated by a vast network of allies, including the United States, United Kingdom, Israel, Italy, Japan, Australia, Norway, and the Netherlands, with nations like Germany, Switzerland, and Singapore having integrated or ordered the jet to fortify their national defense.`,
-  para2: `Technologically, the F-35 is a \"flying supercomputer.\" Its history is marked by a shift from traditional dogfighting toward \"informationized\" warfare, where its AN/APG-81 AESA radar and Distributed Aperture System (DAS) allow the pilot to see 360 degrees around the aircraft, even through the cockpit floor. Its primary strength lies in its low-observable (stealth) profile, which allows it to penetrate sophisticated enemy air defenses undetected. However, this journey was not without \"growing pains\", the program famously faced years of delays and cost overruns before maturing into the combat-proven platform it is today, having seen active service in conflicts across the Middle East and beyond.`
+  caption: 'Eurofighter Typhoon',
+  para1: `In an era where military planners prioritize low-observable stealth above all else, sculpting smooth, radar-baffling contours to hide weapons within dark internal bays, there exists a competing philosophy. This school of thought relies on unadulterated kinematic dominance, deliberate aerodynamic instability, and a sensor suite so deeply fused it borders on omniscience. The Eurofighter Typhoon does not attempt to hide like a ghost on the radar screen. It operates like a thunderstorm with an afterburner, a twin-engine, swing-role titan that doesn’t bother avoiding a fight because it knows it can out-climb, out-turn, and out-gun virtually anything else in the sky.`,
+  para2: `The genesis of this apex predator stretches back to the friction of the Cold War, when Western European nations realized they desperately needed a high-performance interceptor to counter emerging Soviet Sukhois and MiGs. In 1983, the Future European Fighter Aircraft program united the UK, West Germany, France, Italy, and Spain, though France soon exited to independently pursue the carrier-capable Dassault Rafale. The remaining four nations formed the industrial consortium Eurofighter Jagdflugzeug GmbH, combining the engineering prowess of defense giants BAE Systems, Airbus Defence and Space, and Leonardo. Splitting manufacturing dynamically across international lines, with the UK building the front fuselage, Germany handling the center, and Italy and Spain crafting the wings, the partner nations weathered post-Cold War budget cuts to launch the prototype in 1994, officially inducting the jet into service in 2003.`
 };
 
 const blogPosts = [
+  {
+    id: 'f-35',
+    title: 'Phantom of the Skies: The Dominance of the F-35 Lightning II',
+    date: 'May 10, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/f-35.webp',
+    category: 'Defence Aviation',
+  },
+
   {
     id: 'missile',
     title: "Missile Decoding 101: From BVRAAMs to ICBMs",
@@ -31,14 +40,7 @@ const blogPosts = [
     image: '/images/ic-814.webp',
     category: 'Aviation Security',
   },
-  {
-    id: 'f-15',
-    title: 'The Eagle’s Dominion: The Unrivaled Legacy of the F-15',
-    date: 'April 18, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/f-15.webp',
-    category: 'Defence Aviation',
-  },
+  
 
 ];
 
@@ -161,7 +163,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/f-35.webp"
+                    src="/images/typhoon.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />
@@ -384,7 +386,7 @@ export default function Home() {
             <div className="footer-col">
               <h4 className="footer-col-title">The Correspondent</h4>
               <p className="footer-bio">
-                Diwakar Nagar — aviation enthusiast, engineering student, and  blogger. Writing about the skies so you
+                Diwakar Nagar ,  aviation enthusiast, engineering student, and  blogger. Writing about the skies so you
                 can understand them better.
               </p>
               <div className="footer-social">

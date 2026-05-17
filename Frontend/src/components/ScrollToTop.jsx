@@ -15,5 +15,5 @@ export default function ScrollToTop() {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname]);
 
-  return null; // renders nothing — purely a side-effect component
+  return null; // renders nothing ,  purely a side-effect component
 }

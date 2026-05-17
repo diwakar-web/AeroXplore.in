@@ -1,16 +1,16 @@
 /* ═══════════════════════════════════════════════════════════
-   ANIMATIONS.CSS — AeroXplore Scroll-Reveal System
+   ANIMATIONS.CSS ,  AeroXplore Scroll-Reveal System
    Works with useScrollReveal.js (IntersectionObserver hook).
 
    Usage on any element:
-     data-reveal="fade-up"    — slide in from below
-     data-reveal="fade-down"  — slide in from above
-     data-reveal="fade-left"  — slide in from the left
-     data-reveal="fade-right" — slide in from the right
-     data-reveal="fade-in"    — pure opacity fade
-     data-reveal="scale-up"   — subtle scale + fade
-     data-reveal="zoom-in"    — zoom from slightly smaller
-     style="--reveal-delay: 0.2s"  — optional stagger delay
+     data-reveal="fade-up"    ,  slide in from below
+     data-reveal="fade-down"  ,  slide in from above
+     data-reveal="fade-left"  ,  slide in from the left
+     data-reveal="fade-right" ,  slide in from the right
+     data-reveal="fade-in"    ,  pure opacity fade
+     data-reveal="scale-up"   ,  subtle scale + fade
+     data-reveal="zoom-in"    ,  zoom from slightly smaller
+     style="--reveal-delay: 0.2s"  ,  optional stagger delay
 ═══════════════════════════════════════════════════════════ */
 
 /* ─── Base Hidden State ──────────────────────────────────── */
@@ -53,7 +53,7 @@
   transform: scale(0.95);
 }
 
-/* ─── Revealed State — added by JS when element enters view ─ */
+/* ─── Revealed State ,  added by JS when element enters view ─ */
 [data-reveal].revealed {
   opacity: 1;
   transform: none;

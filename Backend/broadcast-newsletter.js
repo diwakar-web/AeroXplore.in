@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE   = "Phantom of the Skies: The Dominance of the F-35 Lightning II";
-const ARTICLE_LINK    = "https://www.aeroxplore.in/blog/f-35";
-const ARTICLE_EXCERPT = "The F-35 Lightning II has officially redefined modern air power. Whether it's the recent rollout of Block 4 upgrades or its evolving role as the \"quarterback of the sky,\" this aircraft remains the most discussed—and technologically complex—fighter in the world.We have just published a comprehensive analysis of the F-35, covering its journey from the Joint Strike Fighter program to its current global dominance.";
+const ARTICLE_TITLE = "Phantom of the Skies: The Dominance of the F-35 Lightning II";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/f-35";
+const ARTICLE_EXCERPT = "The F-35 Lightning II has officially redefined modern air power. Whether it's the recent rollout of Block 4 upgrades or its evolving role as the \"quarterback of the sky,\" this aircraft remains the most discussed, and technologically complex, fighter in the world.We have just published a comprehensive analysis of the F-35, covering its journey from the Joint Strike Fighter program to its current global dominance.";
 
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
@@ -97,7 +97,7 @@ async function sendNewsletter() {
       console.error(`❌ Batch ${Math.floor(i / BATCH_SIZE) + 1} failed:`, error.message);
     } else {
       totalSent += batch.length;
-      console.log(`✅ Batch ${Math.floor(i / BATCH_SIZE) + 1} sent — ${batch.length} emails delivered.`);
+      console.log(`✅ Batch ${Math.floor(i / BATCH_SIZE) + 1} sent ,  ${batch.length} emails delivered.`);
     }
   }
 

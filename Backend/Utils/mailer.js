@@ -33,7 +33,7 @@ const sendWelcomeEmail = async (toEmail) => {
             </p>
             <div style="background:#1a1a2e;border-left:4px solid #e2b96f;padding:16px 20px;border-radius:6px;margin:0 0 28px;">
               <p style="color:#e2b96f;margin:0;font-style:italic;font-size:14px;">
-                "The desire to fly is an idea handed down to us by our ancestors who, in their grueling travels across trackless lands in prehistoric times, looked enviously on the birds soaring freely through space." — Wilbur Wright
+                "The desire to fly is an idea handed down to us by our ancestors who, in their grueling travels across trackless lands in prehistoric times, looked enviously on the birds soaring freely through space." ,  Wilbur Wright
               </p>
             </div>
             <div style="border-top:1px solid #222;padding-top:24px;text-align:center;">
@@ -60,7 +60,7 @@ const sendWelcomeEmail = async (toEmail) => {
 
 /**
  * Notify all subscribers about a new blog article.
- * Uses Resend's batch API — sends up to 100 emails per call, no BCC spam issues.
+ * Uses Resend's batch API ,  sends up to 100 emails per call, no BCC spam issues.
  * @param {string[]} emails - Array of subscriber email addresses
  * @param {object} article  - { title, link, excerpt }
  */
@@ -126,7 +126,7 @@ const sendContactEmail = async ({ name, email, message }) => {
     from: FROM_ADDRESS,
     to: process.env.OWNER_EMAIL, // Your personal inbox to receive contact messages
     reply_to: email,
-    subject: `✉️ New Message from ${name} — AeroXplore Contact`,
+    subject: `✉️ New Message from ${name} ,  AeroXplore Contact`,
     html: `
       <!DOCTYPE html>
       <html>
@@ -134,7 +134,7 @@ const sendContactEmail = async ({ name, email, message }) => {
         <div style="max-width:600px;margin:40px auto;background:#111;border:1px solid #222;border-radius:12px;overflow:hidden;">
           <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:30px 32px;border-bottom:2px solid #e2b96f;">
             <h1 style="color:#e2b96f;font-size:20px;letter-spacing:3px;margin:0;text-transform:uppercase;">✉️ Contact Message</h1>
-            <p style="color:#a0a0a0;font-size:11px;letter-spacing:1px;margin:6px 0 0;">AeroXplore.in — Contact Form Submission</p>
+            <p style="color:#a0a0a0;font-size:11px;letter-spacing:1px;margin:6px 0 0;">AeroXplore.in ,  Contact Form Submission</p>
           </div>
           <div style="padding:32px;">
             <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
