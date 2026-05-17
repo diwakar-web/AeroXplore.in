@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "Phantom of the Skies: The Dominance of the F-35 Lightning II";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/f-35";
-const ARTICLE_EXCERPT = "The F-35 Lightning II has officially redefined modern air power. Whether it's the recent rollout of Block 4 upgrades or its evolving role as the \"quarterback of the sky,\" this aircraft remains the most discussed, and technologically complex, fighter in the world.We have just published a comprehensive analysis of the F-35, covering its journey from the Joint Strike Fighter program to its current global dominance.";
+const ARTICLE_TITLE = "The Whispering Death: Mighty Eurofighter Typhoon";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/typhoon";
+const ARTICLE_EXCERPT = "Built by four nations to survive the Cold War, evolved to rule the modern sky. With twin EJ200 engines pushing it past Mach 2, an inherently unstable design for impossible agility, and a 9,000 kg hammer of god payload, the Eurofighter Typhoon isn't just an interceptor, it’s a masterclass in aviation engineering. Read the full breakdown of Europe’s premier delta-canard titan.";
 
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
