@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../CSS/BlogPost.css';
 import useScrollReveal from '../hooks/useScrollReveal';
+
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 const postData = {
   'f-35': {
@@ -126,6 +128,54 @@ export default function BlogPost() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [stats, setStats] = useState({ likes: 0, dislikes: 0 });
+  const [voted, setVoted] = useState(false);
+  const [userChoice, setUserChoice] = useState(null);
+
+  useEffect(() => {
+    if (!id) return;
+    setVoted(false);
+    setUserChoice(null);
+
+    const fetchStats = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/blog-stats/${id}`);
+        const data = await res.json();
+        if (data.success) {
+          setStats({ likes: data.likes, dislikes: data.dislikes });
+        }
+      } catch (err) {
+        console.error('Failed to fetch blog stats:', err);
+      }
+    };
+    fetchStats();
+  }, [id]);
+
+  const handleVote = async (choice) => {
+    if (voted) return;
+    setVoted(true);
+    setUserChoice(choice);
+
+    setStats(prev => ({
+      ...prev,
+      [choice === 'like' ? 'likes' : 'dislikes']: prev[choice === 'like' ? 'likes' : 'dislikes'] + 1,
+    }));
+
+    try {
+      const res = await fetch(`${API_BASE}/blog-stats/vote`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ blogId: id, action: choice }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStats({ likes: data.likes, dislikes: data.dislikes });
+      }
+    } catch (err) {
+      console.error('Failed to vote:', err);
+    }
+  };
+
   const post = postData[id];
 
   if (!post) {
@@ -192,6 +242,36 @@ export default function BlogPost() {
                 {post.thought}
               </p>
             )}
+
+            <div className="bp-vote-container" data-reveal="fade-up" style={{ '--reveal-delay': `${(post.content.length + 1) * 0.1}s` }}>
+              <h3 className="bp-vote-title">Worth your scroll?</h3>
+              <div className="bp-vote-buttons">
+                <button
+                  type="button"
+                  className={`bp-vote-btn ${userChoice === 'like' ? 'voted-active' : ''} ${voted && userChoice !== 'like' ? 'disabled' : ''}`}
+                  onClick={() => handleVote('like')}
+                  disabled={voted}
+                  aria-label="Thumbs Up"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill={userChoice === 'like' ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="bp-vote-icon">
+                    <path d="M7 10v12" />
+                    <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  className={`bp-vote-btn ${userChoice === 'dislike' ? 'voted-active' : ''} ${voted && userChoice !== 'dislike' ? 'disabled' : ''}`}
+                  onClick={() => handleVote('dislike')}
+                  disabled={voted}
+                  aria-label="Thumbs Down"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill={userChoice === 'dislike' ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="bp-vote-icon">
+                    <path d="M17 14V2" />
+                    <path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
 
             <div className="bp-paper-rule thin"></div>
             <div className="bp-paper-rule thick"></div>

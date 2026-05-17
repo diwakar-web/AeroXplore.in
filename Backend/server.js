@@ -5,6 +5,7 @@ const connectDB = require('./DB/connect');
 
 const subscribeRoutes = require('./Routes/subscribeRoutes');
 const contactRoutes = require('./Routes/contactRoutes');
+const blogStatRoutes = require('./Routes/blogStatRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -36,6 +37,7 @@ app.use(async (req, res, next) => {
 
 app.use('/api', subscribeRoutes);
 app.use('/api', contactRoutes);
+app.use('/api', blogStatRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Route not found.' });

@@ -214,6 +214,78 @@
   color: #f0f0f0;
 }
 
+/* Worth Your Scroll Section */
+.bp-vote-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0 2rem;
+  padding: 1.8rem 2.5rem;
+  background: rgba(44, 24, 16, 0.04);
+  border: 1.5px dashed rgba(44, 24, 16, 0.3);
+  border-radius: 8px;
+}
+
+.bp-vote-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--paper-ink);
+  margin: 0;
+  font-style: italic;
+}
+
+.bp-vote-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.bp-vote-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  color: var(--paper-ink);
+  background: transparent;
+  border: 1.5px solid var(--paper-rule);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.bp-vote-btn:hover:not(:disabled) {
+  background: var(--paper-rule);
+  color: var(--paper-bg);
+  transform: translateY(-2px);
+}
+
+.bp-vote-btn.voted-active {
+  background: var(--paper-rule);
+  border-color: var(--paper-rule);
+  color: var(--paper-bg);
+}
+
+.bp-vote-btn:disabled {
+  cursor: default;
+}
+
+.bp-vote-btn.disabled {
+  opacity: 0.35;
+}
+
+.bp-vote-icon {
+  transition: transform 0.2s ease;
+}
+
+.bp-vote-btn:hover:not(:disabled) .bp-vote-icon {
+  transform: scale(1.15);
+}
+
 @media (max-width: 900px) {
   .bp-inner {
     width: 90%;
