@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "The Whispering Death: Mighty Eurofighter Typhoon";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/typhoon";
-const ARTICLE_EXCERPT = "Built by four nations to survive the Cold War, evolved to rule the modern sky. With twin EJ200 engines pushing it past Mach 2, an inherently unstable design for impossible agility, and a 9,000 kg hammer of god payload, the Eurofighter Typhoon isn't just an interceptor, it’s a masterclass in aviation engineering. Read the full breakdown of Europe’s premier delta-canard titan.";
+const ARTICLE_TITLE = "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/su30-mki";
+const ARTICLE_EXCERPT = "A new deep-dive article is officially live. Explore the engineering, raw firepower, and the massive \"Super Sukhoi\" modernization program shaping the future of the Sukhoi Su-30MKI. From thrust-vectoring physics to the integration of the supersonic BrahMos, break down what makes this heavyweight fighter a lethal apex predator.";
 
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
