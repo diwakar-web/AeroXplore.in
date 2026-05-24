@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'typhoon',
-  title: "The Whispering Death: Mighty Eurofighter Typhoon",
-  date: 'May 17, 2026',
+  id: 'su30-mki',
+  title: "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance",
+  date: 'May 24, 2026',
   author: 'Diwakar Nagar',
-  caption: 'Eurofighter Typhoon',
-  para1: `In an era where military planners prioritize low-observable stealth above all else, sculpting smooth, radar-baffling contours to hide weapons within dark internal bays, there exists a competing philosophy. This school of thought relies on unadulterated kinematic dominance, deliberate aerodynamic instability, and a sensor suite so deeply fused it borders on omniscience. The Eurofighter Typhoon does not attempt to hide like a ghost on the radar screen. It operates like a thunderstorm with an afterburner, a twin-engine, swing-role titan that doesn’t bother avoiding a fight because it knows it can out-climb, out-turn, and out-gun virtually anything else in the sky.`,
-  para2: `The genesis of this apex predator stretches back to the friction of the Cold War, when Western European nations realized they desperately needed a high-performance interceptor to counter emerging Soviet Sukhois and MiGs. In 1983, the Future European Fighter Aircraft program united the UK, West Germany, France, Italy, and Spain, though France soon exited to independently pursue the carrier-capable Dassault Rafale. The remaining four nations formed the industrial consortium Eurofighter Jagdflugzeug GmbH, combining the engineering prowess of defense giants BAE Systems, Airbus Defence and Space, and Leonardo. Splitting manufacturing dynamically across international lines, with the UK building the front fuselage, Germany handling the center, and Italy and Spain crafting the wings, the partner nations weathered post-Cold War budget cuts to launch the prototype in 1994, officially inducting the jet into service in 2003.`
+  caption: 'Sukhoi Su-30MKI',
+  para1: `The Sukhoi Su-30MKI stands as one of the most versatile and lethal multirole air superiority fighters in modern military aviation. Originating from a landmark partnership initiated between India and Russia in the late 1990s, the aircraft was specifically tailored to meet the demanding requirements of the Indian Air Force (IAF). While the initial design and aerodynamic architecture came from Russia’s Sukhoi Aviation Corporation, the "MKI" variant (Modernizirovannyi Kommercheskiy Indiskiy, meaning "Modernized Commercial Indian") transitioned into a massive local manufacturing triumph. The state-run defense giant Hindustan Aeronautics Limited (HAL) undertook licensed production at its Nashik facility, progressively increasing the jet's indigenous components to over 62%. Entering active service in 2002, this collaborative masterpiece has served as the absolute backbone of India’s air defense strategy for over two decades.`,
+  para2: `In terms of pure operational capability, the Su-30MKI is a twin-engine, heavy-class fighter revered for its extreme "super-maneuverability". Powered by two Saturn AL-31FP afterburning turbofan engines equipped with thrust-vectoring nozzles, the aircraft can redirect its engine exhaust dynamically. This allows pilots to execute jaw-dropping aerial maneuvers, such as the famous Pugachev's Cobra, which completely disregard conventional physics and break the aircraft's momentum to force pursuing enemies to overshoot. Coupled with canard foreplanes for added aerodynamic stability and a two-seat cockpit layout that splits the workload between a pilot and a Weapons Systems Officer (WSO), the jet excels in establishing air dominance and conducting long-range maritime and ground strike missions across all weather conditions.`
 };
 
 const blogPosts = [
+  {
+    id: 'typhoon',
+    title: " The Whispering Death: Mighty Eurofighter Typhoon",
+    date: ' April 24, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/typhoon.webp',
+    category: 'Defence Aviation',
+  },
   {
     id: 'f-35',
     title: 'Phantom of the Skies: The Dominance of the F-35 Lightning II',
@@ -32,14 +40,7 @@ const blogPosts = [
     image: '/images/missile.webp',
     category: 'Strategic Weapons'
   },
-  {
-    id: 'ic-814',
-    title: "The Kandahar Crisis: A Turning Point in Aviation Security",
-    date: ' April 24, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/ic-814.webp',
-    category: 'Aviation Security',
-  },
+ 
   
 
 ];
@@ -163,7 +164,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/typhoon.webp"
+                    src="/images/Su30mki.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />

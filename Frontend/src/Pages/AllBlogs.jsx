@@ -6,6 +6,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'su30-mki',
+    title: "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance",
+    date: 'May 24, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/Su30mki.webp',
+    category: 'Defence Aviation',
+  },
+  {
     id: 'typhoon',
     title: "The Whispering Death: Mighty Eurofighter Typhoon",
     date: 'May 17, 2026',
