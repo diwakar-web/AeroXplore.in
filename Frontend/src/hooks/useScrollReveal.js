@@ -10,7 +10,7 @@ import { useEffect } from 'react';
  *
  * Usage: call `useScrollReveal()` once inside any page component.
  */
-export default function useScrollReveal() {
+export default function useScrollReveal(deps = []) {
   useEffect(() => {
     const targets = document.querySelectorAll('[data-reveal]');
     const observer = new IntersectionObserver(
@@ -28,8 +28,12 @@ export default function useScrollReveal() {
       }
     );
 
-    targets.forEach((el) => observer.observe(el));
+    targets.forEach((el) => {
+      if (!el.classList.contains('revealed')) {
+        observer.observe(el);
+      }
+    });
 
     return () => observer.disconnect();
-  }, []);
+  }, deps);
 }

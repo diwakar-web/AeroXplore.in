@@ -6,6 +6,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'brahmos',
+    title: "Speed, Precision, and Global Reach: The BrahMos Supersonic Edge",
+    date: 'June 03, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/brahmos.webp',
+    category: 'Strategic Weapons',
+  },
+  {
     id: 'su30-mki',
     title: "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance",
     date: 'May 24, 2026',
@@ -89,8 +97,8 @@ const allBlogPosts = [
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function AllBlogs() {
-  useScrollReveal();
   const [query, setQuery] = useState('');
+  useScrollReveal([query]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();

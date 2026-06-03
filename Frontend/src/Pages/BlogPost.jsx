@@ -6,6 +6,20 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 const postData = {
+  'brahmos': {
+    title: "Speed, Precision, and Global Reach: The BrahMos Supersonic Edge",
+    date: 'June 03, 2026',
+    author: 'Diwakar Nagar',
+    category: 'Strategic Weapons',
+    image: '/images/brahmos.webp',
+    thought: "The ultimate weapon is one that is never fired.",
+    content: [
+      "The BrahMos missile stands as one of the most formidable triumphs in modern military engineering, born out of a strategic joint venture established in 1998 between India’s Defence Research and Development Organisation (DRDO) and Russia’s NPO Mashinostroyeniya. The weapon's name itself is a portmanteau of two iconic rivers, the Brahmaputra of India and the Moskva of Russia, symbolizing the deep technological partnership between the two nations. Developed to provide an unstoppable precision-strike capability, the BrahMos was designed to replace aging subsonic systems and offer an unmatchable tactical edge. Over the years, it has evolved into a premier symbol of defense indigenization, shifting India from a traditional defense importer to a significant global exporter.",
+      "Technically, the BrahMos is a two-stage, ramjet-powered supersonic cruise missile that operates on a strict \"Fire and Forget\" principle, requiring no further guidance after launch. The first stage utilizes a solid-propellant booster engine that provides rapid initial acceleration to bring the missile to supersonic speeds before separating. The second stage engages a liquid-fueled ramjet engine, taking over during the cruise phase to sustain a blistering velocity of Mach 2.8 to Mach 3 (nearly one kilometer per second). Flying three times faster than standard subsonic cruise missiles, the BrahMos impacts targets with nine times the kinetic energy, making it virtually un-interceptable by existing air-defense networks. It is highly versatile, capable of performing multi-point maneuvers, cruising at altitudes up to 15 kilometers, or executing radical sea-skimming maneuvers as low as 5 meters to evade enemy radar.",
+      "What truly sets the BrahMos apart is its universal configuration, allowing it to be deployed across a diverse multi-carrier architecture spanning land, sea, and air. In naval warfare, it is deployed from frontline Indian Navy warships and conventional attack submarines, capable of vertical or inclined launches against both ships and coastal installations. For land forces, it is operated from Mobile Autonomous Launchers (MAL), allowing heavy truck-mounted regiments to swiftly deploy and strike deep behind enemy lines. The air-launched variant, customized to be lighter at 2,500 kilograms, is seamlessly integrated onto the Indian Air Force's frontline Sukhoi Su-30MKI strike fighters, enabling devastating stand-off strikes from hundreds of kilometers away without crossing hostile borders.",
+      "The strategic footprint of the BrahMos is rapidly expanding into the global arena, establishing India as a key Indo-Pacific security provider. The Philippines became the pioneering international customer by procuring shore-based anti-ship variants in a landmark 375 million dollar deal, and India has extended offers for the Extended Range (ER) variant to further bolster Manila's maritime deterrence. Furthermore, India has signed a major 629 million dollar contract to supply BrahMos missiles to Vietnam, intended to re-equip their Su-30MK2 fighter fleet and coastal defense assets, while export negotiations with Indonesia are in their final stages. Looking forward, the future scope of the platform focuses on radical technological evolution: the compact BrahMos-NG (Next Generation), which is lighter, stealthier, and designed for smaller platforms like the HAL Tejas fighter, and the futuristic BrahMos-II, a highly sophisticated hypersonic cruise missile engineered to exceed speeds of Mach 7."
+     ]
+  },
   'su30-mki': {
     title: "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance",
     date: 'May 24, 2026',

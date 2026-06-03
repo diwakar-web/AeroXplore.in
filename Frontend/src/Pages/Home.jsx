@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'su30-mki',
-  title: "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance",
-  date: 'May 24, 2026',
+  id: 'brahmos',
+  title: "Speed, Precision, and Global Reach: The BrahMos Supersonic Edge",
+  date: 'June 03, 2026',
   author: 'Diwakar Nagar',
-  caption: 'Sukhoi Su-30MKI',
-  para1: `The Sukhoi Su-30MKI stands as one of the most versatile and lethal multirole air superiority fighters in modern military aviation. Originating from a landmark partnership initiated between India and Russia in the late 1990s, the aircraft was specifically tailored to meet the demanding requirements of the Indian Air Force (IAF). While the initial design and aerodynamic architecture came from Russia’s Sukhoi Aviation Corporation, the "MKI" variant (Modernizirovannyi Kommercheskiy Indiskiy, meaning "Modernized Commercial Indian") transitioned into a massive local manufacturing triumph. The state-run defense giant Hindustan Aeronautics Limited (HAL) undertook licensed production at its Nashik facility, progressively increasing the jet's indigenous components to over 62%. Entering active service in 2002, this collaborative masterpiece has served as the absolute backbone of India’s air defense strategy for over two decades.`,
-  para2: `In terms of pure operational capability, the Su-30MKI is a twin-engine, heavy-class fighter revered for its extreme "super-maneuverability". Powered by two Saturn AL-31FP afterburning turbofan engines equipped with thrust-vectoring nozzles, the aircraft can redirect its engine exhaust dynamically. This allows pilots to execute jaw-dropping aerial maneuvers, such as the famous Pugachev's Cobra, which completely disregard conventional physics and break the aircraft's momentum to force pursuing enemies to overshoot. Coupled with canard foreplanes for added aerodynamic stability and a two-seat cockpit layout that splits the workload between a pilot and a Weapons Systems Officer (WSO), the jet excels in establishing air dominance and conducting long-range maritime and ground strike missions across all weather conditions.`
+  caption: 'BrahMos',
+  para1: `The BrahMos missile stands as one of the most formidable triumphs in modern military engineering, born out of a strategic joint venture established in 1998 between India’s Defence Research and Development Organisation (DRDO) and Russia’s NPO Mashinostroyeniya. The weapon's name itself is a portmanteau of two iconic rivers, the Brahmaputra of India and the Moskva of Russia, symbolizing the deep technological partnership between the two nations. Developed to provide an unstoppable precision-strike capability, the BrahMos was designed to replace aging subsonic systems and offer an unmatchable tactical edge. Over the years, it has evolved into a premier symbol of defense indigenization, shifting India from a traditional defense importer to a significant global exporter.`,
+  para2: `Technically, the BrahMos is a two-stage, ramjet-powered supersonic cruise missile that operates on a strict "Fire and Forget" principle, requiring no further guidance after launch. The first stage utilizes a solid-propellant booster engine that provides rapid initial acceleration to bring the missile to supersonic speeds before separating. The second stage engages a liquid-fueled ramjet engine, taking over during the cruise phase to sustain a blistering velocity of Mach 2.8 to Mach 3 (nearly one kilometer per second). Flying three times faster than standard subsonic cruise missiles, the BrahMos impacts targets with nine times the kinetic energy, making it virtually un-interceptable by existing air-defense networks. It is highly versatile, capable of performing multi-point maneuvers, cruising at altitudes up to 15 kilometers, or executing radical sea-skimming maneuvers as low as 5 meters to evade enemy radar.`
 };
 
 const blogPosts = [
+  {
+    id: 'su30-mki',
+    title: "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance",
+    date: 'May 24, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/Su30mki.webp',
+    category: 'Defence Aviation'
+  },
   {
     id: 'typhoon',
     title: " The Whispering Death: Mighty Eurofighter Typhoon",
@@ -31,18 +39,6 @@ const blogPosts = [
     image: '/images/f-35.webp',
     category: 'Defence Aviation',
   },
-
-  {
-    id: 'missile',
-    title: "Missile Decoding 101: From BVRAAMs to ICBMs",
-    date: 'May 2, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/missile.webp',
-    category: 'Strategic Weapons'
-  },
- 
-  
-
 ];
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
@@ -164,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/Su30mki.webp"
+                    src="/images/brahmos.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />
