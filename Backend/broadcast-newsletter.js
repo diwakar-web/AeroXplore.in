@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/su30-mki";
-const ARTICLE_EXCERPT = "A new deep-dive article is officially live. Explore the engineering, raw firepower, and the massive \"Super Sukhoi\" modernization program shaping the future of the Sukhoi Su-30MKI. From thrust-vectoring physics to the integration of the supersonic BrahMos, break down what makes this heavyweight fighter a lethal apex predator.";
+const ARTICLE_TITLE = "Speed, Precision, and Global Reach: The BrahMos Supersonic Edge";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/brahmos";
+const ARTICLE_EXCERPT = "Unstoppable at Mach 3, the BrahMos is the world's fastest supersonic cruise missile, an absolute powerhouse of modern warfare. This quick 4-paragraph breakdown reveals how this unique India-Russia partnership created a weapon so fast it destroys targets with pure kinetic energy alone. Dive in to see how it launches from land, sea, and air, why global military powers are rushing to buy it, and how the upcoming hypersonic upgrade is set to rewrite the rules of defense entirely.";
 
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
