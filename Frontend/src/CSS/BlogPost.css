@@ -356,12 +356,12 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 0.85rem;
-  pointer-events: none; /* children opt-in */
+  /* pointer-events: none removed — unreliable on mobile touch devices */
 }
+
 
 /* ── FAB button ── */
 .ar-fab {
-  pointer-events: all;
   width: 54px;
   height: 54px;
   border-radius: 50%;
@@ -376,7 +376,13 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   outline: none;
   position: relative;
+  /* Mobile tap fixes */
+  touch-action: manipulation;          /* kills 300ms tap delay */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
 }
+
 
 /* Idle pulse ring */
 .ar-fab::after {
@@ -534,7 +540,18 @@
     right: 1rem;
   }
 
+  .ar-fab {
+    width: 62px;   /* bigger touch target on mobile */
+    height: 62px;
+  }
+
   .ar-toast {
     width: 200px;
+  }
+
+  .ar-toast-cta {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0.65rem 1rem; /* slightly taller tap area */
   }
 }
