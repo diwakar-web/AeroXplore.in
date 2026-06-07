@@ -197,7 +197,7 @@ function buildScript(post) {
   const intro = `${greeting}! Welcome to Aero Explore. Let's explore something truly fascinating together.`;
   const heading = `Today's article is titled: ${post.title}.`;
   const body = post.content.join(' ');
-  const farewell = `That brings us to the end of today's article. I truly hope you found it insightful and enjoyed the read. If you loved this piece, I'd be so grateful if you would consider subscribing to our newsletter — you can find the subscription option right at the bottom of the home page. And if this article was worth your time, please do hit that like button below. It means the world to us. Until next time, keep exploring the skies! Thankyou`;
+  const farewell = `That brings us to the end of today's article. I truly hope you found it insightful and enjoyed the read. If you loved this piece, I'd be so grateful if you would consider subscribing to our newsletter — you can find the subscription option right at the bottom of the page. And if this article was worth your time, please do hit that like button below. It means the world to us. Until next time, keep exploring the skies!`;
   return `${intro} ${heading} ${body} ${farewell}`;
 }
 
@@ -249,15 +249,6 @@ export default function BlogPost() {
     return () => clearTimeout(timer);
   }, [id]);
 
-  // Pre-load voices on mount (required for mobile — voices aren't available until
-  // getVoices() is called or voiceschanged fires)
-  useEffect(() => {
-    const load = () => window.speechSynthesis.getVoices();
-    load();
-    window.speechSynthesis.addEventListener('voiceschanged', load);
-    return () => window.speechSynthesis.removeEventListener('voiceschanged', load);
-  }, []);
-
   // Stop speech when component unmounts / page closes
   useEffect(() => {
     const stopOnUnload = () => window.speechSynthesis.cancel();
@@ -268,20 +259,7 @@ export default function BlogPost() {
     };
   }, []);
 
-  // iOS keep-alive: iOS Safari silently stops synthesis after ~15s.
-  // A brief pause+resume every 10s keeps the engine alive.
-  useEffect(() => {
-    if (audioState !== 'playing') return;
-    const id = setInterval(() => {
-      if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-        window.speechSynthesis.pause();
-        window.speechSynthesis.resume();
-      }
-    }, 10000);
-    return () => clearInterval(id);
-  }, [audioState]);
-
-  // Click-outside / tap-outside to dismiss toast (mousedown + touchstart for mobile)
+  // Click-outside to dismiss toast
   useEffect(() => {
     if (!showToast) return;
     const handler = (e) => {
@@ -291,11 +269,7 @@ export default function BlogPost() {
       }
     };
     document.addEventListener('mousedown', handler);
-    document.addEventListener('touchstart', handler, { passive: true });
-    return () => {
-      document.removeEventListener('mousedown', handler);
-      document.removeEventListener('touchstart', handler);
-    };
+    return () => document.removeEventListener('mousedown', handler);
   }, [showToast]);
 
   // Pick the best female Indian-English voice
@@ -316,45 +290,45 @@ export default function BlogPost() {
   }, []);
 
   const speakFrom = useCallback((post, fromChar = 0) => {
-    const synth = window.speechSynthesis;
-
-    // iOS often auto-pauses synth when the page loses focus — resume first.
-    if (synth.paused) synth.resume();
-    // Cancel only when there is something active, to avoid the Chrome
-    // "cancel then immediately speak" race condition on desktop.
-    if (synth.speaking || synth.pending) synth.cancel();
-
+    window.speechSynthesis.cancel();
     const script = fullScriptRef.current || buildScript(post);
     fullScriptRef.current = script;
     const slice = script.slice(fromChar);
 
-    const utter = new SpeechSynthesisUtterance(slice);
-    utter.rate   = 1.25;
-    utter.pitch  = 1.1;
-    utter.volume = 1;
+    const doSpeak = () => {
+      const utter = new SpeechSynthesisUtterance(slice);
+      utter.rate = 1.28;
+      utter.pitch = 1.1;
+      utter.volume = 1;
+      const voice = pickVoice();
+      if (voice) utter.voice = voice;
 
-    const voice = pickVoice();
-    if (voice) utter.voice = voice;
-
-    utter.onboundary = (e) => {
-      if (e.name === 'word') charIndexRef.current = fromChar + e.charIndex;
-    };
-    utter.onend = () => {
-      charIndexRef.current = 0;
-      fullScriptRef.current = '';
-      setAudioState('idle');
-    };
-    utter.onerror = (e) => {
-      // 'interrupted' fires when we cancel intentionally — ignore it
-      if (e.error === 'interrupted' || e.error === 'canceled') return;
-      console.error('SpeechSynthesis error:', e.error);
-      setAudioState('idle');
+      utter.onboundary = (e) => {
+        if (e.name === 'word') charIndexRef.current = fromChar + e.charIndex;
+      };
+      utter.onend = () => {
+        charIndexRef.current = 0;
+        fullScriptRef.current = '';
+        setAudioState('idle');
+      };
+      utter.onerror = (e) => {
+        console.error('SpeechSynthesis error:', e.error);
+        setAudioState('idle');
+      };
+      utteranceRef.current = utter;
+      window.speechSynthesis.speak(utter);
     };
 
-    utteranceRef.current = utter;
-    // speak() MUST be synchronous here — iOS requires it to be called
-    // directly inside the user-gesture stack (no setTimeout / Promise).
-    synth.speak(utter);
+    // Chrome bug: speak() called right after cancel() is silently dropped.
+    // A small delay lets the engine flush before queuing the new utterance.
+    const startSpeech = () => setTimeout(doSpeak, 120);
+
+    if (window.speechSynthesis.getVoices().length) {
+      startSpeech();
+    } else {
+      window.speechSynthesis.addEventListener('voiceschanged', startSpeech, { once: true });
+    }
+
     setAudioState('playing');
   }, [pickVoice]);
 
