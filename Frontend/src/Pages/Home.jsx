@@ -34,7 +34,7 @@ const blogPosts = [
   {
     id: 'typhoon',
     title: " The Whispering Death: Mighty Eurofighter Typhoon",
-    date: ' April 24, 2026',
+    date: 'May 17, 2026',
     author: 'Diwakar Nagar',
     image: '/images/typhoon.webp',
     category: 'Defence Aviation',
