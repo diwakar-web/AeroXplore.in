@@ -197,7 +197,7 @@ function buildScript(post) {
   const intro = `${greeting}! Welcome to Aero Explore. Let's explore something truly fascinating together.`;
   const heading = `Today's article is titled: ${post.title}.`;
   const body = post.content.join(' ');
-  const farewell = `That brings us to the end of today's article. I truly hope you found it insightful and enjoyed the read. If you loved this piece, I'd be so grateful if you would consider subscribing to our newsletter — you can find the subscription option right at the bottom of the page. And if this article was worth your time, please do hit that like button below. It means the world to us. Until next time, keep exploring the skies!`;
+  const farewell = `That brings us to the end of today's article. I truly hope you found it insightful and enjoyed the read. If you loved this piece, I'd be so grateful if you would consider subscribing to our newsletter — you can find the subscription option right at the bottom of the home page. And if this article was worth your time, please do hit that like button below. It means the world to us. Until next time, keep exploring the skies! Thankyou`;
   return `${intro} ${heading} ${body} ${farewell}`;
 }
 
