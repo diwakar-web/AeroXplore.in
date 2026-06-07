@@ -18,7 +18,7 @@ const blogPosts = [
   {
     id: 'brahmos',
     title: 'Speed, Precision, and Global Reach: The BrahMos Supersonic Edge',
-    date: 'June 3, 2026',
+    date: 'June 03, 2026',
     author: 'Diwakar Nagar',
     image: '/images/brahmos.webp',
     category: 'Strategic Weapons',
