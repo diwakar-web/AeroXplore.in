@@ -8,7 +8,7 @@ const allBlogPosts = [
   {
     id: 'kaveri',
     title: "Kaveri: Choked by Bureaucracy and Bad Physics",
-    date: 'June 10, 2026',
+    date: 'June 07 2026',
     author: 'Diwakar Nagar',
     image: '/images/kaveri.webp',
     category: 'Engineering Corner',

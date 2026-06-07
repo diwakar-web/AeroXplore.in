@@ -7,7 +7,7 @@ import logo from '../assets/logo.webp';
 const featuredPost = {
   id: 'kaveri',
   title: "Kaveri: Choked by Bureaucracy and Bad Physics",
-  date: 'June 10, 2026',
+  date: 'June 07, 2026',
   author: 'Diwakar Nagar',
   caption: 'GTRE GTX-35VS Kaveri engine',
   para1: `The GTRE GTX-35VS Kaveri engine is India’s most ambitious, agonizing, and raw aerospace endeavor. Initiated in 1989 by the Gas Turbine Research Establishment under the Defence Research Development Organisation, it was originally designed to be a low-bypass, twin-spool turbofan engine capable of delivering 80 kN of afterburning thrust to power the indigenous Light Combat Aircraft Tejas. Instead of a triumphant roar, however, the Kaveri became a cautionary tale of how brute national will can be humbled by the unforgiving laws of thermodynamics, metallurgy, and global politics. Today, it exists not as the heart of India's frontline fighter fleet, but as a compromised, yet vital, technological stepping stone.`,

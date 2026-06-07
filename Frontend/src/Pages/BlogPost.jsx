@@ -8,7 +8,7 @@ const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 const postData = {
    'kaveri': {
     title: "Kaveri: Choked by Bureaucracy and Bad Physics",
-    date: 'June 10, 2026',
+    date: 'June 07, 2026',
     author: 'Diwakar Nagar',
     image: '/images/kaveri.webp',
     category: 'Engineering Corner',
