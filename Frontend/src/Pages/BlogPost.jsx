@@ -14,7 +14,7 @@ const postData = {
     category: 'Engineering Corner',
     thought: "Coming together is a beginning; keeping together is progress; working together is success.",
     content: [
-      "The GTRE GTX-35 Kaveri engine is India’s most ambitious, agonizing, and raw aerospace endeavor. Initiated in 1989 by the Gas Turbine Research Establishment under the Defence Research Development Organisation, it was originally designed to be a low-bypass, twin-spool turbofan engine capable of delivering 80 kN of afterburning thrust to power the indigenous Light Combat Aircraft Tejas. Instead of a triumphant roar, however, the Kaveri became a cautionary tale of how brute national will can be humbled by the unforgiving laws of thermodynamics, metallurgy, and global politics. Today, it exists not as the heart of India's frontline fighter fleet, but as a compromised, yet vital, technological stepping stone.",
+      "The GTRE GTX-35VS Kaveri engine is India’s most ambitious, agonizing, and raw aerospace endeavor. Initiated in 1989 by the Gas Turbine Research Establishment under the Defence Research Development Organisation, it was originally designed to be a low-bypass, twin-spool turbofan engine capable of delivering 80 kN of afterburning thrust to power the indigenous Light Combat Aircraft Tejas. Instead of a triumphant roar, however, the Kaveri became a cautionary tale of how brute national will can be humbled by the unforgiving laws of thermodynamics, metallurgy, and global politics. Today, it exists not as the heart of India's frontline fighter fleet, but as a compromised, yet vital, technological stepping stone.",
       "Understanding the importance of the Kaveri engine requires looking past its failures to the brutal landscape of global defense. Aero-engine technology is the ultimate geopolitical gatekeeper. Only a tiny handful of nations like the US, Russia, France, and the UK possess full lifecycle capabilities to design, manufacture, and maintain military turbofans. Jet engines are a strategic choke point; without an indigenous powerplant, an entire fighter jet program can be grounded by foreign sanctions or political shifts. India’s strategic autonomy is directly tied to this capability. Beyond military survival, masterfully manipulating the high-temperature materials required for these engines cascades into commercial aviation, heavy industrial gas turbines, and advanced metallurgy sectors, driving a nation’s technological leadership.",
       "The obstacles that broke the Kaveri's original timeline were deep, systemic, and unforgiving. When the project began, GTRE lacked access to advanced computational fluid dynamics resources and robust wind-tunnel data. The learning curve was vertical. The engine suffered from massive mechanical failures in its compressors, thermal management issues in the combustor, and an inability to freeze a stable design. Worse, India underestimated the physical limits of materials. To hit the required thrust-to-weight ratio for a modern fighter, an engine must withstand internal temperatures that far exceed the melting point of the metal itself, requiring single-crystal turbine blades and advanced thermal barrier coatings. India had to develop these superalloys from scratch, completely isolated.",
       "This isolation brings us to the points where India failed, both technically and managerially. Following the 1998 Pokhran nuclear tests, international embargoes immediately cut off India’s access to critical foreign technologies, superalloys, and components, blinding the project during its critical infancy. However, internal failures were equally damaging. The original Kaveri K1 engine ballooned to a weight of 1,424 kg, wildly missing the strict 1,100 kg weight limit required to maintain the LCA Tejas’s center of gravity. When tested at Russia’s Gromov Flight Research Institute, it only produced 70.5 kN of wet thrust, falling far short of the 85+ kN needed to make the Tejas combat-effective. Ultimately, India failed because it starved the project. The 2,100 to 2,300 crore rupees budget allocated to Kaveri was a drop in the ocean compared to the billions of dollars foreign engine houses spend developing a single engine family.",
@@ -192,32 +192,13 @@ function getGreeting() {
   return 'Good night';
 }
 
-// Build emotionally-segmented narration
-function buildSegments(post) {
+function buildScript(post) {
   const greeting = getGreeting();
-  return [
-    {
-      // Zone 1: Warm, excited welcome
-      text: `${greeting}! Oh, welcome to Aero Explore! We have something truly incredible to explore together today!`,
-      rate: 1.25, pitch: 1.35,
-    },
-    {
-      // Zone 2: Dramatic, proud title reveal
-      text: `Today's article is titled... ${post.title}.`,
-      rate: 0.25, pitch: 1.18,
-    },
-    // Zone 3: Body — engaged storytelling, slight pitch variation per paragraph
-    ...post.content.map((para, i) => ({
-      text: para,
-      rate: 1.25,
-      pitch: [1.05, 1.0, 1.08][i % 3],
-    })),
-    {
-      // Zone 4: Warm, heartfelt farewell
-      text: `And that... brings us to the very end of today's article. I genuinely hope this left you feeling inspired and curious! If you loved what you just heard, please do consider subscribing to our newsletter — you will find it right at the bottom of the page. And if this article moved you, it would truly make my day if you hit that like button below! Until next time... keep your eyes on the skies. Take care!`,
-      rate: 0.95, pitch: 1.25,
-    },
-  ];
+  const intro = `${greeting}! Welcome to Aero Explore. Let's explore something truly fascinating together.`;
+  const heading = `Today's article is titled: ${post.title}.`;
+  const body = post.content.join(' ');
+  const farewell = `That brings us to the end of today's article. I truly hope you found it insightful and enjoyed the read. If you loved this piece, I'd be so grateful if you would consider subscribing to our newsletter — you can find the subscription option right at the bottom of the page. And if this article was worth your time, please do hit that like button below. It means the world to us. Until next time, keep exploring the skies!`;
+  return `${intro} ${heading} ${body} ${farewell}`;
 }
 
 // ── Main Component ────────────────────────────────────────────────────────────
@@ -235,9 +216,8 @@ export default function BlogPost() {
   const [showToast, setShowToast] = useState(false);
   const [toastDismissed, setToastDismissed] = useState(false);
   const utteranceRef = useRef(null);
-  const segmentsRef = useRef([]);    // all emotional segments
-  const segmentIdxRef = useRef(0);   // which segment is speaking
-  const charIndexRef = useRef(0);    // charIdx within current segment (for resume)
+  const charIndexRef = useRef(0);   // where we paused
+  const fullScriptRef = useRef(''); // full narration text
   const toastRef = useRef(null);
 
   useEffect(() => {
@@ -263,8 +243,6 @@ export default function BlogPost() {
   useEffect(() => {
     setToastDismissed(false);
     setAudioState('idle');
-    segmentsRef.current = [];
-    segmentIdxRef.current = 0;
     charIndexRef.current = 0;
     window.speechSynthesis.cancel();
     const timer = setTimeout(() => setShowToast(true), 800);
@@ -311,58 +289,56 @@ export default function BlogPost() {
     return voices[0] ?? null;
   }, []);
 
-  // Speak a single segment and chain to the next automatically
-  const speakSegment = useCallback((segments, idx, fromChar = 0) => {
-    if (idx >= segments.length) {
-      segmentIdxRef.current = 0;
-      charIndexRef.current = 0;
-      setAudioState('idle');
-      return;
-    }
-    const seg = segments[idx];
-    const slice = seg.text.slice(fromChar);
-    const utter = new SpeechSynthesisUtterance(slice);
-    utter.lang   = 'en-IN';
-    utter.rate   = seg.rate;
-    utter.pitch  = seg.pitch;
-    utter.volume = 1;
+  const speakFrom = useCallback((post, fromChar = 0) => {
+    window.speechSynthesis.cancel();
+    const script = fullScriptRef.current || buildScript(post);
+    fullScriptRef.current = script;
+    const slice = script.slice(fromChar);
 
     const doSpeak = () => {
+      const utter = new SpeechSynthesisUtterance(slice);
+      utter.rate = 1.28;
+      utter.pitch = 1.1;
+      utter.volume = 1;
       const voice = pickVoice();
       if (voice) utter.voice = voice;
+
+      utter.onboundary = (e) => {
+        if (e.name === 'word') charIndexRef.current = fromChar + e.charIndex;
+      };
+      utter.onend = () => {
+        charIndexRef.current = 0;
+        fullScriptRef.current = '';
+        setAudioState('idle');
+      };
+      utter.onerror = (e) => {
+        console.error('SpeechSynthesis error:', e.error);
+        setAudioState('idle');
+      };
+      utteranceRef.current = utter;
       window.speechSynthesis.speak(utter);
     };
+
+    // Chrome bug: speak() called right after cancel() is silently dropped.
+    // A small delay lets the engine flush before queuing the new utterance.
+    const startSpeech = () => setTimeout(doSpeak, 120);
+
     if (window.speechSynthesis.getVoices().length) {
-      doSpeak();
+      startSpeech();
     } else {
-      window.speechSynthesis.addEventListener('voiceschanged', doSpeak, { once: true });
+      window.speechSynthesis.addEventListener('voiceschanged', startSpeech, { once: true });
     }
 
-    utter.onboundary = (e) => {
-      if (e.name === 'word') charIndexRef.current = fromChar + e.charIndex;
-    };
-    utter.onend = () => {
-      charIndexRef.current = 0;
-      segmentIdxRef.current = idx + 1;
-      speakSegment(segments, idx + 1, 0);
-    };
-    utter.onerror = (e) => {
-      if (e.error !== 'interrupted') setAudioState('idle');
-    };
-    utteranceRef.current = utter;
+    setAudioState('playing');
   }, [pickVoice]);
 
   const handleAudioToggle = useCallback(() => {
     const post = postData[id];
     if (!post) return;
-
     if (audioState === 'idle') {
-      const segs = buildSegments(post);
-      segmentsRef.current = segs;
-      segmentIdxRef.current = 0;
       charIndexRef.current = 0;
-      speakSegment(segs, 0, 0);
-      setAudioState('playing');
+      fullScriptRef.current = '';
+      speakFrom(post, 0);
     } else if (audioState === 'playing') {
       window.speechSynthesis.pause();
       setAudioState('paused');
@@ -372,7 +348,7 @@ export default function BlogPost() {
     }
     setShowToast(false);
     setToastDismissed(true);
-  }, [audioState, id, speakSegment]);
+  }, [audioState, id, speakFrom]);
 
   const handleVote = async (choice) => {
     if (voted) return;

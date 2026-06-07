@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "Speed, Precision, and Global Reach: The BrahMos Supersonic Edge";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/brahmos";
-const ARTICLE_EXCERPT = "Unstoppable at Mach 3, the BrahMos is the world's fastest supersonic cruise missile, an absolute powerhouse of modern warfare. This quick 4-paragraph breakdown reveals how this unique India-Russia partnership created a weapon so fast it destroys targets with pure kinetic energy alone. Dive in to see how it launches from land, sea, and air, why global military powers are rushing to buy it, and how the upcoming hypersonic upgrade is set to rewrite the rules of defense entirely.";
+const ARTICLE_TITLE = "Kaveri: Choked by Bureaucracy and Bad Physics";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/kaveri";
+const ARTICLE_EXCERPT = "Only four nations on Earth can build a fighter jet engine from scratch. India tried to become the fifth—and spent 30 years bleeding money, breaking hardware, and fighting a vertical learning curve to do it.The story of the Kaveri engine isn't a clean tale of technological triumph; it's a raw, unfiltered saga of how bureaucratic stagnation and unforgiving physics humbled a national dream. Dive into the heartbreak, the embargoes, and the hard-earned scars that are finally shaping India's stealth future. Read the full breakdown below.";
 
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
