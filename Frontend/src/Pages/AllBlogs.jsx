@@ -6,6 +6,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'kaveri',
+    title: "Kaveri: Choked by Bureaucracy and Bad Physics",
+    date: 'June 10, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/kaveri.webp',
+    category: 'Engineering Corner',
+  },
+  {
     id: 'brahmos',
     title: "Speed, Precision, and Global Reach: The BrahMos Supersonic Edge",
     date: 'June 03, 2026',

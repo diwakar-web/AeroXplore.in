@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import '../CSS/BlogPost.css';
 import useScrollReveal from '../hooks/useScrollReveal';
@@ -6,6 +6,21 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 const postData = {
+   'kaveri': {
+    title: "Kaveri: Choked by Bureaucracy and Bad Physics",
+    date: 'June 10, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/kaveri.webp',
+    category: 'Engineering Corner',
+    thought: "Coming together is a beginning; keeping together is progress; working together is success.",
+    content: [
+      "The GTRE GTX-35 Kaveri engine is India’s most ambitious, agonizing, and raw aerospace endeavor. Initiated in 1989 by the Gas Turbine Research Establishment under the Defence Research Development Organisation, it was originally designed to be a low-bypass, twin-spool turbofan engine capable of delivering 80 kN of afterburning thrust to power the indigenous Light Combat Aircraft Tejas. Instead of a triumphant roar, however, the Kaveri became a cautionary tale of how brute national will can be humbled by the unforgiving laws of thermodynamics, metallurgy, and global politics. Today, it exists not as the heart of India's frontline fighter fleet, but as a compromised, yet vital, technological stepping stone.",
+      "Understanding the importance of the Kaveri engine requires looking past its failures to the brutal landscape of global defense. Aero-engine technology is the ultimate geopolitical gatekeeper. Only a tiny handful of nations like the US, Russia, France, and the UK possess full lifecycle capabilities to design, manufacture, and maintain military turbofans. Jet engines are a strategic choke point; without an indigenous powerplant, an entire fighter jet program can be grounded by foreign sanctions or political shifts. India’s strategic autonomy is directly tied to this capability. Beyond military survival, masterfully manipulating the high-temperature materials required for these engines cascades into commercial aviation, heavy industrial gas turbines, and advanced metallurgy sectors, driving a nation’s technological leadership.",
+      "The obstacles that broke the Kaveri's original timeline were deep, systemic, and unforgiving. When the project began, GTRE lacked access to advanced computational fluid dynamics resources and robust wind-tunnel data. The learning curve was vertical. The engine suffered from massive mechanical failures in its compressors, thermal management issues in the combustor, and an inability to freeze a stable design. Worse, India underestimated the physical limits of materials. To hit the required thrust-to-weight ratio for a modern fighter, an engine must withstand internal temperatures that far exceed the melting point of the metal itself, requiring single-crystal turbine blades and advanced thermal barrier coatings. India had to develop these superalloys from scratch, completely isolated.",
+      "This isolation brings us to the points where India failed, both technically and managerially. Following the 1998 Pokhran nuclear tests, international embargoes immediately cut off India’s access to critical foreign technologies, superalloys, and components, blinding the project during its critical infancy. However, internal failures were equally damaging. The original Kaveri K1 engine ballooned to a weight of 1,424 kg, wildly missing the strict 1,100 kg weight limit required to maintain the LCA Tejas’s center of gravity. When tested at Russia’s Gromov Flight Research Institute, it only produced 70.5 kN of wet thrust, falling far short of the 85+ kN needed to make the Tejas combat-effective. Ultimately, India failed because it starved the project. The 2,100 to 2,300 crore rupees budget allocated to Kaveri was a drop in the ocean compared to the billions of dollars foreign engine houses spend developing a single engine family.",
+      "Despite being officially delinked from the LCA Tejas, which now flies on imported American General Electric F404 and F414 engines, the future outcomes of the Kaveri program are surprisingly potent. The program has pivoted toward a \"dry engine\" variant lacking an afterburner, optimized to produce a reliable 52 kN of thrust. This dry Kaveri is now slated to power Project Ghatak, India’s highly classified, stealthy autonomous Unmanned Combat Aerial Vehicle. Additionally, the decades of pain endured by GTRE have yielded high Technology Readiness Levels in full-authority digital engine controls, directionally solidified casting, and indigenous single-crystal blade manufacturing, which are foundational capabilities that are being transferred to power future marine and civil spin-offs.",
+      "For India to transform the scars of the Kaveri into future aerospace success, its roadmap must pivot from isolated institutional bureaucracy to an agile, well-funded ecosystem. First, funding must scale by orders of magnitude; jet engines cannot be built on shoestring budgets. Second, India must break the strict state monopoly held by DRDO and Hindustan Aeronautics Limited by heavily incentivizing private sector R&D and manufacturing. Finally, India must leverage its current geopolitical alignment to forge deep co-development joint ventures, such as ongoing negotiations for technology transfers with global engine houses, using these partnerships not as a crutch, but as a catalyst to master the final, elusive secrets of hot-section metallurgy."     ]
+  },
   'brahmos': {
     title: "Speed, Precision, and Global Reach: The BrahMos Supersonic Edge",
     date: 'June 03, 2026',
@@ -168,6 +183,44 @@ const postData = {
   }
 };
 
+// ── Audio Reader helpers ──────────────────────────────────────────────────────
+function getGreeting() {
+  const h = new Date().getHours();
+  if (h >= 5 && h < 12) return 'Good morning';
+  if (h >= 12 && h < 17) return 'Good afternoon';
+  if (h >= 17 && h < 21) return 'Good evening';
+  return 'Good night';
+}
+
+// Build emotionally-segmented narration
+function buildSegments(post) {
+  const greeting = getGreeting();
+  return [
+    {
+      // Zone 1: Warm, excited welcome
+      text: `${greeting}! Oh, welcome to Aero Explore! We have something truly incredible to explore together today!`,
+      rate: 1.25, pitch: 1.35,
+    },
+    {
+      // Zone 2: Dramatic, proud title reveal
+      text: `Today's article is titled... ${post.title}.`,
+      rate: 0.25, pitch: 1.18,
+    },
+    // Zone 3: Body — engaged storytelling, slight pitch variation per paragraph
+    ...post.content.map((para, i) => ({
+      text: para,
+      rate: 1.25,
+      pitch: [1.05, 1.0, 1.08][i % 3],
+    })),
+    {
+      // Zone 4: Warm, heartfelt farewell
+      text: `And that... brings us to the very end of today's article. I genuinely hope this left you feeling inspired and curious! If you loved what you just heard, please do consider subscribing to our newsletter — you will find it right at the bottom of the page. And if this article moved you, it would truly make my day if you hit that like button below! Until next time... keep your eyes on the skies. Take care!`,
+      rate: 0.95, pitch: 1.25,
+    },
+  ];
+}
+
+// ── Main Component ────────────────────────────────────────────────────────────
 export default function BlogPost() {
   useScrollReveal();
   const { id } = useParams();
@@ -176,6 +229,16 @@ export default function BlogPost() {
   const [stats, setStats] = useState({ likes: 0, dislikes: 0 });
   const [voted, setVoted] = useState(false);
   const [userChoice, setUserChoice] = useState(null);
+
+  // ── Audio Reader State ──────────────────────────────────────────────────────
+  const [audioState, setAudioState] = useState('idle'); // idle | playing | paused
+  const [showToast, setShowToast] = useState(false);
+  const [toastDismissed, setToastDismissed] = useState(false);
+  const utteranceRef = useRef(null);
+  const segmentsRef = useRef([]);    // all emotional segments
+  const segmentIdxRef = useRef(0);   // which segment is speaking
+  const charIndexRef = useRef(0);    // charIdx within current segment (for resume)
+  const toastRef = useRef(null);
 
   useEffect(() => {
     if (!id) return;
@@ -195,6 +258,121 @@ export default function BlogPost() {
     };
     fetchStats();
   }, [id]);
+
+  // Show toast on first enter (per article)
+  useEffect(() => {
+    setToastDismissed(false);
+    setAudioState('idle');
+    segmentsRef.current = [];
+    segmentIdxRef.current = 0;
+    charIndexRef.current = 0;
+    window.speechSynthesis.cancel();
+    const timer = setTimeout(() => setShowToast(true), 800);
+    return () => clearTimeout(timer);
+  }, [id]);
+
+  // Stop speech when component unmounts / page closes
+  useEffect(() => {
+    const stopOnUnload = () => window.speechSynthesis.cancel();
+    window.addEventListener('beforeunload', stopOnUnload);
+    return () => {
+      window.speechSynthesis.cancel();
+      window.removeEventListener('beforeunload', stopOnUnload);
+    };
+  }, []);
+
+  // Click-outside to dismiss toast
+  useEffect(() => {
+    if (!showToast) return;
+    const handler = (e) => {
+      if (toastRef.current && !toastRef.current.contains(e.target)) {
+        setShowToast(false);
+        setToastDismissed(true);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [showToast]);
+
+  // Pick the best female Indian-English voice
+  const pickVoice = useCallback(() => {
+    const voices = window.speechSynthesis.getVoices();
+    // Strict priority order — most Indian-sounding first
+    const matchers = [
+      v => /en.?IN/i.test(v.lang) && /female|woman|girl|priya|neerja|kalpana|heera|lekha/i.test(v.name),
+      v => /en.?IN/i.test(v.lang),
+      v => /female|woman|girl/i.test(v.name) && /en/i.test(v.lang),
+      v => /en/i.test(v.lang),
+    ];
+    for (const m of matchers) {
+      const hit = voices.find(m);
+      if (hit) return hit;
+    }
+    return voices[0] ?? null;
+  }, []);
+
+  // Speak a single segment and chain to the next automatically
+  const speakSegment = useCallback((segments, idx, fromChar = 0) => {
+    if (idx >= segments.length) {
+      segmentIdxRef.current = 0;
+      charIndexRef.current = 0;
+      setAudioState('idle');
+      return;
+    }
+    const seg = segments[idx];
+    const slice = seg.text.slice(fromChar);
+    const utter = new SpeechSynthesisUtterance(slice);
+    utter.lang   = 'en-IN';
+    utter.rate   = seg.rate;
+    utter.pitch  = seg.pitch;
+    utter.volume = 1;
+
+    const doSpeak = () => {
+      const voice = pickVoice();
+      if (voice) utter.voice = voice;
+      window.speechSynthesis.speak(utter);
+    };
+    if (window.speechSynthesis.getVoices().length) {
+      doSpeak();
+    } else {
+      window.speechSynthesis.addEventListener('voiceschanged', doSpeak, { once: true });
+    }
+
+    utter.onboundary = (e) => {
+      if (e.name === 'word') charIndexRef.current = fromChar + e.charIndex;
+    };
+    utter.onend = () => {
+      charIndexRef.current = 0;
+      segmentIdxRef.current = idx + 1;
+      speakSegment(segments, idx + 1, 0);
+    };
+    utter.onerror = (e) => {
+      if (e.error !== 'interrupted') setAudioState('idle');
+    };
+    utteranceRef.current = utter;
+  }, [pickVoice]);
+
+  const handleAudioToggle = useCallback(() => {
+    const post = postData[id];
+    if (!post) return;
+
+    if (audioState === 'idle') {
+      const segs = buildSegments(post);
+      segmentsRef.current = segs;
+      segmentIdxRef.current = 0;
+      charIndexRef.current = 0;
+      speakSegment(segs, 0, 0);
+      setAudioState('playing');
+    } else if (audioState === 'playing') {
+      window.speechSynthesis.pause();
+      setAudioState('paused');
+    } else if (audioState === 'paused') {
+      window.speechSynthesis.resume();
+      setAudioState('playing');
+    }
+    setShowToast(false);
+    setToastDismissed(true);
+  }, [audioState, id, speakSegment]);
 
   const handleVote = async (choice) => {
     if (voted) return;
@@ -237,6 +415,57 @@ export default function BlogPost() {
 
   return (
     <div className="bp-root">
+
+      {/* ── Audio FAB ── */}
+      <div className="ar-fab-wrap">
+
+        {/* Mic / Play / Pause FAB — always on top */}
+        <button
+          id="ar-mic-btn"
+          className={`ar-fab ${audioState === 'playing' ? 'ar-fab--playing' : ''} ${audioState === 'paused' ? 'ar-fab--paused' : ''}`}
+          onClick={handleAudioToggle}
+          aria-label={audioState === 'playing' ? 'Pause audio' : audioState === 'paused' ? 'Resume audio' : 'Play audio version'}
+          title={audioState === 'playing' ? 'Pause' : audioState === 'paused' ? 'Resume' : 'Listen to article'}
+        >
+          {audioState === 'playing' ? (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="6" y="4" width="4" height="16" rx="1"/>
+              <rect x="14" y="4" width="4" height="16" rx="1"/>
+            </svg>
+          ) : audioState === 'paused' ? (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5,3 19,12 5,21"/>
+            </svg>
+          ) : (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="9" y="2" width="6" height="12" rx="3"/>
+              <path d="M5 10a7 7 0 0 0 14 0"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+              <line x1="9" y1="22" x2="15" y2="22"/>
+            </svg>
+          )}
+        </button>
+
+        {/* Toast card — below the FAB */}
+        {showToast && (
+          <div className="ar-toast" ref={toastRef}>
+            <button
+              className="ar-toast-close"
+              onClick={() => { setShowToast(false); setToastDismissed(true); }}
+              aria-label="Dismiss"
+            >✕</button>
+            <div className="ar-toast-icon">🎙️</div>
+            <p className="ar-toast-title">Audio Version Available!</p>
+            <p className="ar-toast-body">Listen to this article narrated just for you. Tap play to begin.</p>
+            <button
+              className="ar-toast-cta"
+              onClick={handleAudioToggle}
+            >▶ Play Audio</button>
+          </div>
+        )}
+
+      </div>
+
       <main className="bp-main">
         <div className="bp-inner">
           <Link to="/" className="bp-top-back-link">

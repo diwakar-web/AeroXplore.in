@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'brahmos',
-  title: "Speed, Precision, and Global Reach: The BrahMos Supersonic Edge",
-  date: 'June 03, 2026',
+  id: 'kaveri',
+  title: "Kaveri: Choked by Bureaucracy and Bad Physics",
+  date: 'June 10, 2026',
   author: 'Diwakar Nagar',
-  caption: 'BrahMos',
-  para1: `The BrahMos missile stands as one of the most formidable triumphs in modern military engineering, born out of a strategic joint venture established in 1998 between India’s Defence Research and Development Organisation (DRDO) and Russia’s NPO Mashinostroyeniya. The weapon's name itself is a portmanteau of two iconic rivers, the Brahmaputra of India and the Moskva of Russia, symbolizing the deep technological partnership between the two nations. Developed to provide an unstoppable precision-strike capability, the BrahMos was designed to replace aging subsonic systems and offer an unmatchable tactical edge. Over the years, it has evolved into a premier symbol of defense indigenization, shifting India from a traditional defense importer to a significant global exporter.`,
-  para2: `Technically, the BrahMos is a two-stage, ramjet-powered supersonic cruise missile that operates on a strict "Fire and Forget" principle, requiring no further guidance after launch. The first stage utilizes a solid-propellant booster engine that provides rapid initial acceleration to bring the missile to supersonic speeds before separating. The second stage engages a liquid-fueled ramjet engine, taking over during the cruise phase to sustain a blistering velocity of Mach 2.8 to Mach 3 (nearly one kilometer per second). Flying three times faster than standard subsonic cruise missiles, the BrahMos impacts targets with nine times the kinetic energy, making it virtually un-interceptable by existing air-defense networks. It is highly versatile, capable of performing multi-point maneuvers, cruising at altitudes up to 15 kilometers, or executing radical sea-skimming maneuvers as low as 5 meters to evade enemy radar.`
+  caption: 'GTRE GTX-35VS Kaveri engine',
+  para1: `The GTRE GTX-35VS Kaveri engine is India’s most ambitious, agonizing, and raw aerospace endeavor. Initiated in 1989 by the Gas Turbine Research Establishment under the Defence Research Development Organisation, it was originally designed to be a low-bypass, twin-spool turbofan engine capable of delivering 80 kN of afterburning thrust to power the indigenous Light Combat Aircraft Tejas. Instead of a triumphant roar, however, the Kaveri became a cautionary tale of how brute national will can be humbled by the unforgiving laws of thermodynamics, metallurgy, and global politics. Today, it exists not as the heart of India's frontline fighter fleet, but as a compromised, yet vital, technological stepping stone.`,
+  para2: `Understanding the importance of the Kaveri engine requires looking past its failures to the brutal landscape of global defense. Aero-engine technology is the ultimate geopolitical gatekeeper. Only a tiny handful of nations like the US, Russia, France, and the UK possess full lifecycle capabilities to design, manufacture, and maintain military turbofans. Jet engines are a strategic choke point; without an indigenous powerplant, an entire fighter jet program can be grounded by foreign sanctions or political shifts. India’s strategic autonomy is directly tied to this capability. Beyond military survival, masterfully manipulating the high-temperature materials required for these engines cascades into commercial aviation, heavy industrial gas turbines, and advanced metallurgy sectors, driving a nation’s technological leadership.`
 };
 
 const blogPosts = [
+  {
+    id: 'brahmos',
+    title: 'Speed, Precision, and Global Reach: The BrahMos Supersonic Edge',
+    date: 'June 3, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/brahmos.webp',
+    category: 'Strategic Weapons',
+  },
   {
     id: 'su30-mki',
     title: "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance",
@@ -29,14 +37,6 @@ const blogPosts = [
     date: ' April 24, 2026',
     author: 'Diwakar Nagar',
     image: '/images/typhoon.webp',
-    category: 'Defence Aviation',
-  },
-  {
-    id: 'f-35',
-    title: 'Phantom of the Skies: The Dominance of the F-35 Lightning II',
-    date: 'May 10, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/f-35.webp',
     category: 'Defence Aviation',
   },
 ];
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/brahmos.webp"
+                    src="/images/kaveri.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />
