@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'kaveri',
-  title: "Kaveri: Choked by Bureaucracy and Bad Physics",
-  date: 'June 07, 2026',
+  id: 'il-76',
+  title: "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse",
+  date: 'June 23, 2026',
   author: 'Diwakar Nagar',
-  caption: 'GTRE GTX-35VS Kaveri engine',
-  para1: `The GTRE GTX-35VS Kaveri engine is India’s most ambitious, agonizing, and raw aerospace endeavor. Initiated in 1989 by the Gas Turbine Research Establishment under the Defence Research Development Organisation, it was originally designed to be a low-bypass, twin-spool turbofan engine capable of delivering 80 kN of afterburning thrust to power the indigenous Light Combat Aircraft Tejas. Instead of a triumphant roar, however, the Kaveri became a cautionary tale of how brute national will can be humbled by the unforgiving laws of thermodynamics, metallurgy, and global politics. Today, it exists not as the heart of India's frontline fighter fleet, but as a compromised, yet vital, technological stepping stone.`,
-  para2: `Understanding the importance of the Kaveri engine requires looking past its failures to the brutal landscape of global defense. Aero-engine technology is the ultimate geopolitical gatekeeper. Only a tiny handful of nations like the US, Russia, France, and the UK possess full lifecycle capabilities to design, manufacture, and maintain military turbofans. Jet engines are a strategic choke point; without an indigenous powerplant, an entire fighter jet program can be grounded by foreign sanctions or political shifts. India’s strategic autonomy is directly tied to this capability. Beyond military survival, masterfully manipulating the high-temperature materials required for these engines cascades into commercial aviation, heavy industrial gas turbines, and advanced metallurgy sectors, driving a nation’s technological leadership.`
+  caption: 'Il-76 strategic airlifter',
+  para1: `Developed by Russia's Ilyushin design bureau during the Cold War and first flying in 1971, the Il-76, NATO codename "Candid", was engineered to conquer the Soviet Union's most brutal operational environments. Built to operate from frozen Siberian tundra and unpaved desert strips, this four-engine strategic airlifter quickly became a massive global export success. Today, its distinct high-wing profile and glass-bottomed navigator nose serve in the military pipelines of more than thirty nations. Chief among these is China's People's Liberation Army Air Force, which utilizes a massive fleet for heavy freight and early warning platforms, alongside the air arms of Algeria, Belarus, Azerbaijan, and Egypt, making it a definitive lifeline for global tactical transport.`,
+  para2: `What truly makes the Il-76 an engineering marvel is its massive load-bearing architecture and total ground self-sufficiency. Capable of hauling 48 tons in classic variants and up to 60 tons in modernized versions, its pressurized cargo hold is built around a heavy-duty titanium floor. The aircraft functions as a self-contained, flying industrial zone, equipped with a hydraulic rear ramp and an internal system of four motorized overhead cranes that can hoist 3,000 kilograms each. This sophisticated layout allows the Il-76 to roll on and roll off main battle tanks, heavy armored vehicles, and oversized industrial machinery in remote regions without relying on any external ground support equipment.`
 };
 
 const blogPosts = [
+  {
+    id: 'kaveri',
+    title: "Kaveri: Choked by Bureaucracy and Bad Physics",
+    date: 'June 07, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/kaveri.webp',
+    category: 'Engineering Corner',
+  },
   {
     id: 'brahmos',
     title: 'Speed, Precision, and Global Reach: The BrahMos Supersonic Edge',
@@ -31,15 +39,7 @@ const blogPosts = [
     image: '/images/Su30mki.webp',
     category: 'Defence Aviation'
   },
-  {
-    id: 'typhoon',
-    title: " The Whispering Death: Mighty Eurofighter Typhoon",
-    date: 'May 17, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/typhoon.webp',
-    category: 'Defence Aviation',
-  },
-];
+  ];
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/kaveri.webp"
+                    src="/images/il-76.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />

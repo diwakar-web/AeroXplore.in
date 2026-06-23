@@ -6,6 +6,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'il-76',
+    title: "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse",
+    date: 'June 23 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/il-76.webp',
+    category: 'Defence Aviation',
+  },
+  {
     id: 'kaveri',
     title: "Kaveri: Choked by Bureaucracy and Bad Physics",
     date: 'June 07 2026',

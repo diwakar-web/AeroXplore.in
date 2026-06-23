@@ -6,6 +6,19 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 const postData = {
+   'il-76': {
+    title: "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse",
+    date: 'June 23, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/il-76.webp',
+    category: 'Defence Aviation',
+    thought: "The sky is not the limit, it is home.",
+    content: [
+      "Developed by Russia's Ilyushin design bureau during the Cold War and first flying in 1971, the Il-76, NATO codename \"Candid\", was engineered to conquer the Soviet Union's most brutal operational environments. Built to operate from frozen Siberian tundra and unpaved desert strips, this four-engine strategic airlifter quickly became a massive global export success. Today, its distinct high-wing profile and glass-bottomed navigator nose serve in the military pipelines of more than thirty nations. Chief among these is China's People's Liberation Army Air Force, which utilizes a massive fleet for heavy freight and early warning platforms, alongside the air arms of Algeria, Belarus, Azerbaijan, and Egypt, making it a definitive lifeline for global tactical transport.",
+      "What truly makes the Il-76 an engineering marvel is its massive load-bearing architecture and total ground self-sufficiency. Capable of hauling 48 tons in classic variants and up to 60 tons in modernized versions, its pressurized cargo hold is built around a heavy-duty titanium floor. The aircraft functions as a self-contained, flying industrial zone, equipped with a hydraulic rear ramp and an internal system of four motorized overhead cranes that can hoist 3,000 kilograms each. This sophisticated layout allows the Il-76 to roll on and roll off main battle tanks, heavy armored vehicles, and oversized industrial machinery in remote regions without relying on any external ground support equipment.",
+      "Unlike passive transport airframes that require constant fighter escorts, the Il-76 boasts a highly defensive nature, traditionally sporting an operational tail turret armed with twin 23mm autocannons alongside electronic countermeasures and flare dispensers to survive high-risk combat drops. This rugged survivability made it legendary in the Indian Air Force, where it was inducted in 1985 as the \"Gajraj\", King Elephant. Flying with the No. 44 Squadron \"Mighty Jets\", the IAF's Il-76s famously airlifted paratroopers during 1988's Operation Cactus to swiftly thwart a coup in the Maldives, and India still utilizes specialized derivatives like the Il-78 for mid-air refueling and the A-50EI AWACS for airborne radar. Beyond militaries, its ruggedness is prized by commercial heavyweights like Volga-Dnepr Airlines, Silk Way Airlines, and the United Nations Humanitarian Air Service to deliver urgent global relief to the world's most remote corners.",
+      "Decades after its maiden flight, the future of this aviation workhorse remains incredibly bright through deep, structural modernization. Russia has revitalized the platform with the next-generation Il-76MD-90A variant, built on a completely digital assembly line. These updated aircraft feature ultra-efficient Aviadvigatel PS-90A-76 turbofans, a modern glass cockpit, advanced structural carbon-fiber components, and a vastly extended flight range. By seamlessly adapting to 21st-century aviation standards while retaining its legendary structural toughness, the Il-76 ensures it will continue to dominate the world's most challenging skies for decades to come."
+    ]},
    'kaveri': {
     title: "Kaveri: Choked by Bureaucracy and Bad Physics",
     date: 'June 07, 2026',
