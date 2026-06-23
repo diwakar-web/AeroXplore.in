@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "Kaveri: Choked by Bureaucracy and Bad Physics";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/kaveri";
-const ARTICLE_EXCERPT = "Only four nations on Earth can build a fighter jet engine from scratch. India tried to become the fifth—and spent 30 years bleeding money, breaking hardware, and fighting a vertical learning curve to do it.The story of the Kaveri engine isn't a clean tale of technological triumph; it's a raw, unfiltered saga of how bureaucratic stagnation and unforgiving physics humbled a national dream. Dive into the heartbreak, the embargoes, and the hard-earned scars that are finally shaping India's stealth future. Read the full breakdown below.";
+const ARTICLE_TITLE = "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/il-76";
+const ARTICLE_EXCERPT = "If you want to know what happens when you combine a massive Cold War military titan with a flying industrial zone, look no further than the legendary Ilyushin Il-76. Capable of swallowing main battle tanks whole, operating from the world's most unforgiving unpaved frozen tundras, and packing its own tail-gunner turret to shred incoming threats, this heavy-lift engineering marvel is anything but a passive cargo plane. From its crucial historical role saving democracies with the Indian Air Force to its modernized, high-tech future dominating 21st-century skies, dive in to discover why this mechanical beast remains the ultimate global lifeline that refuses to retire.";
 
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
