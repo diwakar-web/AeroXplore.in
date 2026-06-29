@@ -355,8 +355,22 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.85rem;
+  gap: 0.35rem;
   pointer-events: none; /* children opt-in */
+}
+
+.ar-fab-label {
+  pointer-events: all;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ar-brown);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+  width: 100%;
 }
 
 /* ── FAB button ── */

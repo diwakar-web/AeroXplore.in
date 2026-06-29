@@ -240,12 +240,9 @@ export default function BlogPost() {
 
   // ── Audio Reader State ──────────────────────────────────────────────────────
   const [audioState, setAudioState] = useState('idle'); // idle | playing | paused
-  const [showToast, setShowToast] = useState(false);
-  const [toastDismissed, setToastDismissed] = useState(false);
   const utteranceRef = useRef(null);
   const charIndexRef = useRef(0);   // where we paused
   const fullScriptRef = useRef(''); // full narration text
-  const toastRef = useRef(null);
 
   useEffect(() => {
     if (!id) return;
@@ -266,14 +263,10 @@ export default function BlogPost() {
     fetchStats();
   }, [id]);
 
-  // Show toast on first enter (per article)
   useEffect(() => {
-    setToastDismissed(false);
     setAudioState('idle');
     charIndexRef.current = 0;
     window.speechSynthesis.cancel();
-    const timer = setTimeout(() => setShowToast(true), 800);
-    return () => clearTimeout(timer);
   }, [id]);
 
   // Stop speech when component unmounts / page closes
@@ -285,19 +278,6 @@ export default function BlogPost() {
       window.removeEventListener('beforeunload', stopOnUnload);
     };
   }, []);
-
-  // Click-outside to dismiss toast
-  useEffect(() => {
-    if (!showToast) return;
-    const handler = (e) => {
-      if (toastRef.current && !toastRef.current.contains(e.target)) {
-        setShowToast(false);
-        setToastDismissed(true);
-      }
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, [showToast]);
 
   // Pick the best female Indian-English voice
   const pickVoice = useCallback(() => {
@@ -373,8 +353,6 @@ export default function BlogPost() {
       window.speechSynthesis.resume();
       setAudioState('playing');
     }
-    setShowToast(false);
-    setToastDismissed(true);
   }, [audioState, id, speakFrom]);
 
   const handleVote = async (choice) => {
@@ -421,8 +399,6 @@ export default function BlogPost() {
 
       {/* ── Audio FAB ── */}
       <div className="ar-fab-wrap">
-
-        {/* Mic / Play / Pause FAB — always on top */}
         <button
           id="ar-mic-btn"
           className={`ar-fab ${audioState === 'playing' ? 'ar-fab--playing' : ''} ${audioState === 'paused' ? 'ar-fab--paused' : ''}`}
@@ -448,25 +424,7 @@ export default function BlogPost() {
             </svg>
           )}
         </button>
-
-        {/* Toast card — below the FAB */}
-        {showToast && (
-          <div className="ar-toast" ref={toastRef}>
-            <button
-              className="ar-toast-close"
-              onClick={() => { setShowToast(false); setToastDismissed(true); }}
-              aria-label="Dismiss"
-            >✕</button>
-            <div className="ar-toast-icon">🎙️</div>
-            <p className="ar-toast-title">Audio Version Available!</p>
-            <p className="ar-toast-body">Listen to this article narrated just for you. Tap play to begin.</p>
-            <button
-              className="ar-toast-cta"
-              onClick={handleAudioToggle}
-            >▶ Play Audio</button>
-          </div>
-        )}
-
+        <span className="ar-fab-label">Audio mode</span>
       </div>
 
       <main className="bp-main">
