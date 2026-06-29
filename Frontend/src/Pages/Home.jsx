@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'il-76',
-  title: "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse",
-  date: 'June 23, 2026',
+  id: 'skat',
+  title: "Suryakiran: Red and White Wonders of the Indian Skies",
+  date: 'June 29, 2026',
   author: 'Diwakar Nagar',
-  caption: 'Il-76 strategic airlifter',
-  para1: `Developed by Russia's Ilyushin design bureau during the Cold War and first flying in 1971, the Il-76, NATO codename "Candid", was engineered to conquer the Soviet Union's most brutal operational environments. Built to operate from frozen Siberian tundra and unpaved desert strips, this four-engine strategic airlifter quickly became a massive global export success. Today, its distinct high-wing profile and glass-bottomed navigator nose serve in the military pipelines of more than thirty nations. Chief among these is China's People's Liberation Army Air Force, which utilizes a massive fleet for heavy freight and early warning platforms, alongside the air arms of Algeria, Belarus, Azerbaijan, and Egypt, making it a definitive lifeline for global tactical transport.`,
+  caption: 'Suryakiran Aerobatic Team',
+  para1: `The Suryakiran Aerobatic Team (SKAT), affectionately known as the "Ambassadors of the Indian Air Force," stands as a supreme symbol of precision, discipline, and aerial mastery. Formed on May 27, 1996, at Air Force Station Bidar in Karnataka, the team has been thrilling massive crowds for three decades. Tracing its lineage back to the "Thunderbolts" formation team of 1982, SKAT was created to showcase the peak of pilot professionalism and inspire the next generation of Indian youth. Over its illustrious history, the squadron has overcome operational pauses and tragic setbacks, consistently emerging stronger to paint the skies with national pride as one of the elite Nine-Aircraft aerobatic formations in the world and the only one of its kind in Asia.`,
   para2: `What truly makes the Il-76 an engineering marvel is its massive load-bearing architecture and total ground self-sufficiency. Capable of hauling 48 tons in classic variants and up to 60 tons in modernized versions, its pressurized cargo hold is built around a heavy-duty titanium floor. The aircraft functions as a self-contained, flying industrial zone, equipped with a hydraulic rear ramp and an internal system of four motorized overhead cranes that can hoist 3,000 kilograms each. This sophisticated layout allows the Il-76 to roll on and roll off main battle tanks, heavy armored vehicles, and oversized industrial machinery in remote regions without relying on any external ground support equipment.`
 };
 
 const blogPosts = [
+  {
+    id: 'il-76',
+    title: "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse",
+    date: 'June 23, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/il-76.webp',
+    category: 'Military Aviation'
+  },
   {
     id: 'kaveri',
     title: "Kaveri: Choked by Bureaucracy and Bad Physics",
@@ -31,14 +39,7 @@ const blogPosts = [
     image: '/images/brahmos.webp',
     category: 'Strategic Weapons',
   },
-  {
-    id: 'su30-mki',
-    title: "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance",
-    date: 'May 24, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/Su30mki.webp',
-    category: 'Defence Aviation'
-  },
+  
   ];
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
@@ -160,7 +161,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/il-76.webp"
+                    src="/images/skat.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />

@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/il-76";
-const ARTICLE_EXCERPT = "If you want to know what happens when you combine a massive Cold War military titan with a flying industrial zone, look no further than the legendary Ilyushin Il-76. Capable of swallowing main battle tanks whole, operating from the world's most unforgiving unpaved frozen tundras, and packing its own tail-gunner turret to shred incoming threats, this heavy-lift engineering marvel is anything but a passive cargo plane. From its crucial historical role saving democracies with the Indian Air Force to its modernized, high-tech future dominating 21st-century skies, dive in to discover why this mechanical beast remains the ultimate global lifeline that refuses to retire.";
+const ARTICLE_TITLE = "Suryakiran: Red and White Wonders of the Indian Skies";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/skat";
+const ARTICLE_EXCERPT = "Have you ever seen nine high-performance jet fighters screaming through the air, flying just 5 meters apart at a breathtaking 700 km/h? Meet the Suryakiran Aerobatic Team (SKAT)—Asia’s only nine-aircraft military display squadron, and the absolute pride of the Indian Air Force. Dressed in their iconic Red and White livery, these elite fighter pilots don't just fly; they paint the heavens with pure adrenaline and national pride.";
 
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
