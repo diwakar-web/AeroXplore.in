@@ -330,7 +330,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   AUDIO READER  — FAB + Toast
+   AUDIO READER  ,  FAB + Toast
    Brown & Gold palette
 ═══════════════════════════════════════════════════════════════ */
 
@@ -415,7 +415,7 @@
   background: linear-gradient(135deg, var(--ar-brown-light), var(--ar-brown-mid));
 }
 
-/* Playing state — continuous glow */
+/* Playing state ,  continuous glow */
 .ar-fab--playing {
   background: linear-gradient(135deg, var(--ar-gold), var(--ar-gold-bright));
   color: var(--ar-brown);

@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'skat',
-  title: "Suryakiran: Red and White Wonders of the Indian Skies",
-  date: 'June 29, 2026',
+  id: 'sept11',
+  title: "The Cost of Silences: Anatomy of 9/11",
+  date: 'July 07 2026',
   author: 'Diwakar Nagar',
-  caption: 'Suryakiran Aerobatic Team',
-  para1: `The Suryakiran Aerobatic Team (SKAT), affectionately known as the "Ambassadors of the Indian Air Force," stands as a supreme symbol of precision, discipline, and aerial mastery. Formed on May 27, 1996, at Air Force Station Bidar in Karnataka, the team has been thrilling massive crowds for three decades. Tracing its lineage back to the "Thunderbolts" formation team of 1982, SKAT was created to showcase the peak of pilot professionalism and inspire the next generation of Indian youth. Over its illustrious history, the squadron has overcome operational pauses and tragic setbacks, consistently emerging stronger to paint the skies with national pride as one of the elite Nine-Aircraft aerobatic formations in the world and the only one of its kind in Asia.`,
-  para2: `What truly makes the Il-76 an engineering marvel is its massive load-bearing architecture and total ground self-sufficiency. Capable of hauling 48 tons in classic variants and up to 60 tons in modernized versions, its pressurized cargo hold is built around a heavy-duty titanium floor. The aircraft functions as a self-contained, flying industrial zone, equipped with a hydraulic rear ramp and an internal system of four motorized overhead cranes that can hoist 3,000 kilograms each. This sophisticated layout allows the Il-76 to roll on and roll off main battle tanks, heavy armored vehicles, and oversized industrial machinery in remote regions without relying on any external ground support equipment.`
+  caption: 'The blind spot in the sky, 9/11',
+  para1: `Today's topic isn't fully dedicated to airplanes, but somewhat, or rather, how those massive marvels of engineering were weaponized because of a catastrophic breakdown in human communication, policy, and decision-making. The seeds of the 9/11 tragedy were sown long before the planes took off, rooted in a fatal policy decision by the US government to allow strict intelligence "walls" between its agencies. The CIA tracked known al-Qaeda operatives Nawaf al-Hazmi and Khalid al-Mihdhar as they entered the US, but due to bureaucratic friction and a culture of hoarding secrets, they never officially shared this data with the FBI. This single decision allowed the terrorists to live openly in California, open bank accounts, and enroll in flight schools completely undetected.`,
+  para2: `As the plot neared execution, the vulnerability deepened due to how the highest levels of US leadership handled incoming warnings, culminating in a deceptively simple, brief statement presented to President George W. Bush on August 6, 2001. The President’s Daily Brief contained a short section bluntly titled, "Bin Ladin Determined To Strike in US." This concise statement explicitly warned that al-Qaeda wanted to bring the fight to American soil and mentioned patterns consistent with preparations for hijackings. However, the administration made the critical decision to treat this as vague, historical analysis rather than an actionable, immediate emergency, failing to raise domestic threat levels or mobilize airport security units during a vital window of time.`
 };
 
 const blogPosts = [
+  {
+    id: 'skat',
+    title: 'Suryakiran: Red and White Wonders of the Indian Skies',
+    date: 'June 29, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/skat.webp',
+    category: 'Military History & Legacies',
+  },
   {
     id: 'il-76',
     title: "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse",
@@ -31,15 +39,6 @@ const blogPosts = [
     image: '/images/kaveri.webp',
     category: 'Engineering Corner',
   },
-  {
-    id: 'brahmos',
-    title: 'Speed, Precision, and Global Reach: The BrahMos Supersonic Edge',
-    date: 'June 03, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/brahmos.webp',
-    category: 'Strategic Weapons',
-  },
-  
   ];
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
@@ -161,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/skat.webp"
+                    src="/images/9-11.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />

@@ -5,10 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "Suryakiran: Red and White Wonders of the Indian Skies";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/skat";
-const ARTICLE_EXCERPT = "Have you ever seen nine high-performance jet fighters screaming through the air, flying just 5 meters apart at a breathtaking 700 km/h? Meet the Suryakiran Aerobatic Team (SKAT)—Asia’s only nine-aircraft military display squadron, and the absolute pride of the Indian Air Force. Dressed in their iconic Red and White livery, these elite fighter pilots don't just fly; they paint the heavens with pure adrenaline and national pride.";
-
+const ARTICLE_TITLE = "The Cost of Silences: Anatomy of 9/11";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/sept11";
+const ARTICLE_EXCERPT = "Today’s story isn’t entirely about airplanes, but rather how a single, silent decision turned them into the deadliest weapons in history. Read The Cost of Silences: Anatomy of 9/11."
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
 // ============================================================

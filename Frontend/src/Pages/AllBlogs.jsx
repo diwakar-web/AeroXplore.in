@@ -6,6 +6,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'sept11',
+    title: "The Cost of Silences: Anatomy of 9/11",
+    date: 'July 07 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/9-11.webp',
+    category: 'Aviation Security',
+  },
+  {
     id: 'skat',
     title: "Suryakiran: Red and White Wonders of the Indian Skies",
     date: 'June 29 2026',
