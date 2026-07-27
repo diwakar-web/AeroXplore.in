@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "The Cost of Silences: Anatomy of 9/11";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/sept11";
-const ARTICLE_EXCERPT = "Today’s story isn’t entirely about airplanes, but rather how a single, silent decision turned them into the deadliest weapons in history. Read The Cost of Silences: Anatomy of 9/11."
+const ARTICLE_TITLE = "The Women Who Broke the Sound Barrier: Jackie";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/Jackie";
+const ARTICLE_EXCERPT = "Before jets pierced the sky at supersonic speeds, breaking the sound barrier was thought to be an impossible physical wall. Discover the thrilling story of the women who refused to stay grounded, strapped into experimental jets, and shattered both Mach 1 and aviation history forever."
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
 // ============================================================
