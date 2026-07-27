@@ -6,6 +6,21 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 const postData = {
+  'Jackie': {
+    title: "The Women Who Broke the Sound Barrier: Jackie",
+    date: 'July 27, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/Jackie.webp',
+    category: 'Trailblazing Personalities',
+    thought: "To most people, the sky is the limit. To those who love aviation, the sky is home.",
+    content: [
+      "For decades during the dawn of modern aviation, flying faster than the speed of sound was considered an impenetrable wall in the sky, a physical limit known as the \"sound barrier.\" When Chuck Yeager first broke this barrier in 1947, it was hailed as a major milestone for male military pilots. However, the dangerous race to push aircraft past Mach 1 soon became a stage where trailblazing women redefined what was possible in high-altitude flight, shattering both physical limits and social barriers.",
+      "To understand their achievements, it helps to understand what breaking the sound barrier actually means. Sound travels through the air in pressure waves at roughly 761 miles per hour (1,225 km/h) at sea level, a threshold aviators call Mach 1 (named after physicist Ernst Mach). As an airplane accelerates, it pushes air molecules out of the way, creating air pressure waves ahead of it. When the jet reaches Mach 1, it moves faster than those pressure waves can move away, squeezing them together into a compressed shockwave. When this concentrated wall of air hits the ground, observers hear it as a thunderous explosive crack known as a sonic boom.",
+      "The first woman to conquer Mach 1 was the legendary American aviator Jacqueline \"Jackie\" Cochran. On May 18, 1953, flying a Canadair F-86 Sabre jet over Rogers Dry Lake in California, Cochran pushed her aircraft into a dive, exceeding Mach 1 and unleashing a loud sonic boom across the desert floor. A former wartime director of the Women Airforce Service Pilots (WASP), Cochran did not stop at Mach 1; over her career, she went on to set more speed, altitude, and distance records than any other pilot in aviation history, male or female.",
+      "Across the Atlantic, a fierce and friendly rivalry emerged with Jacqueline Auriol, a daring French test pilot. After surviving a severe plane crash that required years of facial reconstructive surgeries, Auriol returned to the cockpit and became the first European woman to break the sound barrier in 1953. Throughout the 1950s and early 1960s, Cochran and Auriol repeatedly traded the title of the \"World's Fastest Woman,\" taking turns flying advanced military jets like the Mirage III to push top speeds past Mach 2, which is twice the speed of sound.",
+      "The daring feats of Cochran, Auriol, and their contemporaries proved that piloting experimental supersonic aircraft was a matter of skill, nerve, and precision rather than gender. Their efforts tore down longstanding skepticism within the aerospace community, paving the way for future generations of female military fighter pilots, commercial captains, and astronauts. Today, every time an aircraft pierces the sky at supersonic speeds, it echoes the groundbreaking legacy of the women who dared to lead the way."
+      ]
+  },
   'sept11': {
     title: "The Cost of Silences: Anatomy of 9/11",
     date: 'July 07, 2026',

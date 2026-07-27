@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'sept11',
-  title: "The Cost of Silences: Anatomy of 9/11",
-  date: 'July 07 2026',
+  id: 'Jackie',
+  title: "The Women Who Broke the Sound Barrier: Jackie",
+  date: 'July 27 2026',
   author: 'Diwakar Nagar',
-  caption: 'The blind spot in the sky, 9/11',
-  para1: `Today's topic isn't fully dedicated to airplanes, but somewhat, or rather, how those massive marvels of engineering were weaponized because of a catastrophic breakdown in human communication, policy, and decision-making. The seeds of the 9/11 tragedy were sown long before the planes took off, rooted in a fatal policy decision by the US government to allow strict intelligence "walls" between its agencies. The CIA tracked known al-Qaeda operatives Nawaf al-Hazmi and Khalid al-Mihdhar as they entered the US, but due to bureaucratic friction and a culture of hoarding secrets, they never officially shared this data with the FBI. This single decision allowed the terrorists to live openly in California, open bank accounts, and enroll in flight schools completely undetected.`,
-  para2: `As the plot neared execution, the vulnerability deepened due to how the highest levels of US leadership handled incoming warnings, culminating in a deceptively simple, brief statement presented to President George W. Bush on August 6, 2001. The President’s Daily Brief contained a short section bluntly titled, "Bin Ladin Determined To Strike in US." This concise statement explicitly warned that al-Qaeda wanted to bring the fight to American soil and mentioned patterns consistent with preparations for hijackings. However, the administration made the critical decision to treat this as vague, historical analysis rather than an actionable, immediate emergency, failing to raise domestic threat levels or mobilize airport security units during a vital window of time.`
+  caption: 'Jackie Cochran beside her Lockheed F-104 Starfighter.',
+  para1: `For decades during the dawn of modern aviation, flying faster than the speed of sound was considered an impenetrable wall in the sky, a physical limit known as the "sound barrier." When Chuck Yeager first broke this barrier in 1947, it was hailed as a major milestone for male military pilots. However, the dangerous race to push aircraft past Mach 1 soon became a stage where trailblazing women redefined what was possible in high-altitude flight, shattering both physical limits and social barriers.`,
+  para2: `To understand their achievements, it helps to understand what breaking the sound barrier actually means. Sound travels through the air in pressure waves at roughly 761 miles per hour (1,225 km/h) at sea level, a threshold aviators call Mach 1 (named after physicist Ernst Mach). As an airplane accelerates, it pushes air molecules out of the way, creating air pressure waves ahead of it. When the jet reaches Mach 1, it moves faster than those pressure waves can move away, squeezing them together into a compressed shockwave. When this concentrated wall of air hits the ground, observers hear it as a thunderous explosive crack known as a sonic boom.`
 };
 
 const blogPosts = [
+  {
+    id: 'sept11',
+    title: "The Cost of Silences: Anatomy of 9/11",
+    date: 'July 07, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/9-11.webp',
+    category: 'Aviation Security',
+  },
   {
     id: 'skat',
     title: 'Suryakiran: Red and White Wonders of the Indian Skies',
@@ -30,14 +38,6 @@ const blogPosts = [
     author: 'Diwakar Nagar',
     image: '/images/il-76.webp',
     category: 'Military Aviation'
-  },
-  {
-    id: 'kaveri',
-    title: "Kaveri: Choked by Bureaucracy and Bad Physics",
-    date: 'June 07, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/kaveri.webp',
-    category: 'Engineering Corner',
   },
   ];
 
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/9-11.webp"
+                    src="/images/Jackie.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />
