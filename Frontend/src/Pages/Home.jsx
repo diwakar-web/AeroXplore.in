@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'Jackie',
-  title: "The Women Who Broke the Sound Barrier: Jackie",
-  date: 'July 27 2026',
+  id: 'sr-71',
+  title: "The Lockheed SR-71 Blackbird: Faster Than a Missile",
+  date: 'July 28 2026',
   author: 'Diwakar Nagar',
-  caption: 'Jackie Cochran beside her Lockheed F-104 Starfighter.',
-  para1: `For decades during the dawn of modern aviation, flying faster than the speed of sound was considered an impenetrable wall in the sky, a physical limit known as the "sound barrier." When Chuck Yeager first broke this barrier in 1947, it was hailed as a major milestone for male military pilots. However, the dangerous race to push aircraft past Mach 1 soon became a stage where trailblazing women redefined what was possible in high-altitude flight, shattering both physical limits and social barriers.`,
-  para2: `To understand their achievements, it helps to understand what breaking the sound barrier actually means. Sound travels through the air in pressure waves at roughly 761 miles per hour (1,225 km/h) at sea level, a threshold aviators call Mach 1 (named after physicist Ernst Mach). As an airplane accelerates, it pushes air molecules out of the way, creating air pressure waves ahead of it. When the jet reaches Mach 1, it moves faster than those pressure waves can move away, squeezing them together into a compressed shockwave. When this concentrated wall of air hits the ground, observers hear it as a thunderous explosive crack known as a sonic boom.`
+  caption: 'The SR-71 Blackbird in flight.',
+  para1: `The story of the Lockheed SR-71 Blackbird began during the height of the Cold War in the late 1950s. After Soviet surface-to-air missiles shot down an American U-2 spy plane in 1960, the U.S. government realized high-altitude flying was no longer enough to avoid interception; supreme speed and stealth were required. Under the secretive leadership of legendary aerospace engineer Clarence "Kelly" Johnson at Lockheed’s Skunk Works division, the project took shape. Evolving from the earlier single-seat A-12 reconnaissance platform, the twin-seat SR-71 was envisioned as an uncatchable strategic reconnaissance aircraft that could peer deep into enemy territory without ever being brought down.`,
+  para2: `To operate at speeds exceeding Mach 3 and altitudes above 85,000 feet, Lockheed had to reinvent aviation engineering. Air friction at such speeds generated temperatures exceeding 600°F (315°C), melting standard aircraft aluminum. Engineers turned to titanium, secretly sourced from the Soviet Union itself through bogus third-party companies. The aircraft was built with loose panels to accommodate thermal expansion during high-speed flight, causing it to famously leak special JP-7 fuel on the runway until heat sealed the gaps mid-flight. Painted in a dark, heat-radiating, radar-absorbent black skin, the Blackbird became a striking symbol of futuristic design.`
 };
 
 const blogPosts = [
+  {
+    id: 'Jackie',
+    title: "The Women Who Broke the Sound Barrier: Jackie",
+    date: 'June 27, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/Jackie.webp',
+    category: 'Trailblazing Personalities'
+  },
   {
     id: 'sept11',
     title: "The Cost of Silences: Anatomy of 9/11",
@@ -30,14 +38,6 @@ const blogPosts = [
     author: 'Diwakar Nagar',
     image: '/images/skat.webp',
     category: 'Military History & Legacies',
-  },
-  {
-    id: 'il-76',
-    title: "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse",
-    date: 'June 23, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/il-76.webp',
-    category: 'Military Aviation'
   },
   ];
 
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/Jackie.webp"
+                    src="/images/sr-71.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />

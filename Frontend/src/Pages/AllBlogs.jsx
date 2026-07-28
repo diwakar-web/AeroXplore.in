@@ -5,7 +5,15 @@ import useScrollReveal from '../hooks/useScrollReveal';
 
 // ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
-    {
+  {
+    id: 'sr-71',
+    title: "The Lockheed SR-71 Blackbird: Faster Than a Missile",
+    date: 'July 28 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/sr-71.webp',
+    category: 'Defence Aviation',
+  },
+  {
     id: 'Jackie',
     title: "The Women Who Broke the Sound Barrier: Jackie",
     date: 'July 27 2026',

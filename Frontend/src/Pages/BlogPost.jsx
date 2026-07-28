@@ -6,6 +6,22 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 const postData = {
+  'sr-71': {
+    title: "The Lockheed SR-71 Blackbird: Faster Than a Missile",
+    date: 'July 28, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/sr-71.webp',
+    category: 'Defence Aviation',
+    thought: "There was never a good war, or a bad peace.",
+    content: [
+      "The story of the Lockheed SR-71 Blackbird began during the height of the Cold War in the late 1950s. After Soviet surface-to-air missiles shot down an American U-2 spy plane in 1960, the U.S. government realized high-altitude flying was no longer enough to avoid interception; supreme speed and stealth were required. Under the secretive leadership of legendary aerospace engineer Clarence \"Kelly\" Johnson at Lockheed’s Skunk Works division, the project took shape. Evolving from the earlier single-seat A-12 reconnaissance platform, the twin-seat SR-71 was envisioned as an uncatchable strategic reconnaissance aircraft that could peer deep into enemy territory without ever being brought down.",
+      "To operate at speeds exceeding Mach 3 and altitudes above 85,000 feet, Lockheed had to reinvent aviation engineering. Air friction at such speeds generated temperatures exceeding 600°F (315°C), melting standard aircraft aluminum. Engineers turned to titanium, secretly sourced from the Soviet Union itself through bogus third-party companies. The aircraft was built with loose panels to accommodate thermal expansion during high-speed flight, causing it to famously leak special JP-7 fuel on the runway until heat sealed the gaps mid-flight. Painted in a dark, heat-radiating, radar-absorbent black skin, the Blackbird became a striking symbol of futuristic design.",
+      "Entering U.S. Air Force service in 1966, the SR-71’s primary defense mechanism against hostile threats was simple yet extraordinary: raw speed. If a ground radar detected the Blackbird and launched a missile, the pilot’s defensive protocol was simply to push the throttle forward and accelerate. Cruising faster than a rifle bullet at over 2,200 mph, the aircraft easily outran every interceptor jet and missile sent to bring it down. Over its decades of operational deployment, over 4,000 surface-to-air missiles were fired at the SR-71 across various global hot zones, yet not a single Blackbird was ever struck by enemy fire.",
+      "Despite its unmatched performance, changing technological and economic landscapes led to the SR-71's retirement. Operating a fleet of Blackbirds required immense financial resources, specialized ground crews, and continuous aerial refueling from dedicated KC-135Q tankers. By the late 1980s and early 1990s, advances in spy satellite imagery and unmanned reconnaissance platforms offered lower-cost intelligence gathering without human risk. The U.S. Air Force officially retired the fleet in 1990, though NASA briefly operated a few aircraft for high-speed research until the Blackbird made its absolute final flight in 1999.",
+      "The aftermath of the Blackbird era left an indelible mark on aerospace engineering and popular culture. To this day, the SR-71 retains the official world record for the fastest air-breathing, crewed operational aircraft, set in 1976 at 2,193.2 mph (3,529.6 km/h). Beyond raw speed records, the Blackbird pioneered stealth technology concepts, advanced titanium manufacturing techniques, and high-altitude life-support systems that influenced generations of military aircraft. Today, surviving airframes are prized centerpieces in aviation museums worldwide, continuing to captivate engineers and aviation enthusiasts alike.",
+      "While the SR-71 is long retired, its legacy directly shapes the future of military aviation through hypersonic flight research. Aerospace developers have spent years working on its spiritual successor, frequently referred to as the SR-72 or \"Son of Blackbird.\" Envisioned as an unmanned, hypersonic reconnaissance and strike aircraft powered by combined-cycle scramjet engines, the platform aims to hit speeds of Mach 6, roughly double the velocity of its famous predecessor. As global defense strategies pivot toward real-time hypersonic capability, the pioneering spirit of the SR-71 Blackbird remains the foundational blueprint for modern ultra-high-speed flight."
+    ]
+  },
   'Jackie': {
     title: "The Women Who Broke the Sound Barrier: Jackie",
     date: 'July 27, 2026',
