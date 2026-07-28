@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "The Women Who Broke the Sound Barrier: Jackie";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/Jackie";
-const ARTICLE_EXCERPT = "Before jets pierced the sky at supersonic speeds, breaking the sound barrier was thought to be an impossible physical wall. Discover the thrilling story of the women who refused to stay grounded, strapped into experimental jets, and shattered both Mach 1 and aviation history forever."
+const ARTICLE_TITLE = "The SR-71 Blackbird: Faster Than a Missile";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/sr-71";
+const ARTICLE_EXCERPT = "Imagine flying so fast that if an enemy fires a missile at you, your only defense is to hit the gas and outrun it. Built in total secrecy during the Cold War, the legendary SR-71 Blackbird pushed aviation to Mach 3.2, reaching altitudes where the sky turns black and the Earth curves below. Dive into the incredible story, engineering marvels, and unmatched legacy of the fastest air-breathing jet ever built."
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
 // ============================================================
