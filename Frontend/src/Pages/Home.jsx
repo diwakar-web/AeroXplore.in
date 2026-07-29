@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'sr-71',
-  title: "The Lockheed SR-71 Blackbird: Faster Than a Missile",
-  date: 'July 28 2026',
+  id: 'mh-370',
+  title: "The Last Flight of MH370: The Mystery That Still Haunts Aviation",
+  date: 'July 29 2026',
   author: 'Diwakar Nagar',
-  caption: 'The SR-71 Blackbird in flight.',
-  para1: `The story of the Lockheed SR-71 Blackbird began during the height of the Cold War in the late 1950s. After Soviet surface-to-air missiles shot down an American U-2 spy plane in 1960, the U.S. government realized high-altitude flying was no longer enough to avoid interception; supreme speed and stealth were required. Under the secretive leadership of legendary aerospace engineer Clarence "Kelly" Johnson at Lockheed’s Skunk Works division, the project took shape. Evolving from the earlier single-seat A-12 reconnaissance platform, the twin-seat SR-71 was envisioned as an uncatchable strategic reconnaissance aircraft that could peer deep into enemy territory without ever being brought down.`,
-  para2: `To operate at speeds exceeding Mach 3 and altitudes above 85,000 feet, Lockheed had to reinvent aviation engineering. Air friction at such speeds generated temperatures exceeding 600°F (315°C), melting standard aircraft aluminum. Engineers turned to titanium, secretly sourced from the Soviet Union itself through bogus third-party companies. The aircraft was built with loose panels to accommodate thermal expansion during high-speed flight, causing it to famously leak special JP-7 fuel on the runway until heat sealed the gaps mid-flight. Painted in a dark, heat-radiating, radar-absorbent black skin, the Blackbird became a striking symbol of futuristic design.`
+  caption: 'Malaysia Airlines Flight 370',
+  para1: `At 35,000 feet, swallowed by the pitch-black sky over the South China Sea, a modern engineering marvel simply dissolved into thin air. On the night of March 8, 2014, Malaysia Airlines Flight 370 was embarking on a routine red-eye flight from Kuala Lumpur to Beijing, carrying 227 passengers and 12 crew members aboard a Boeing 777-200ER, a flagship aircraft renowned for its safety. At 1:19 AM, air traffic control instructed the cockpit to switch over to Vietnamese frequency. Captain Zaharie Ahmad Shah signed off with a cool, routine reply: "Good night, Malaysian three seven zero." Seconds later, the skies swallowed the aircraft whole, marking the beginning of the most terrifying enigma in aviation history.`,
+  para2: `Within moments of that final radio transmission, MH370 plunged into absolute, eerie radio silence. Its transponder was manually shut off, severing communications and stripping the jet from civilian radar screens. Primary military radar later captured a chilling maneuver: the airliner executed a sharp, deliberate left turn, tracing back across the Malay Peninsula while strategically hugging flight boundary lines to evade detection. Skirting the Andaman Sea, the phantom aircraft turned sharply southward toward the boundless, freezing expanses of the southern Indian Ocean, flying entirely in the dark.`
 };
 
 const blogPosts = [
+  {
+    id: 'sr-71',
+    title: 'The Lockheed SR-71 Blackbird: Faster Than a Missile',
+    date: 'July 28, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/sr-71.webp',
+    category: 'Defence Aviation',
+  },
   {
     id: 'Jackie',
     title: "The Women Who Broke the Sound Barrier: Jackie",
@@ -30,14 +38,6 @@ const blogPosts = [
     author: 'Diwakar Nagar',
     image: '/images/9-11.webp',
     category: 'Aviation Security',
-  },
-  {
-    id: 'skat',
-    title: 'Suryakiran: Red and White Wonders of the Indian Skies',
-    date: 'June 29, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/skat.webp',
-    category: 'Military History & Legacies',
   },
   ];
 
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/sr-71.webp"
+                    src="/images/mh-370.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />

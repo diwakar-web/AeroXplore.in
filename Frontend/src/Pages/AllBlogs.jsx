@@ -6,9 +6,17 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'mh-370',
+    title: "The Last Flight of MH370: The Mystery That Still Haunts Aviation",
+    date: 'July 29, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/mh-370.webp',
+    category: 'Aviation Security',
+  },
+  {
     id: 'sr-71',
     title: "The Lockheed SR-71 Blackbird: Faster Than a Missile",
-    date: 'July 28 2026',
+    date: 'July 28, 2026',
     author: 'Diwakar Nagar',
     image: '/images/sr-71.webp',
     category: 'Defence Aviation',
@@ -16,7 +24,7 @@ const allBlogPosts = [
   {
     id: 'Jackie',
     title: "The Women Who Broke the Sound Barrier: Jackie",
-    date: 'July 27 2026',
+    date: 'July 27, 2026',
     author: 'Diwakar Nagar',
     image: '/images/Jackie.webp',
     category: 'Trailblazing Personalities',
@@ -24,7 +32,7 @@ const allBlogPosts = [
   {
     id: 'sept11',
     title: "The Cost of Silences: Anatomy of 9/11",
-    date: 'July 07 2026',
+    date: 'July 07, 2026',
     author: 'Diwakar Nagar',
     image: '/images/9-11.webp',
     category: 'Aviation Security',
@@ -32,7 +40,7 @@ const allBlogPosts = [
   {
     id: 'skat',
     title: "Suryakiran: Red and White Wonders of the Indian Skies",
-    date: 'June 29 2026',
+    date: 'June 29, 2026',
     author: 'Diwakar Nagar',
     image: '/images/skat.webp',
     category: 'Military History & Legacies',
@@ -40,7 +48,7 @@ const allBlogPosts = [
   {
     id: 'il-76',
     title: "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse",
-    date: 'June 23 2026',
+    date: 'June 23, 2026',
     author: 'Diwakar Nagar',
     image: '/images/il-76.webp',
     category: 'Defence Aviation',
@@ -48,7 +56,7 @@ const allBlogPosts = [
   {
     id: 'kaveri',
     title: "Kaveri: Choked by Bureaucracy and Bad Physics",
-    date: 'June 07 2026',
+    date: 'June 07, 2026',
     author: 'Diwakar Nagar',
     image: '/images/kaveri.webp',
     category: 'Engineering Corner',

@@ -6,6 +6,22 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 const postData = {
+  'mh-370': {
+    title: "The Last Flight of MH370: The Mystery That Still Haunts Aviation",
+    date: 'July 29, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/mh-370.webp',
+    category: 'Aviation Security',
+    thought: "The ocean demands respect, but the sky requires absolute discipline. At 30,000 feet, there is zero room for ego, only precision, routine, and focus.",
+    content: [
+      "At 35,000 feet, swallowed by the pitch-black sky over the South China Sea, a modern engineering marvel simply dissolved into thin air. On the night of March 8, 2014, Malaysia Airlines Flight 370 was embarking on a routine red-eye flight from Kuala Lumpur to Beijing, carrying 227 passengers and 12 crew members aboard a Boeing 777-200ER, a flagship aircraft renowned for its safety. At 1:19 AM, air traffic control instructed the cockpit to switch over to Vietnamese frequency. Captain Zaharie Ahmad Shah signed off with a cool, routine reply: \"Good night, Malaysian three seven zero.\" Seconds later, the skies swallowed the aircraft whole, marking the beginning of the most terrifying enigma in aviation history.",
+      "Within moments of that final radio transmission, MH370 plunged into absolute, eerie radio silence. Its transponder was manually shut off, severing communications and stripping the jet from civilian radar screens. Primary military radar later captured a chilling maneuver: the airliner executed a sharp, deliberate left turn, tracing back across the Malay Peninsula while strategically hugging flight boundary lines to evade detection. Skirting the Andaman Sea, the phantom aircraft turned sharply southward toward the boundless, freezing expanses of the southern Indian Ocean, flying entirely in the dark.",
+      "For weeks, world authorities were completely blind until British satellite company Inmarsat detected a series of subtle hourly automated \"handshakes\" between the plane and a satellite overhead. By calculating the microsecond delays of these satellite pings, engineers pieced together a terrifying flight path: the Boeing 777 had kept flying for nearly six hours after vanishing from radar. Fuel calculations confirmed that around 8:19 AM, its tanks finally ran dry, sending the massive jet screaming down into one of the most desolate, abyssal ocean trenches on the planet.",
+      "What ensued was the most extensive, technologically complex, and expensive search effort ever undertaken by humankind. Armada after armada swept the sea, while high-tech autonomous submersibles mapped hundreds of thousands of square kilometers of uncharted ocean floor at crushing depths below 13,000 feet. Though marine-crusted fragments, most notably a flaperon washed ashore on Réunion Island thousands of miles away, proved the jet ultimately tore apart in the water, the main wreckage, passenger remains, and black boxes vanished without a trace.",
+      "In the absence of physical wreckage, the vacuum has been filled by a storm of competing theories: from a catastrophic electrical fire or explosive decompression that rendered the crew unconscious, to a meticulously calculated hijacking or deliberate pilot act. Leading experts remain sharply divided on whether the aircraft drifted silently on autopilot as a \"ghost flight\" or was manually piloted until its final plunge. Without the flight data and cockpit voice recorders, the true story of what occurred inside that cabin remains locked behind a wall of speculation.",
+      "The haunting legacy of MH370 forever altered how we navigate the skies, forcing global aviation authorities to enforce mandatory, real-time satellite tracking for all long-haul commercial flights. Yet for the families of the 239 souls onboard, no technology can bridge the agonizing void of unanswered questions. That a massive, hyper-connected 21st-century airliner could vanish off the face of the Earth serves as a sobering reminder of the sheer scale and terrifying power of our planet's oceans.",
+    ]
+  },
   'sr-71': {
     title: "The Lockheed SR-71 Blackbird: Faster Than a Missile",
     date: 'July 28, 2026',
