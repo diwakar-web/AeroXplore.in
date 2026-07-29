@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "The SR-71 Blackbird: Faster Than a Missile";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/sr-71";
-const ARTICLE_EXCERPT = "Imagine flying so fast that if an enemy fires a missile at you, your only defense is to hit the gas and outrun it. Built in total secrecy during the Cold War, the legendary SR-71 Blackbird pushed aviation to Mach 3.2, reaching altitudes where the sky turns black and the Earth curves below. Dive into the incredible story, engineering marvels, and unmatched legacy of the fastest air-breathing jet ever built."
+const ARTICLE_TITLE = "The Last Flight of MH370: The Mystery That Still Haunts Aviation";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/mh-370";
+const ARTICLE_EXCERPT = "239 souls, 1 destination, and 370 mystery-laden miles into the unknown. How does a state-of-the-art Boeing disappear from total radar tracking without leaving a trace? We unpack the physics, the black boxes, and the untold stories that haunt aviation history. Buckle in, you won't want to miss a single second of this journey."
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
 // ============================================================
