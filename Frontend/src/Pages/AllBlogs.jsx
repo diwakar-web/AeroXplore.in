@@ -6,6 +6,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'boeing',
+    title: "The Birth of Boeing: From Timber to Titans",
+    date: 'July 30, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/boeing.webp',
+    category: 'Aviation History',
+  },
+  {
     id: 'mh-370',
     title: "The Last Flight of MH370: The Mystery That Still Haunts Aviation",
     date: 'July 29, 2026',

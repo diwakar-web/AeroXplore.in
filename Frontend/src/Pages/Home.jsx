@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'mh-370',
-  title: "The Last Flight of MH370: The Mystery That Still Haunts Aviation",
-  date: 'July 29 2026',
+  id: 'boeing',
+  title: "The Birth of Boeing: From Timber to Titans",
+  date: 'July 30 2026',
   author: 'Diwakar Nagar',
-  caption: 'Malaysia Airlines Flight 370',
-  para1: `At 35,000 feet, swallowed by the pitch-black sky over the South China Sea, a modern engineering marvel simply dissolved into thin air. On the night of March 8, 2014, Malaysia Airlines Flight 370 was embarking on a routine red-eye flight from Kuala Lumpur to Beijing, carrying 227 passengers and 12 crew members aboard a Boeing 777-200ER, a flagship aircraft renowned for its safety. At 1:19 AM, air traffic control instructed the cockpit to switch over to Vietnamese frequency. Captain Zaharie Ahmad Shah signed off with a cool, routine reply: "Good night, Malaysian three seven zero." Seconds later, the skies swallowed the aircraft whole, marking the beginning of the most terrifying enigma in aviation history.`,
-  para2: `Within moments of that final radio transmission, MH370 plunged into absolute, eerie radio silence. Its transponder was manually shut off, severing communications and stripping the jet from civilian radar screens. Primary military radar later captured a chilling maneuver: the airliner executed a sharp, deliberate left turn, tracing back across the Malay Peninsula while strategically hugging flight boundary lines to evade detection. Skirting the Andaman Sea, the phantom aircraft turned sharply southward toward the boundless, freezing expanses of the southern Indian Ocean, flying entirely in the dark.`
+  caption: 'Boeing 777-9 prototype in flight',
+  para1: `The story of Boeing began not in a high-tech laboratory, but among the vast evergreen timberlands of the Pacific Northwest. In 1916, William E. Boeing, a wealthy timber magnate fascinated by early aviation, teamed up with U.S. Navy engineer George Conrad Westervelt to construct a two-seater wooden floatplane known as the B&W Model 1. Operating out of a converted boatworks facility along Seattle’s Duwamish River, Boeing incorporated Pacific Aero Products Co. on July 15, 1916, before renaming it Boeing Airplane Company the following year. What started as a modest timber-and-canvas workshop soon established airmail routes and built early military trainers, laying the groundwork for an industrial empire that would permanently reshape global transport and aerospace engineering.`,
+  para2: `Throughout the mid-20th century, Boeing drove pivotal advancements in structural design, aerodynamic efficiency, and industrial manufacturing. The 1930s saw the debut of the Boeing Model 247, widely regarded as the first modern airliner due to its all-metal construction, retractable landing gear, and streamlined wing design. World War II transformed Boeing into an industrial titan, as its manufacturing lines produced thousands of iconic military aircraft, most notably the B-17 Flying Fortress and B-29 Superfortress, at unprecedented speeds. The post-war decades brought continual structural evolution, capped by the landmark 1997 merger with McDonnell Douglas, consolidating Boeing’s position as a premier aerospace giant.`
 };
 
 const blogPosts = [
+  {
+    id: 'mh-370',
+    title: "The Last Flight of MH370: The Mystery That Still Haunts Aviation",
+    date: 'July 29 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/mh-370.webp',
+    category: 'Aviation Security',
+  },
   {
     id: 'sr-71',
     title: 'The Lockheed SR-71 Blackbird: Faster Than a Missile',
@@ -30,14 +38,6 @@ const blogPosts = [
     author: 'Diwakar Nagar',
     image: '/images/Jackie.webp',
     category: 'Trailblazing Personalities'
-  },
-  {
-    id: 'sept11',
-    title: "The Cost of Silences: Anatomy of 9/11",
-    date: 'July 07, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/9-11.webp',
-    category: 'Aviation Security',
   },
   ];
 
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/mh-370.webp"
+                    src="/images/boeing.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />
