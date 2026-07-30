@@ -7,7 +7,7 @@ import logo from '../assets/logo.webp';
 const featuredPost = {
   id: 'boeing',
   title: "The Birth of Boeing: From Timber to Titans",
-  date: 'July 30 2026',
+  date: 'July 30, 2026',
   author: 'Diwakar Nagar',
   caption: 'Boeing 777-9 prototype in flight',
   para1: `The story of Boeing began not in a high-tech laboratory, but among the vast evergreen timberlands of the Pacific Northwest. In 1916, William E. Boeing, a wealthy timber magnate fascinated by early aviation, teamed up with U.S. Navy engineer George Conrad Westervelt to construct a two-seater wooden floatplane known as the B&W Model 1. Operating out of a converted boatworks facility along Seattle’s Duwamish River, Boeing incorporated Pacific Aero Products Co. on July 15, 1916, before renaming it Boeing Airplane Company the following year. What started as a modest timber-and-canvas workshop soon established airmail routes and built early military trainers, laying the groundwork for an industrial empire that would permanently reshape global transport and aerospace engineering.`,
@@ -18,7 +18,7 @@ const blogPosts = [
   {
     id: 'mh-370',
     title: "The Last Flight of MH370: The Mystery That Still Haunts Aviation",
-    date: 'July 29 2026',
+    date: 'July 29, 2026',
     author: 'Diwakar Nagar',
     image: '/images/mh-370.webp',
     category: 'Aviation Security',

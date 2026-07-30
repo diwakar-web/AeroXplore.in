@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "The Last Flight of MH370: The Mystery That Still Haunts Aviation";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/mh-370";
-const ARTICLE_EXCERPT = "239 souls, 1 destination, and 370 mystery-laden miles into the unknown. How does a state-of-the-art Boeing disappear from total radar tracking without leaving a trace? We unpack the physics, the black boxes, and the untold stories that haunt aviation history. Buckle in, you won't want to miss a single second of this journey."
+const ARTICLE_TITLE = "The Birth of Boeing: From Timber to Titans";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/boeing";
+const ARTICLE_EXCERPT = "How did a two-seater floatplane built in a Seattle boatworks evolve into the world's most iconic aviation empire? Explore the history, fleet, and defining moments of Boeing—from timber to titan."
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
 // ============================================================
