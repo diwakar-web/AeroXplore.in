@@ -6,6 +6,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'mig-21',
+    title: "The MiG-21: Hero, Villain or Both?",
+    date: 'July 31, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/mig-21.webp',
+    category: 'Defence Aviation',
+  },
+  {
     id: 'boeing',
     title: "The Birth of Boeing: From Timber to Titans",
     date: 'July 30, 2026',

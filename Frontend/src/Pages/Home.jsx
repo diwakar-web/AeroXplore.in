@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'boeing',
-  title: "The Birth of Boeing: From Timber to Titans",
-  date: 'July 30, 2026',
+  id: 'mig-21',
+  title: "The MiG-21: Hero, Villain or Both?",
+  date: 'July 31, 2026',
   author: 'Diwakar Nagar',
-  caption: 'Boeing 777-9 prototype in flight',
-  para1: `The story of Boeing began not in a high-tech laboratory, but among the vast evergreen timberlands of the Pacific Northwest. In 1916, William E. Boeing, a wealthy timber magnate fascinated by early aviation, teamed up with U.S. Navy engineer George Conrad Westervelt to construct a two-seater wooden floatplane known as the B&W Model 1. Operating out of a converted boatworks facility along Seattle’s Duwamish River, Boeing incorporated Pacific Aero Products Co. on July 15, 1916, before renaming it Boeing Airplane Company the following year. What started as a modest timber-and-canvas workshop soon established airmail routes and built early military trainers, laying the groundwork for an industrial empire that would permanently reshape global transport and aerospace engineering.`,
-  para2: `Throughout the mid-20th century, Boeing drove pivotal advancements in structural design, aerodynamic efficiency, and industrial manufacturing. The 1930s saw the debut of the Boeing Model 247, widely regarded as the first modern airliner due to its all-metal construction, retractable landing gear, and streamlined wing design. World War II transformed Boeing into an industrial titan, as its manufacturing lines produced thousands of iconic military aircraft, most notably the B-17 Flying Fortress and B-29 Superfortress, at unprecedented speeds. The post-war decades brought continual structural evolution, capped by the landmark 1997 merger with McDonnell Douglas, consolidating Boeing’s position as a premier aerospace giant.`
+  caption: 'Mikoyan-Gurevich MiG-21',
+  para1: `Designed by the Mikoyan-Gurevich Design Bureau in the Soviet Union during the mid-1950s, the MiG-21 (NATO reporting name "Fishbed") emerged as a masterpiece of Cold War aviation engineering. Conceived as a lightweight, low-cost, supersonic point-defense interceptor, its distinctive delta-wing profile and nose intake quickly made it an iconic symbol of communist military power. It broke production records as the most-produced supersonic jet fighter in aviation history, with over 11,000 units manufactured across the USSR, Czechoslovakia, India, and China (as the J-7). For decades, it formed the backbone of air defense for over four dozen nations, democratizing air power across the global south.`,
+  para2: `Throughout the second half of the twentieth century, the MiG-21 earned hero status in combat theaters around the globe. During the Vietnam War, nimble Vietnamese MiG-21s utilized hit-and-run tactics to challenge much heavier American F-4 Phantoms and B-52 bombers, neutralizing the United States' aerial dominance. In South Asia, the fighter achieved legendary status in the 1971 Indo-Pakistani War, where Indian pilots scored decisive aerial victories over enemy F-104 Starfighters, establishing air superiority over both Eastern and Western fronts. Its simplicity, rapid climb rate, Mach 2 speed, and ease of maintenance allowed smaller air forces to deploy formidable defense capabilities against superior adversaries.`
 };
 
 const blogPosts = [
+  {
+    id: 'boeing',
+    title: "The Birth of Boeing: From Timber to Titans",
+    date: 'July 30, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/boeing.webp',
+    category: 'Aviation History'
+  },
   {
     id: 'mh-370',
     title: "The Last Flight of MH370: The Mystery That Still Haunts Aviation",
@@ -30,14 +38,6 @@ const blogPosts = [
     author: 'Diwakar Nagar',
     image: '/images/sr-71.webp',
     category: 'Defence Aviation',
-  },
-  {
-    id: 'Jackie',
-    title: "The Women Who Broke the Sound Barrier: Jackie",
-    date: 'June 27, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/Jackie.webp',
-    category: 'Trailblazing Personalities'
   },
   ];
 
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/boeing.webp"
+                    src="/images/mig-21.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />
