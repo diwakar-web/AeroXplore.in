@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'mig-21',
-  title: "The MiG-21: Hero, Villain or Both?",
-  date: 'July 31, 2026',
+  id: 'sekhon-ji',
+  title: "The Man Who Refused to Turn Back: Nirmal Jit Singh Sekhon",
+  date: 'August 01, 2026',
   author: 'Diwakar Nagar',
-  caption: 'Mikoyan-Gurevich MiG-21',
-  para1: `Designed by the Mikoyan-Gurevich Design Bureau in the Soviet Union during the mid-1950s, the MiG-21 (NATO reporting name "Fishbed") emerged as a masterpiece of Cold War aviation engineering. Conceived as a lightweight, low-cost, supersonic point-defense interceptor, its distinctive delta-wing profile and nose intake quickly made it an iconic symbol of communist military power. It broke production records as the most-produced supersonic jet fighter in aviation history, with over 11,000 units manufactured across the USSR, Czechoslovakia, India, and China (as the J-7). For decades, it formed the backbone of air defense for over four dozen nations, democratizing air power across the global south.`,
-  para2: `Throughout the second half of the twentieth century, the MiG-21 earned hero status in combat theaters around the globe. During the Vietnam War, nimble Vietnamese MiG-21s utilized hit-and-run tactics to challenge much heavier American F-4 Phantoms and B-52 bombers, neutralizing the United States' aerial dominance. In South Asia, the fighter achieved legendary status in the 1971 Indo-Pakistani War, where Indian pilots scored decisive aerial victories over enemy F-104 Starfighters, establishing air superiority over both Eastern and Western fronts. Its simplicity, rapid climb rate, Mach 2 speed, and ease of maintenance allowed smaller air forces to deploy formidable defense capabilities against superior adversaries.`
+  caption: 'Flying Officer Nirmal Jit Singh Sekhon',
+  para1: `Born on July 17, 1943, in the village of Isewal in Ludhiana, Punjab, Flying Officer Nirmal Jit Singh Sekhon had military service in his blood. His father, Warrant Officer Tarlochan Singh Sekhon, served in the Indian Air Force (IAF), instilling in young Nirmal a deep sense of patriotism, discipline, and a passion for aviation. Driven by a childhood dream to guard the skies, Sekhon was commissioned into the IAF on June 4, 1967. By the time the 1971 Indo-Pakistani War erupted, the 28-year-old fighter pilot was posted with No. 18 Squadron, known as the \"Flying Bullets,\" operating the lightweight Folland Gnat fighter from the forward airfield of Srinagar.`,
+  para2: `During the 1971 war, Srinagar Air Base was a strategic target of paramount importance, serving as the primary air defense hub for the entire Kashmir valley. Because the airfield lacked an operational radar installation at the time, defending pilots had to rely on visual observation and scramble within seconds of an air raid alarm. On the morning of December 14, 1971, six Pakistani Air Force (PAF) F-86 Sabre jets launched a surprise low-level strike aimed at cratering the runway and neutralizing Indian air assets on the ground. As the enemy jets opened fire and bombs began detonating across the airfield, Sekhon and his flight leader immediately raced toward their Gnats to take to the air.`
 };
 
 const blogPosts = [
+  {
+    id: 'mig-21',
+    title: 'The MiG-21: Hero, Villain or Both?',
+    date: 'July 28, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/mig-21.webp',
+    category: 'Defence Aviation',
+  },
   {
     id: 'boeing',
     title: "The Birth of Boeing: From Timber to Titans",
@@ -30,14 +38,6 @@ const blogPosts = [
     author: 'Diwakar Nagar',
     image: '/images/mh-370.webp',
     category: 'Aviation Security',
-  },
-  {
-    id: 'sr-71',
-    title: 'The Lockheed SR-71 Blackbird: Faster Than a Missile',
-    date: 'July 28, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/sr-71.webp',
-    category: 'Defence Aviation',
   },
   ];
 
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/mig-21.webp"
+                    src="/images/sekhon.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />

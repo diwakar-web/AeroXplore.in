@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "The MiG-21: Hero, Villain or Both?";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/mig-21";
-const ARTICLE_EXCERPT = "From Cold War interceptor to 21st-century frontline combatant, the MiG-21 is aviation's ultimate paradox. It scored legendary aerial victories in Vietnam and South Asia, proving that low-cost simplicity could down advanced fighters. Yet as decades passed, its unforgiving nature earned it a tragic reputation as the \"Flying Coffin.\" Was it a triumphant hero of its era, or a machine pushed far beyond its limits?"
+const ARTICLE_TITLE = "The Man Who Refused to Turn Back: Nirmal Jit Singh Sekhon";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/sekhon-ji";
+const ARTICLE_EXCERPT = "One pilot. Six enemy jets. Zero hesitation. When the Srinagar airbase came under surprise attack in 1971, Flying Officer Nirmal Jit Singh Sekhon didn't wait for backup, he took off straight into a storm of bombs and bullets. Discover the breathtaking story of the Indian Air Force’s only Param Vir Chakra recipient and the legendary dogfight that etched his name into history forever."
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
 // ============================================================
