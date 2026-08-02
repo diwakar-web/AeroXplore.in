@@ -5,16 +5,24 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 
 const featuredPost = {
-  id: 'sekhon-ji',
-  title: "The Man Who Refused to Turn Back: Nirmal Jit Singh Sekhon",
-  date: 'August 01, 2026',
+  id: 'airbus&boeing',
+  title: "The Great Aviation Rivalry: Boeing vs. Airbus",
+  date: 'August 02, 2026',
   author: 'Diwakar Nagar',
-  caption: 'Flying Officer Nirmal Jit Singh Sekhon',
-  para1: `Born on July 17, 1943, in the village of Isewal in Ludhiana, Punjab, Flying Officer Nirmal Jit Singh Sekhon had military service in his blood. His father, Warrant Officer Tarlochan Singh Sekhon, served in the Indian Air Force (IAF), instilling in young Nirmal a deep sense of patriotism, discipline, and a passion for aviation. Driven by a childhood dream to guard the skies, Sekhon was commissioned into the IAF on June 4, 1967. By the time the 1971 Indo-Pakistani War erupted, the 28-year-old fighter pilot was posted with No. 18 Squadron, known as the \"Flying Bullets,\" operating the lightweight Folland Gnat fighter from the forward airfield of Srinagar.`,
-  para2: `During the 1971 war, Srinagar Air Base was a strategic target of paramount importance, serving as the primary air defense hub for the entire Kashmir valley. Because the airfield lacked an operational radar installation at the time, defending pilots had to rely on visual observation and scramble within seconds of an air raid alarm. On the morning of December 14, 1971, six Pakistani Air Force (PAF) F-86 Sabre jets launched a surprise low-level strike aimed at cratering the runway and neutralizing Indian air assets on the ground. As the enemy jets opened fire and bombs began detonating across the airfield, Sekhon and his flight leader immediately raced toward their Gnats to take to the air.`
+  caption: 'Boeing vs. Airbus',
+  para1: `The duopoly between Boeing and Airbus represents one of the most intense and consequential rivalries in industrial history, dictating how humanity travels across continents while dominating global defense and aerospace technology. Boeing’s legacy began in Seattle in 1916, establishing itself as an American industrial superpower through WWII military platforms like the B-17 Flying Fortress, the pioneering 707 jetliner, and the iconic 747 jumbo jet in 1969. Conversely, Airbus was established in 1970 as a European consortium joining French, German, British, and Spanish aerospace entities to challenge American dominance. Airbus launched the A300 (the world’s first twin-engine wide-body airliner), proving that cross-border European collaboration could successfully engineer highly efficient, world-class commercial aircraft.`,
+  para2: `The commercial battlefield between the two giants spans single-aisle narrow-body and dual-aisle wide-body markets. In the narrow-body sector, Boeing’s ubiquitous 737 family (including the 737 MAX) competes directly with Airbus’s market-leading A320 family (notably the A320neo and long-range A321XLR variants). In wide-body, long-haul travel, Boeing relies on the 787 Dreamliner and 777/777X programs, whereas Airbus fields the A330neo and the carbon-composite A350 XWB. While Airbus once built the double-deck A380 superjumbo to challenge Boeing's 747, shifting airline preferences toward point-to-point, ultra-efficient twin-jets led both companies to phase out four-engine passenger airliners in favor of composite twin-engine fleets.`
 };
 
 const blogPosts = [
+   {
+    id: 'sekhon-ji',
+    title: "The Man Who Refused to Turn Back: Nirmal Jit Singh Sekhon",
+    date: 'August 01, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/sekhon.webp',
+    category: 'Trailblazing Personalities',
+  },
   {
     id: 'mig-21',
     title: 'The MiG-21: Hero, Villain or Both?',
@@ -30,14 +38,6 @@ const blogPosts = [
     author: 'Diwakar Nagar',
     image: '/images/boeing.webp',
     category: 'Aviation History'
-  },
-  {
-    id: 'mh-370',
-    title: "The Last Flight of MH370: The Mystery That Still Haunts Aviation",
-    date: 'July 29, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/mh-370.webp',
-    category: 'Aviation Security',
   },
   ];
 
@@ -160,7 +160,7 @@ export default function Home() {
               <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                 <div className="featured-photo-frame">
                   <img
-                    src="/images/sekhon.webp"
+                    src="/images/a-b.webp"
                     alt="Featured Article"
                     className="featured-photo"
                   />

@@ -6,6 +6,14 @@ import useScrollReveal from '../hooks/useScrollReveal';
 // ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
 const allBlogPosts = [
   {
+    id: 'airbus&boeing',
+    title: "The Great Aviation Rivalry: Boeing vs. Airbus",
+    date: 'August 02, 2026',
+    author: 'Diwakar Nagar',
+    image: '/images/a-b.webp',
+    category: 'Aviation History',
+  },
+  {
     id: 'sekhon-ji',
     title: "The Man Who Refused to Turn Back: Nirmal Jit Singh Sekhon",
     date: 'August 01, 2026',

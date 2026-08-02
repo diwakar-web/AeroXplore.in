@@ -5,9 +5,9 @@
 // ============================================================
 
 // ✏️ EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "The Man Who Refused to Turn Back: Nirmal Jit Singh Sekhon";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/sekhon-ji";
-const ARTICLE_EXCERPT = "One pilot. Six enemy jets. Zero hesitation. When the Srinagar airbase came under surprise attack in 1971, Flying Officer Nirmal Jit Singh Sekhon didn't wait for backup, he took off straight into a storm of bombs and bullets. Discover the breathtaking story of the Indian Air Force’s only Param Vir Chakra recipient and the legendary dogfight that etched his name into history forever."
+const ARTICLE_TITLE = "The Great Aviation Rivalry: Boeing vs. Airbus";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/airbus&boeing";
+const ARTICLE_EXCERPT = "Two aerospace titans. One global skyway. Step into the high-stakes arena where Boeing and Airbus fight for multi-billion dollar dominance, pushing engineering to its limits and dictating how humanity moves across the globe. Are you ready to see who really rules the air?"
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
 // ============================================================
