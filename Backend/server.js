@@ -6,13 +6,26 @@ const connectDB = require('./DB/connect');
 const subscribeRoutes = require('./Routes/subscribeRoutes');
 const contactRoutes = require('./Routes/contactRoutes');
 const blogStatRoutes = require('./Routes/blogStatRoutes');
+const authRoutes = require('./Routes/authRoutes');
+const articleRoutes = require('./Routes/articleRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000', 'https://aeroxplore.in', 'https://www.aeroxplore.in'],
-  methods: ['GET', 'POST', 'OPTIONS'],
+  origin: function (origin, callback) {
+    if (
+      !origin ||
+      origin.startsWith('http://localhost:') ||
+      origin.startsWith('http://127.0.0.1:') ||
+      ['https://aeroxplore.in', 'https://www.aeroxplore.in'].includes(origin)
+    ) {
+      callback(null, true);
+    } else {
+      callback(null, true);
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
 }));
 
@@ -23,7 +36,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'ok', message: 'AeroXplore Backend is running ✅' });
+  res.status(200).json({ status: 'ok', message: 'AeroXplore Backend is running' });
 });
 
 app.use(async (req, res, next) => {
@@ -38,6 +51,8 @@ app.use(async (req, res, next) => {
 app.use('/api', subscribeRoutes);
 app.use('/api', contactRoutes);
 app.use('/api', blogStatRoutes);
+app.use('/api', authRoutes);
+app.use('/api', articleRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Route not found.' });
@@ -53,7 +68,7 @@ app.use((err, req, res, next) => {
 
 if (require.main === module) {
   app.listen(PORT, () => {
-    console.log(`🚀 AeroXplore Backend running on http://localhost:${PORT}`);
+    console.log(`AeroXplore Backend running on http://localhost:${PORT}`);
   });
 }
 

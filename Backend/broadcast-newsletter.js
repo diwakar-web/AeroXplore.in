@@ -4,7 +4,7 @@
 //   node broadcast-newsletter.js
 // ============================================================
 
-// ✏️ EDIT THESE 3 LINES EVERY WEEK:
+// EDIT THESE 3 LINES EVERY WEEK:
 const ARTICLE_TITLE = "The Great Aviation Rivalry: Boeing vs. Airbus";
 const ARTICLE_LINK = "https://www.aeroxplore.in/blog/airbus&boeing";
 const ARTICLE_EXCERPT = "Two aerospace titans. One global skyway. Step into the high-stakes arena where Boeing and Airbus fight for multi-billion dollar dominance, pushing engineering to its limits and dictating how humanity moves across the globe. Are you ready to see who really rules the air?"
@@ -16,7 +16,7 @@ const mongoose = require('mongoose');
 const { Resend } = require('resend');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM_ADDRESS = 'AeroXplore ✈ <newsletter@aeroxplore.in>';
+const FROM_ADDRESS = 'AeroXplore <newsletter@aeroxplore.in>';
 
 // Inline the Subscriber model so this script is self-contained
 const subscriberSchema = new mongoose.Schema({ email: String, active: Boolean });
@@ -24,26 +24,26 @@ const Subscriber = mongoose.model('Subscriber', subscriberSchema);
 
 async function sendNewsletter() {
   if (!ARTICLE_TITLE || ARTICLE_TITLE === "Your Article Title Here") {
-    console.error('❌ Please set ARTICLE_TITLE, ARTICLE_LINK, and ARTICLE_EXCERPT before running!');
+    console.error('Please set ARTICLE_TITLE, ARTICLE_LINK, and ARTICLE_EXCERPT before running!');
     process.exit(1);
   }
 
-  console.log(`\n🚀 Starting newsletter blast for: "${ARTICLE_TITLE}"`);
-  console.log('⏳ Connecting to MongoDB...');
+  console.log(`\nStarting newsletter blast for: "${ARTICLE_TITLE}"`);
+  console.log('Connecting to MongoDB...');
 
   await mongoose.connect(process.env.Mongo_DB);
-  console.log('✅ Connected to MongoDB.');
+  console.log('Connected to MongoDB.');
 
   const subscribers = await Subscriber.find({ active: true }).select('email -_id');
   const emails = subscribers.map((s) => s.email);
 
   if (emails.length === 0) {
-    console.log('ℹ️  No active subscribers found. Exiting.');
+    console.log('No active subscribers found. Exiting.');
     await mongoose.disconnect();
     return;
   }
 
-  console.log(`📬 Found ${emails.length} subscriber(s). Sending emails via Resend...`);
+  console.log(`Found ${emails.length} subscriber(s). Sending emails via Resend...`);
 
   const emailHtml = `
     <!DOCTYPE html>
@@ -51,7 +51,7 @@ async function sendNewsletter() {
     <body style="margin:0;padding:0;background:#0a0a0a;font-family:'Segoe UI',Arial,sans-serif;">
       <div style="max-width:600px;margin:40px auto;background:#111;border:1px solid #222;border-radius:12px;overflow:hidden;">
         <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:40px 32px;text-align:center;border-bottom:2px solid #e2b96f;">
-          <h1 style="color:#e2b96f;font-size:28px;letter-spacing:4px;margin:0;text-transform:uppercase;">✈ AeroXplore</h1>
+          <h1 style="color:#e2b96f;font-size:28px;letter-spacing:4px;margin:0;text-transform:uppercase;">AeroXplore</h1>
           <p style="color:#a0a0a0;font-size:12px;letter-spacing:2px;margin:8px 0 0;">New Dispatch Available</p>
         </div>
         <div style="padding:36px 32px;">
@@ -93,19 +93,19 @@ async function sendNewsletter() {
     const { data, error } = await resend.batch.send(batch);
 
     if (error) {
-      console.error(`❌ Batch ${Math.floor(i / BATCH_SIZE) + 1} failed:`, error.message);
+      console.error(`Batch ${Math.floor(i / BATCH_SIZE) + 1} failed:`, error.message);
     } else {
       totalSent += batch.length;
-      console.log(`✅ Batch ${Math.floor(i / BATCH_SIZE) + 1} sent ,  ${batch.length} emails delivered.`);
+      console.log(`Batch ${Math.floor(i / BATCH_SIZE) + 1} sent, ${batch.length} emails delivered.`);
     }
   }
 
-  console.log(`\n🎉 Done! Newsletter sent to ${totalSent}/${emails.length} subscriber(s).`);
+  console.log(`\nDone! Newsletter sent to ${totalSent}/${emails.length} subscriber(s).`);
   await mongoose.disconnect();
 }
 
 sendNewsletter().catch((err) => {
-  console.error('❌ Fatal error:', err.message);
+  console.error('Fatal error:', err.message);
   mongoose.disconnect();
   process.exit(1);
 });

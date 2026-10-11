@@ -1,313 +1,200 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import '../CSS/AllBlogs.css';
+import '../CSS/LoadingOverlay.css';
 import useScrollReveal from '../hooks/useScrollReveal';
+import AuthButton from '../components/AuthButton';
+import LoadingOverlay from '../components/LoadingOverlay';
+import { API_BASE } from '../utils/api';
 
-// ─── Blog Data (single source of truth ,  keep in sync with Home.jsx) ──────────
-const allBlogPosts = [
-  {
-    id: 'airbus&boeing',
-    title: "The Great Aviation Rivalry: Boeing vs. Airbus",
-    date: 'August 02, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/a-b.webp',
-    category: 'Aviation History',
-  },
-  {
-    id: 'sekhon-ji',
-    title: "The Man Who Refused to Turn Back: Nirmal Jit Singh Sekhon",
-    date: 'August 01, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/sekhon.webp',
-    category: 'Trailblazing Personalities',
-  },
-  {
-    id: 'mig-21',
-    title: "The MiG-21: Hero, Villain or Both?",
-    date: 'July 31, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/mig-21.webp',
-    category: 'Defence Aviation',
-  },
-  {
-    id: 'boeing',
-    title: "The Birth of Boeing: From Timber to Titans",
-    date: 'July 30, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/boeing.webp',
-    category: 'Aviation History',
-  },
-  {
-    id: 'mh-370',
-    title: "The Last Flight of MH370: The Mystery That Still Haunts Aviation",
-    date: 'July 29, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/mh-370.webp',
-    category: 'Aviation Security',
-  },
-  {
-    id: 'sr-71',
-    title: "The Lockheed SR-71 Blackbird: Faster Than a Missile",
-    date: 'July 28, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/sr-71.webp',
-    category: 'Defence Aviation',
-  },
-  {
-    id: 'Jackie',
-    title: "The Women Who Broke the Sound Barrier: Jackie",
-    date: 'July 27, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/Jackie.webp',
-    category: 'Trailblazing Personalities',
-  },
-  {
-    id: 'sept11',
-    title: "The Cost of Silences: Anatomy of 9/11",
-    date: 'July 07, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/9-11.webp',
-    category: 'Aviation Security',
-  },
-  {
-    id: 'skat',
-    title: "Suryakiran: Red and White Wonders of the Indian Skies",
-    date: 'June 29, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/skat.webp',
-    category: 'Military History & Legacies',
-  },
-  {
-    id: 'il-76',
-    title: "The Ilyushin Il-76: Earth's Ultimate Strategic Workhorse",
-    date: 'June 23, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/il-76.webp',
-    category: 'Defence Aviation',
-  },
-  {
-    id: 'kaveri',
-    title: "Kaveri: Choked by Bureaucracy and Bad Physics",
-    date: 'June 07, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/kaveri.webp',
-    category: 'Engineering Corner',
-  },
-  {
-    id: 'brahmos',
-    title: "Speed, Precision, and Global Reach: The BrahMos Supersonic Edge",
-    date: 'June 03, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/brahmos.webp',
-    category: 'Strategic Weapons',
-  },
-  {
-    id: 'su30-mki',
-    title: "The Titanium Spine: How the Sukhoi Su-30MKI Anchors Air Dominance",
-    date: 'May 24, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/Su30mki.webp',
-    category: 'Defence Aviation',
-  },
-  {
-    id: 'typhoon',
-    title: "The Whispering Death: Mighty Eurofighter Typhoon",
-    date: 'May 17, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/typhoon.webp',
-    category: 'Defence Aviation',
-  },
-  {
-    id: 'f-35',
-    title: "Phantom of the Skies: The Dominance of the F-35 Lightning II",
-    date: 'May 10, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/f-35.webp',
-    category: 'Defence Aviation',
-  },
-  {
-    id: 'missile',
-    title: "Missile Decoding 101: From BVRAAMs to ICBMs",
-    date: 'May 2, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/missile.webp',
-    category: 'Strategic Weapons',
-  },
-  {
-    id: 'ic-814',
-    title: "The Kandahar Crisis: A Turning Point in Aviation Security",
-    date: 'April 24, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/ic-814.webp',
-    category: 'Aviation Security',
-  },
-  {
-    id: 'f-15',
-    title: "The Eagle’s Dominion: The Unrivaled Legacy of the F-15",
-    date: 'April 18, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/f-15.webp',
-    category: 'Defence Aviation',
-  },
-  {
-    id: 'tejas_1',
-    title: "Tejas: Pride, Payloads, and Production Bottlenecks",
-    date: 'April 14, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/tejas.webp',
-    category: 'Defence Aviation',
-  },
-  {
-    id: '5th gen',
-    title: "The Fifth-Generation Dilemma: Su-57 Felon vs. F-35 Lightning II",
-    date: 'April 13, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/su57-f35.webp',
-    category: 'Defence Aviation',
-  },
-  {
-    id: 'drone',
-    title: "The Drone Revolution: Precision, Attrition, and India's Path to Sovereignty",
-    date: 'April 13, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/drone.webp',
-    category: 'Unmanned Systems',
-  },
-  {
-    id: 'engine',
-    title: "The Heart of the Machine: How a Fighter Jet Engine Generates Supersonic Thrust",
-    date: 'April 13, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/engine.webp',
-    category: 'Engineering Corner',
-  }
-];
-
-// ─── Component ────────────────────────────────────────────────────────────────
 export default function AllBlogs() {
   const [query, setQuery] = useState('');
-  useScrollReveal([query]);
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    const startTime = Date.now();
+
+    // Safety timeout: Never load for more than 2 seconds
+    const maxSafetyTimer = setTimeout(() => {
+      if (isMounted) setLoading(false);
+    }, 2000);
+
+    const fetchArticles = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`${API_BASE}/articles`);
+        const data = await res.json();
+        if (res.ok && data.success && Array.isArray(data.articles)) {
+          const formatted = data.articles.map((art) => ({
+            _id: art._id,
+            id: art.slug || art._id,
+            slug: art.slug,
+            title: art.title,
+            date: new Date(art.createdAt).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            }),
+            author: art.authorName || art.author?.name || 'AeroXplore Aviator',
+            image: art.image || '/images/Background.png',
+            category: art.category || 'Defence Aviation',
+            theme: art.theme || 'article-bg',
+          }));
+          if (isMounted) setArticles(formatted);
+        }
+      } catch (err) {
+        console.error('Failed to fetch DB articles:', err);
+      } finally {
+        const elapsed = Date.now() - startTime;
+        const remaining = Math.max(0, Math.min(2000 - elapsed, 400));
+        setTimeout(() => {
+          if (isMounted) setLoading(false);
+        }, remaining);
+      }
+    };
+
+    fetchArticles();
+    return () => {
+      isMounted = false;
+      clearTimeout(maxSafetyTimer);
+    };
+  }, []);
+
+  useScrollReveal([query, articles, loading]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return allBlogPosts;
-    return allBlogPosts.filter(
+    if (!q) return articles;
+    return articles.filter(
       (p) =>
         p.title.toLowerCase().includes(q) ||
         p.category.toLowerCase().includes(q) ||
         p.author.toLowerCase().includes(q) ||
         p.date.toLowerCase().includes(q)
     );
-  }, [query]);
+  }, [query, articles]);
 
   return (
-    <div className="ab-root">
-      <div className="ab-paper-texture" />
+    <>
+      <LoadingOverlay isVisible={loading} />
 
-      <div className="ab-inner">
+      <div className={`ab-root ${loading ? 'aero-page-blurred' : 'aero-page-sharp'}`}>
+        <div className="ab-paper-texture" />
 
-        {/* ── Back Link ── */}
-        <Link to="/" className="ab-back-link" id="ab-back-home" data-reveal="fade-in">
-          ← Return to AeroXplore
-        </Link>
+        <div className="ab-inner">
 
-        {/* ── Masthead ── */}
-        <div className="ab-masthead" data-reveal="fade-in" style={{ '--reveal-delay': '0.05s' }}>
-          <div className="ab-rule thick" />
-          <div className="ab-rule thin" />
-          <h1 className="ab-masthead-title">The Archive</h1>
-          <p className="ab-masthead-sub">All Dispatches from AeroXplore</p>
-          <div className="ab-rule thin" />
-          <div className="ab-rule thick" />
-        </div>
-
-        {/* ── Search Box ── */}
-        <div className="ab-search-wrap" data-reveal="fade-up" style={{ '--reveal-delay': '0.1s' }}>
-          <div className="ab-search-box">
-            <span className="ab-search-icon" aria-hidden="true">⌕</span>
-            <input
-              id="ab-search-input"
-              type="text"
-              className="ab-search-input"
-              placeholder="Search by title, category, author…"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              autoFocus
-            />
-            {query && (
-              <button
-                className="ab-search-clear"
-                onClick={() => setQuery('')}
-                aria-label="Clear search"
-                id="ab-search-clear-btn"
-              >
-                ✕
-              </button>
-            )}
+          {/* ── Top Bar ── */}
+          <div className="ab-top-bar" data-reveal="fade-in">
+            <Link to="/" className="ab-back-link" id="ab-back-home">
+              ← Return to AeroXplore
+            </Link>
+            <AuthButton />
           </div>
-          <p className="ab-result-count">
-            {filtered.length === allBlogPosts.length
-              ? `${allBlogPosts.length} dispatches`
-              : `${filtered.length} of ${allBlogPosts.length} dispatches`}
-          </p>
-        </div>
 
-        {/* ── Section Divider ── */}
-        <div className="ab-section-label-row" data-reveal="fade-in" style={{ '--reveal-delay': '0.15s' }}>
-          <div className="ab-section-line" />
-          <span className="ab-section-text">
-            {query ? `Results for "${query}"` : 'All Dispatches'}
-          </span>
-          <div className="ab-section-line" />
-        </div>
+          {/* ── Masthead ── */}
+          <div className="ab-masthead" data-reveal="fade-in" style={{ '--reveal-delay': '0.05s' }}>
+            <div className="ab-rule thick" />
+            <div className="ab-rule thin" />
+            <h1 className="ab-masthead-title">The Archive</h1>
+            <p className="ab-masthead-sub">All Dispatches from AeroXplore</p>
+            <div className="ab-rule thin" />
+            <div className="ab-rule thick" />
+          </div>
 
-        {/* ── Cards Grid ── */}
-        {filtered.length > 0 ? (
-          <div className="ab-cards-grid">
-            {filtered.map((post, i) => (
-              <Link
-                to={`/blog/${post.id}`}
-                key={post.id}
-                className="ab-card"
-                id={`ab-card-${post.id}`}
-                data-reveal="fade-up"
-                style={{ '--reveal-delay': `${i * 0.08}s` }}
-              >
-                <div className="ab-card-img-wrap">
-                  <img src={post.image} alt={post.title} className="ab-card-img" />
-                  <span className="ab-card-category">{post.category}</span>
-                </div>
-                <div className="ab-card-body">
-                  <h3 className="ab-card-title">{post.title}</h3>
-                  <div className="ab-card-meta">
-                    <span className="ab-card-date">{post.date}</span>
-                    <span className="ab-card-sep">·</span>
-                    <span className="ab-card-author">{post.author}</span>
+          {/* ── Search Box ── */}
+          <div className="ab-search-wrap" data-reveal="fade-up" style={{ '--reveal-delay': '0.1s' }}>
+            <div className="ab-search-box">
+              <span className="ab-search-icon" aria-hidden="true">⌕</span>
+              <input
+                id="ab-search-input"
+                type="text"
+                className="ab-search-input"
+                placeholder="Search by title, category, author…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                autoFocus
+              />
+              {query && (
+                <button
+                  className="ab-search-clear"
+                  onClick={() => setQuery('')}
+                  aria-label="Clear search"
+                  id="ab-search-clear-btn"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+            <p className="ab-result-count">
+              {filtered.length === articles.length
+                ? `${articles.length} dispatches`
+                : `${filtered.length} of ${articles.length} dispatches`}
+            </p>
+          </div>
+
+          {/* ── Section Divider ── */}
+          <div className="ab-section-label-row" data-reveal="fade-in" style={{ '--reveal-delay': '0.15s' }}>
+            <div className="ab-section-line" />
+            <span className="ab-section-text">
+              {query ? `Results for "${query}"` : 'All Dispatches'}
+            </span>
+            <div className="ab-section-line" />
+          </div>
+
+          {/* ── Cards Grid ── */}
+          {filtered.length > 0 ? (
+            <div className="ab-cards-grid">
+              {filtered.map((post, i) => (
+                <Link
+                  to={`/blog/${post.slug || post.id}`}
+                  key={post._id}
+                  className={`ab-card theme-${post.theme || 'article-bg'}`}
+                  id={`ab-card-${post.slug || post.id}`}
+                  data-reveal="fade-up"
+                  style={{ '--reveal-delay': `${i * 0.08}s` }}
+                >
+                  <div className="ab-card-img-wrap">
+                    <img src={post.image} alt={post.title} className="ab-card-img" />
+                    <span className="ab-card-category">{post.category}</span>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="ab-no-results">
-            <p className="ab-no-results-icon">✈</p>
-            <p className="ab-no-results-msg">No dispatches found for <em>"{query}"</em></p>
-            <button className="ab-no-results-clear" onClick={() => setQuery('')} id="ab-no-results-clear-btn">
-              Clear Search
-            </button>
-          </div>
-        )}
+                  <div className="ab-card-body">
+                    <h3 className="ab-card-title">{post.title}</h3>
+                    <div className="ab-card-meta">
+                      <span className="ab-card-date">{post.date}</span>
+                      <span className="ab-card-sep">·</span>
+                      <span className="ab-card-author">{post.author}</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="ab-no-results">
+              <p className="ab-no-results-icon">✦</p>
+              <p className="ab-no-results-msg">
+                {loading ? 'Retrieving dispatches from archive...' : `No dispatches found for "${query}"`}
+              </p>
+              {query && (
+                <button className="ab-no-results-clear" onClick={() => setQuery('')} id="ab-no-results-clear-btn">
+                  Clear Search
+                </button>
+              )}
+            </div>
+          )}
 
-        {/* ── Footer Rule ── */}
-        <div className="ab-footer-row">
-          <div className="ab-rule thin" />
-          <div className="ab-rule thick" />
-          <p className="ab-footer-copy">© 2026 AeroXplore · Diwakar Nagar</p>
+          {/* ── Footer Rule ── */}
+          <div className="ab-footer-row">
+            <div className="ab-rule thin" />
+            <div className="ab-rule thick" />
+            <p className="ab-footer-copy">© 2026 AeroXplore · Diwakar Nagar</p>
+          </div>
+        </div>
+        <div style={{ textAlign: 'center', padding: '10px', fontSize: '0.75rem', color: '#888', background: '#0a0a0a' }}>
+          I'm here to help spark ideas and provide a great starting point, but for anything mission-critical, it’s always a good move to double-check with official documentation or expert sources just to be safe!
         </div>
       </div>
-      <div style={{ textAlign: 'center', padding: '10px', fontSize: '0.75rem', color: '#888', background: '#0a0a0a' }}>
-        I'm here to help spark ideas and provide a great starting point, but for anything mission-critical, it’s always a good move to double-check with official documentation or expert sources just to be safe!
-      </div>
-    </div>
+    </>
   );
 }

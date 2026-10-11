@@ -12,7 +12,6 @@ import { useEffect } from 'react';
  */
 export default function useScrollReveal(deps = []) {
   useEffect(() => {
-    const targets = document.querySelectorAll('[data-reveal]');
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -23,17 +22,35 @@ export default function useScrollReveal(deps = []) {
         });
       },
       {
-        threshold: 0.1,          // fire when 10 % of the element is visible
-        rootMargin: '0px 0px -50px 0px', // trigger slightly before fully in view
+        threshold: 0.05,
+        rootMargin: '0px 0px 50px 0px',
       }
     );
 
-    targets.forEach((el) => {
-      if (!el.classList.contains('revealed')) {
+    const observeAll = () => {
+      const targets = document.querySelectorAll('[data-reveal]:not(.revealed)');
+      targets.forEach((el) => {
         observer.observe(el);
-      }
+      });
+    };
+
+    observeAll();
+
+    // Re-check shortly after mount for async child components
+    const timer = setTimeout(observeAll, 120);
+
+    const mutationObserver = new MutationObserver(() => {
+      observeAll();
     });
 
-    return () => observer.disconnect();
+    if (document.body) {
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+    }
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, deps);
 }

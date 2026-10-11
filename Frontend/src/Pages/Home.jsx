@@ -1,50 +1,126 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../CSS/Home.css';
+import '../CSS/LoadingOverlay.css';
 import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
+import AuthButton from '../components/AuthButton';
+import LoadingOverlay from '../components/LoadingOverlay';
+import { API_BASE } from '../utils/api';
 
-const featuredPost = {
-  id: 'airbus&boeing',
-  title: "The Great Aviation Rivalry: Boeing vs. Airbus",
-  date: 'August 02, 2026',
-  author: 'Diwakar Nagar',
-  caption: 'Boeing vs. Airbus',
-  para1: `The duopoly between Boeing and Airbus represents one of the most intense and consequential rivalries in industrial history, dictating how humanity travels across continents while dominating global defense and aerospace technology. Boeing’s legacy began in Seattle in 1916, establishing itself as an American industrial superpower through WWII military platforms like the B-17 Flying Fortress, the pioneering 707 jetliner, and the iconic 747 jumbo jet in 1969. Conversely, Airbus was established in 1970 as a European consortium joining French, German, British, and Spanish aerospace entities to challenge American dominance. Airbus launched the A300 (the world’s first twin-engine wide-body airliner), proving that cross-border European collaboration could successfully engineer highly efficient, world-class commercial aircraft.`,
-  para2: `The commercial battlefield between the two giants spans single-aisle narrow-body and dual-aisle wide-body markets. In the narrow-body sector, Boeing’s ubiquitous 737 family (including the 737 MAX) competes directly with Airbus’s market-leading A320 family (notably the A320neo and long-range A321XLR variants). In wide-body, long-haul travel, Boeing relies on the 787 Dreamliner and 777/777X programs, whereas Airbus fields the A330neo and the carbon-composite A350 XWB. While Airbus once built the double-deck A380 superjumbo to challenge Boeing's 747, shifting airline preferences toward point-to-point, ultra-efficient twin-jets led both companies to phase out four-engine passenger airliners in favor of composite twin-engine fleets.`
-};
-
-const blogPosts = [
-   {
+const DEFAULT_DISPATCHES = [
+  {
+    _id: 'default-1',
+    id: 'airbus&boeing',
+    slug: 'airbus&boeing',
+    title: "The Great Aviation Rivalry: Boeing vs. Airbus",
+    date: 'August 02, 2026',
+    author: 'Diwakar Nagar',
+    caption: 'Boeing vs. Airbus',
+    image: '/images/a-b.webp',
+    category: 'Aviation History',
+    theme: 'article-bg',
+    para1: "The duopoly between Boeing and Airbus represents one of the most intense and consequential rivalries in industrial history, dictating how humanity travels across continents while dominating global defense and aerospace technology. Boeing’s legacy began in Seattle in 1916, establishing itself as an American industrial superpower through WWII military platforms like the B-17 Flying Fortress, the pioneering 707 jetliner, and the iconic 747 jumbo jet in 1969. Conversely, Airbus was established in 1970 as a European consortium joining French, German, British, and Spanish aerospace entities to challenge American dominance.",
+    para2: "The commercial battlefield between the two giants spans single-aisle narrow-body and dual-aisle wide-body markets. In the narrow-body sector, Boeing’s ubiquitous 737 family (including the 737 MAX) competes directly with Airbus’s market-leading A320 family (notably the A320neo and long-range A321XLR variants). In wide-body, long-haul travel, Boeing relies on the 787 Dreamliner and 777/777X programs, whereas Airbus fields the A330neo and the carbon-composite A350 XWB.",
+  },
+  {
+    _id: 'default-2',
     id: 'sekhon-ji',
+    slug: 'sekhon-ji',
     title: "The Man Who Refused to Turn Back: Nirmal Jit Singh Sekhon",
     date: 'August 01, 2026',
     author: 'Diwakar Nagar',
     image: '/images/sekhon.webp',
     category: 'Trailblazing Personalities',
+    theme: 'article-bg',
   },
   {
+    _id: 'default-3',
     id: 'mig-21',
-    title: 'The MiG-21: Hero, Villain or Both?',
-    date: 'July 28, 2026',
+    slug: 'mig-21',
+    title: "The MiG-21: Hero, Villain or Both?",
+    date: 'July 31, 2026',
     author: 'Diwakar Nagar',
     image: '/images/mig-21.webp',
     category: 'Defence Aviation',
+    theme: 'article-bg',
   },
   {
+    _id: 'default-4',
     id: 'boeing',
+    slug: 'boeing',
     title: "The Birth of Boeing: From Timber to Titans",
     date: 'July 30, 2026',
     author: 'Diwakar Nagar',
     image: '/images/boeing.webp',
-    category: 'Aviation History'
+    category: 'Aviation History',
+    theme: 'article-bg',
   },
-  ];
-
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
+];
 
 export default function Home() {
-  useScrollReveal();
+  const [articles, setArticles] = useState(DEFAULT_DISPATCHES);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    const startTime = Date.now();
+
+    // Safety timeout: Never load for more than 2 seconds
+    const maxSafetyTimer = setTimeout(() => {
+      if (isMounted) setLoading(false);
+    }, 2000);
+
+    const fetchArticles = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/articles`);
+        const data = await res.json();
+        if (res.ok && data.success && Array.isArray(data.articles) && data.articles.length > 0) {
+          const formatted = data.articles.map((art) => ({
+            _id: art._id,
+            id: art.slug || art._id,
+            slug: art.slug,
+            title: art.title,
+            date: new Date(art.createdAt).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            }),
+            author: art.authorName || art.author?.name || 'AeroXplore Aviator',
+            image: art.image || '/images/Background.png',
+            category: art.category || 'Defence Aviation',
+            theme: art.theme || 'article-bg',
+            caption: art.category || art.title,
+            para1: Array.isArray(art.content) && art.content[0] ? art.content[0] : '',
+            para2: Array.isArray(art.content) && art.content[1] ? art.content[1] : '',
+          }));
+          if (isMounted) {
+            setArticles(formatted);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load dispatches from DB:', err);
+      } finally {
+        const elapsed = Date.now() - startTime;
+        const remaining = Math.max(0, Math.min(2000 - elapsed, 400));
+        setTimeout(() => {
+          if (isMounted) setLoading(false);
+        }, remaining);
+      }
+    };
+
+    fetchArticles();
+    return () => {
+      isMounted = false;
+      clearTimeout(maxSafetyTimer);
+    };
+  }, []);
+
+  const featuredPost = articles[0] || null;
+  const displayPosts = articles.length > 3 ? articles.slice(1, 4) : articles.slice(0, 3);
+
+  useScrollReveal([articles, loading]);
+
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '' });
   const [subscribeEmail, setSubscribeEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -105,307 +181,311 @@ export default function Home() {
   };
 
   return (
-    <div className="AeroXplore-root">
+    <>
+      {/* Aviation Radar Loading Screen */}
+      <LoadingOverlay isVisible={loading} />
 
-      <section className="newspaper-section">
-        <div className="paper-texture-overlay"></div>
-        <div className="newspaper-inner">
+      <div className={`AeroXplore-root ${loading ? 'aero-page-blurred' : 'aero-page-sharp'}`}>
+        <section className="newspaper-section">
+          <div className="paper-texture-overlay"></div>
 
-          <div className="newspaper-hero">
-
-            <div className="newspaper-masthead" data-reveal="fade-in">
-              <div className="masthead-rule thick"></div>
-              <div className="masthead-rule thin"></div>
-              <h1 className="masthead-title">
-                <img
-                  src={logo}
-                  alt="AeroXplore"
-                  className="masthead-logo-img"
-                />
-              </h1>
-              <p className="masthead-subtitle">The Premier Aviation &amp; Aerospace Chronicle</p>
-              <div className="masthead-rule thin"></div>
-              <div className="masthead-info-row">
-                <span className="masthead-info">Est. April, 2026</span>
-                <span className="masthead-info">Vol. I · No. 47</span>
-                <span className="masthead-info">
-                  {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-                </span>
-                <span className="masthead-info">By Diwakar Nagar</span>
-              </div>
-              <div className="masthead-rule thick"></div>
-            </div>
-
-            <div className="section-label-row" data-reveal="fade-in" style={{ '--reveal-delay': '0.1s' }}>
-              <div className="section-label-line"></div>
-              <span className="section-label-text">Featured Dispatch</span>
-              <div className="section-label-line"></div>
-            </div>
-
-            <article className="featured-article">
-              <div className="featured-left" data-reveal="fade-left" style={{ '--reveal-delay': '0.15s' }}>
-                <h2 className="featured-headline">{featuredPost.title}</h2>
-                <div className="featured-byline">
-                  <span className="byline-author">By {featuredPost.author}</span>
-                  <span className="byline-sep">·</span>
-                  <span className="byline-date">{featuredPost.date}</span>
-                </div>
-                <div className="featured-rule"></div>
-                <p className="featured-para">{featuredPost.para1}</p>
-                <p className="featured-para">{featuredPost.para2}</p>
-                <a href={`/blog/${featuredPost.id}`} className="read-more-link" id="featured-read-more">
-                  Click here to read more →
-                </a>
-              </div>
-              <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
-                <div className="featured-photo-frame">
-                  <img
-                    src="/images/a-b.webp"
-                    alt="Featured Article"
-                    className="featured-photo"
-                  />
-                  <p className="featured-caption">{featuredPost.caption}</p>
-                </div>
-              </div>
-            </article>
-
+          <div className="newspaper-header-actions">
+            <AuthButton />
           </div>
 
-          <div className="newspaper-below-fold">
+          <div className="newspaper-inner">
+            <div className="newspaper-hero">
+              <div className="newspaper-masthead" data-reveal="fade-in">
+                <div className="masthead-rule thick"></div>
+                <div className="masthead-rule thin"></div>
+                <h1 className="masthead-title">
+                  <img
+                    src={logo}
+                    alt="AeroXplore"
+                    className="masthead-logo-img"
+                  />
+                </h1>
+                <p className="masthead-subtitle">The Premier Aviation &amp; Aerospace Chronicle</p>
+                <div className="masthead-rule thin"></div>
+                <div className="masthead-info-row">
+                  <span className="masthead-info">Est. April, 2026</span>
+                  <span className="masthead-info">Vol. I · No. 47</span>
+                  <span className="masthead-info">
+                    {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                  </span>
+                  <span className="masthead-info">By Diwakar Nagar</span>
+                </div>
+                <div className="masthead-rule thick"></div>
+              </div>
 
-            <div className="section-label-row" data-reveal="fade-in">
-              <div className="section-label-line"></div>
-              <span className="section-label-text">Recent Dispatches</span>
-              <div className="section-label-line"></div>
-            </div>
+              <div className="section-label-row" data-reveal="fade-in" style={{ '--reveal-delay': '0.1s' }}>
+                <div className="section-label-line"></div>
+                <span className="section-label-text">Featured Dispatch</span>
+                <div className="section-label-line"></div>
+              </div>
 
-            <div className="blog-cards-grid">
-              {blogPosts.map((post, i) => (
-                <Link
-                  to={`/blog/${post.id}`}
-                  key={post.id}
-                  className="blog-card"
-                  id={`blog-card-${post.id}`}
-                  data-reveal="fade-up"
-                  style={{ '--reveal-delay': `${i * 0.1}s` }}
-                >
-                  <div className="blog-card-img-wrap">
-                    <img src={post.image} alt={post.title} className="blog-card-img" />
-                    <span className="blog-card-category">{post.category}</span>
+              {featuredPost && (
+                <article className="featured-article">
+                  <div className="featured-left" data-reveal="fade-left" style={{ '--reveal-delay': '0.15s' }}>
+                    <h2 className="featured-headline">{featuredPost.title}</h2>
+                    <div className="featured-byline">
+                      <span className="byline-author">By {featuredPost.author}</span>
+                      <span className="byline-sep">·</span>
+                      <span className="byline-date">{featuredPost.date}</span>
+                    </div>
+                    <div className="featured-rule"></div>
+                    {featuredPost.para1 && <p className="featured-para">{featuredPost.para1}</p>}
+                    {featuredPost.para2 && <p className="featured-para">{featuredPost.para2}</p>}
+                    <Link to={`/blog/${featuredPost.slug || featuredPost.id}`} className="read-more-link" id="featured-read-more">
+                      Click here to read more →
+                    </Link>
                   </div>
-                  <div className="blog-card-body">
-                    <h3 className="blog-card-title">{post.title}</h3>
-                    <div className="blog-card-meta">
-                      <span className="blog-card-date">{post.date}</span>
-                      <span className="blog-card-sep">·</span>
-                      <span className="blog-card-author">{post.author}</span>
+                  <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
+                    <div className="featured-photo-frame">
+                      <img
+                        src={featuredPost.image}
+                        alt={featuredPost.title}
+                        className="featured-photo"
+                      />
+                      <p className="featured-caption">{featuredPost.caption}</p>
                     </div>
                   </div>
-                </Link>
-              ))}
+                </article>
+              )}
             </div>
 
-            <div className="view-all-wrap" data-reveal="fade-up" style={{ '--reveal-delay': '0.2s' }}>
-              <Link to="/blogs" className="view-all-btn" id="view-all-dispatches-btn">
-                View All Dispatches →
-              </Link>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      <section className="motive-section" id="motive">
-        <div className="motive-inner">
-          <div className="motive-header" data-reveal="fade-in">
-            <div className="motive-rule"></div>
-            <h2 className="motive-heading">Motive Behind AeroXplore</h2>
-            <div className="motive-rule"></div>
-          </div>
-
-          <div className="motive-content">
-            <div className="motive-text-block" data-reveal="fade-up" style={{ '--reveal-delay': '0.1s' }}>
-              <h3 className="motive-subheading">Why I Created AeroXplore</h3>
-              <p className="motive-para">
-                Aviation has always been more than machines and mathematics to me, it is the closest thing humanity has to
-                a physical metaphor for ambition. Growing up in India, I was mesmerised by the contrails streaking across
-                the sky, each one a silent argument that the universe is larger and more navigable than we imagine. I
-                started <em>AeroXplore</em> because I believe that complex aerospace concepts, news and theories deserve to be explained
-                with the same passion that pilots feel when they break through cloud cover and find blue sky above.
-                This is my attempt to bridge the gap between engineering classrooms and curious minds.
-              </p>
-            </div>
-
-            <div className="motive-text-block" data-reveal="fade-up" style={{ '--reveal-delay': '0.25s' }}>
-              <h3 className="motive-subheading">Where You Can Find Me</h3>
-              <p className="motive-para">
-                I am <strong>Diwakar Nagar</strong> a B.Tech student, an aviation enthusiast, and a constant learner.
-                When I’m not exploring concepts of aerodynamics or diving into technical knowledge, you’ll find me showcasing my achievements on
-                <strong> LinkedIn</strong> staying active on <strong>Twitter / X</strong>, by posting and reposting almost everything related to aviation, and sharing my passion for flight and technology on
-                <strong>Instagram</strong>
-                My interests revolve around aviation engineering, space exploration, defense technology, and the evolving world of aerospace. I enjoy staying updated, sharing insights, and being part of conversations that push the boundaries of innovation.
-                I believe growth, like flight, is limitless when you keep moving forward.
-              </p>
-              <div className="social-links-row">
-                <a href="https://www.linkedin.com/in/diwakarnagar/" className="social-chip" id="social-linkedin" target='blank'>LinkedIn</a>
-                <a href="https://x.com/diwakar_nagar01" className="social-chip" id="social-twitter" target='blank'>Twitter / X</a>
-                <a href="https://www.instagram.com/diwakar_nagar01" className="social-chip" id="social-instagram" target='blank'>Instagram</a>
-                <a href="https://github.com/diwakar-web" className="social-chip" id="social-github" target='blank'>GitHub</a>
+            <div className="newspaper-below-fold">
+              <div className="section-label-row" data-reveal="fade-in">
+                <div className="section-label-line"></div>
+                <span className="section-label-text">Recent Dispatches</span>
+                <div className="section-label-line"></div>
               </div>
-            </div>
-          </div>
 
-          <div className="newsletter-box" id="newsletter-box" data-reveal="scale-up">
-            <div className="newsletter-box-inner">
-              <div className="newsletter-icon">✈</div>
-              <h3 className="newsletter-title">Stay in the Slipstream</h3>
-              <p className="newsletter-desc">
-                Get the latest AeroXplore dispatches delivered to your inbox, aviation deep-dives, defence mission summaries,
-                and engineering breakdowns, curated for curious minds.
-              </p>
-              <form className="newsletter-form" onSubmit={handleSubscribe}>
-                <input
-                  type="email"
-                  className="newsletter-input"
-                  placeholder="Enter your email address"
-                  value={subscribeEmail}
-                  onChange={(e) => { setSubscribeEmail(e.target.value); setSubscribeError(''); }}
-                  required
-                  disabled={subscribeLoading}
-                  id="newsletter-email-input"
-                />
-                <button
-                  type="submit"
-                  className={`newsletter-btn${subscribeLoading ? ' btn-loading' : ''}`}
-                  id="newsletter-submit-btn"
-                  disabled={subscribeLoading || subscribed}
-                >
-                  {subscribeLoading ? '⏳ Sending...' : subscribed ? '✓ Subscribed!' : 'Subscribe'}
-                </button>
-              </form>
-              {subscribed && <p className="form-success-msg">Welcome aboard! You're now on the manifest. 🛫</p>}
-              {subscribeError && <p className="form-error-msg">⚠ {subscribeError}</p>}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="contact-section" id="contact">
-        <div className="contact-inner">
-          <div className="contact-header" data-reveal="fade-in">
-            <h2 className="contact-heading">Contact Me</h2>
-            <p className="contact-subheading">
-              Have a question, a story idea, or just want to talk aviation? I'm always happy to connect.
-            </p>
-            <div className="contact-rule"></div>
-          </div>
-          <form className="contact-form" onSubmit={handleContactSubmit} id="contact-form" data-reveal="fade-up" style={{ '--reveal-delay': '0.15s' }}>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="contact-name">Your Name</label>
-                <input
-                  type="text"
-                  id="contact-name"
-                  placeholder="e.g. Arjun Verma"
-                  value={contactForm.name}
-                  onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="contact-email">Email Address</label>
-                <input
-                  type="email"
-                  id="contact-email"
-                  placeholder="you@example.com"
-                  value={contactForm.email}
-                  onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                  required
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="contact-message">Your Message</label>
-              <textarea
-                id="contact-message"
-                rows="6"
-                placeholder="Tell me what's on your mind..."
-                value={contactForm.message}
-                onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className={`contact-submit-btn${contactLoading ? ' btn-loading' : ''}`}
-              id="contact-submit-btn"
-              disabled={contactLoading || contactSent}
-            >
-              {contactLoading ? '⏳ Sending...' : contactSent ? '✓ Message Sent!' : 'Send Message →'}
-            </button>
-            {contactSent && <p className="form-success-msg">Message received! I'll get back to you shortly. ✈</p>}
-            {contactError && <p className="form-error-msg">⚠ {contactError}</p>}
-          </form>
-        </div>
-      </section>
-
-      <footer className="footer">
-        <div className="footer-paper-texture"></div>
-        <div className="footer-inner">
-          <div className="footer-masthead-rule thick"></div>
-          <div className="footer-masthead-rule thin"></div>
-
-          <p className="footer-tagline">The Premier Aviation &amp; Aerospace Chronicle</p>
-
-          <div className="footer-masthead-rule thin"></div>
-
-          <div className="footer-columns">
-            <div className="footer-col">
-              <h4 className="footer-col-title">Navigate</h4>
-              <ul className="footer-links">
-                <li><a href="/" id="footer-home">Home</a></li>
-                <li><Link to="/blogs" id="footer-articles">Dispatches</Link></li>
-                <li><a href="#motive" id="footer-about">About</a></li>
-                <li><a href="#contact" id="footer-contact">Contact</a></li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4 className="footer-col-title">Dispatches</h4>
-              <ul className="footer-links">
-                {blogPosts.slice(0, 4).map(p => (
-                  <li key={p.id}>
-                    <Link to={`/blog/${p.id}`} id={`footer-post-${p.id}`}>{p.title.substring(0, 38)}…</Link>
-                  </li>
+              <div className="blog-cards-grid">
+                {displayPosts.map((post, i) => (
+                  <Link
+                    to={`/blog/${post.slug || post.id}`}
+                    key={post._id}
+                    className={`blog-card theme-${post.theme || 'article-bg'}`}
+                    id={`blog-card-${post.slug || post.id}`}
+                    data-reveal="fade-up"
+                    style={{ '--reveal-delay': `${i * 0.1}s` }}
+                  >
+                    <div className="blog-card-img-wrap">
+                      <img src={post.image} alt={post.title} className="blog-card-img" />
+                      <span className="blog-card-category">{post.category}</span>
+                    </div>
+                    <div className="blog-card-body">
+                      <h3 className="blog-card-title">{post.title}</h3>
+                      <div className="blog-card-meta">
+                        <span className="blog-card-date">{post.date}</span>
+                        <span className="blog-card-sep">·</span>
+                        <span className="blog-card-author">{post.author}</span>
+                      </div>
+                    </div>
+                  </Link>
                 ))}
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4 className="footer-col-title">The Correspondent</h4>
-              <p className="footer-bio">
-                Diwakar Nagar ,  aviation enthusiast, engineering student, and  blogger. Writing about the skies so you
-                can understand them better.
-              </p>
-              <div className="footer-social">
-                <a href="https://www.linkedin.com/in/diwakarnagar/" className="footer-social-link" id="footer-linkedin">in</a>
-                <a href="https://x.com/diwakar_nagar01" className="footer-social-link" id="footer-twitter">𝕏</a>
-                <a href="https://www.instagram.com/diwakar_nagar01" className="footer-social-link" id="footer-instagram">ig</a>
+              </div>
 
+              <div className="view-all-wrap" data-reveal="fade-up" style={{ '--reveal-delay': '0.2s' }}>
+                <Link to="/blogs" className="view-all-btn" id="view-all-dispatches-btn">
+                  View All Dispatches →
+                </Link>
               </div>
             </div>
           </div>
+        </section>
 
-          <div className="footer-masthead-rule thin"></div>
-          <div className="footer-bottom">
-            <span>© 2026 AeroXplore.in · Diwakar Nagar · All Rights Reserved</span>
-            <span className="footer-bottom-right">Crafted with passion for aviation ✈</span>
+        <section className="motive-section" id="motive">
+          <div className="motive-inner">
+            <div className="motive-header" data-reveal="fade-in">
+              <div className="motive-rule"></div>
+              <h2 className="motive-heading">Motive Behind AeroXplore</h2>
+              <div className="motive-rule"></div>
+            </div>
+
+            <div className="motive-content">
+              <div className="motive-text-block" data-reveal="fade-up" style={{ '--reveal-delay': '0.1s' }}>
+                <h3 className="motive-subheading">Why I Created AeroXplore</h3>
+                <p className="motive-para">
+                  Aviation has always been more than machines and mathematics to me, it is the closest thing humanity has to
+                  a physical metaphor for ambition. Growing up in India, I was mesmerised by the contrails streaking across
+                  the sky, each one a silent argument that the universe is larger and more navigable than we imagine. I
+                  started <em>AeroXplore</em> because I believe that complex aerospace concepts, news and theories deserve to be explained
+                  with the same passion that pilots feel when they break through cloud cover and find blue sky above.
+                  This is my attempt to bridge the gap between engineering classrooms and curious minds.
+                </p>
+              </div>
+
+              <div className="motive-text-block" data-reveal="fade-up" style={{ '--reveal-delay': '0.25s' }}>
+                <h3 className="motive-subheading">Where You Can Find Me</h3>
+                <p className="motive-para">
+                  I am <strong>Diwakar Nagar</strong> a B.Tech student, an aviation enthusiast, and a constant learner.
+                  When I’m not exploring concepts of aerodynamics or diving into technical knowledge, you’ll find me showcasing my achievements on
+                  <strong> LinkedIn</strong> staying active on <strong>Twitter / X</strong>, by posting and reposting almost everything related to aviation, and sharing my passion for flight and technology on
+                  <strong>Instagram</strong>
+                  My interests revolve around aviation engineering, space exploration, defense technology, and the evolving world of aerospace. I enjoy staying updated, sharing insights, and being part of conversations that push the boundaries of innovation.
+                  I believe growth, like flight, is limitless when you keep moving forward.
+                </p>
+                <div className="social-links-row">
+                  <a href="https://www.linkedin.com/in/diwakarnagar/" className="social-chip" id="social-linkedin" target='blank'>LinkedIn</a>
+                  <a href="https://x.com/diwakar_nagar01" className="social-chip" id="social-twitter" target='blank'>Twitter / X</a>
+                  <a href="https://www.instagram.com/diwakar_nagar01" className="social-chip" id="social-instagram" target='blank'>Instagram</a>
+                  <a href="https://github.com/diwakar-web" className="social-chip" id="social-github" target='blank'>GitHub</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="newsletter-box" id="newsletter-box" data-reveal="scale-up">
+              <div className="newsletter-box-inner">
+                <div className="newsletter-icon">✦</div>
+                <h3 className="newsletter-title">Stay in the Slipstream</h3>
+                <p className="newsletter-desc">
+                  Get the latest AeroXplore dispatches delivered to your inbox, aviation deep-dives, defence mission summaries,
+                  and engineering breakdowns, curated for curious minds.
+                </p>
+                <form className="newsletter-form" onSubmit={handleSubscribe}>
+                  <input
+                    type="email"
+                    className="newsletter-input"
+                    placeholder="Enter your email address"
+                    value={subscribeEmail}
+                    onChange={(e) => { setSubscribeEmail(e.target.value); setSubscribeError(''); }}
+                    required
+                    disabled={subscribeLoading}
+                    id="newsletter-email-input"
+                  />
+                  <button
+                    type="submit"
+                    className={`newsletter-btn${subscribeLoading ? ' btn-loading' : ''}`}
+                    id="newsletter-submit-btn"
+                    disabled={subscribeLoading || subscribed}
+                  >
+                    {subscribeLoading ? 'Sending...' : subscribed ? '✓ Subscribed!' : 'Subscribe'}
+                  </button>
+                </form>
+                {subscribed && <p className="form-success-msg">Welcome aboard! You're now on the manifest.</p>}
+                {subscribeError && <p className="form-error-msg">{subscribeError}</p>}
+              </div>
+            </div>
           </div>
-          <div className="footer-masthead-rule thick"></div>
-        </div>
-      </footer>
-      <div style={{ textAlign: 'center', padding: '10px', fontSize: '0.75rem', color: '#888', background: '#0a0a0a' }}>
-        I'm here to help spark ideas and provide a great starting point, but for anything mission-critical, it’s always a good move to double-check with official documentation or expert sources just to be safe!      </div>
+        </section>
 
-    </div>
+        <section className="contact-section" id="contact">
+          <div className="contact-inner">
+            <div className="contact-header" data-reveal="fade-in">
+              <h2 className="contact-heading">Contact Me</h2>
+              <p className="contact-subheading">
+                Have a question, a story idea, or just want to talk aviation? I'm always happy to connect.
+              </p>
+              <div className="contact-rule"></div>
+            </div>
+            <form className="contact-form" onSubmit={handleContactSubmit} id="contact-form" data-reveal="fade-up" style={{ '--reveal-delay': '0.15s' }}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="contact-name">Your Name</label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    placeholder="e.g. Arjun Verma"
+                    value={contactForm.name}
+                    onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="contact-email">Email Address</label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    placeholder="you@example.com"
+                    value={contactForm.email}
+                    onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="contact-message">Your Message</label>
+                <textarea
+                  id="contact-message"
+                  rows="6"
+                  placeholder="Tell me what's on your mind..."
+                  value={contactForm.message}
+                  onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className={`contact-submit-btn${contactLoading ? ' btn-loading' : ''}`}
+                id="contact-submit-btn"
+                disabled={contactLoading || contactSent}
+              >
+                {contactLoading ? 'Sending...' : contactSent ? '✓ Message Sent!' : 'Send Message →'}
+              </button>
+              {contactSent && <p className="form-success-msg">Message received! I'll get back to you shortly.</p>}
+              {contactError && <p className="form-error-msg">{contactError}</p>}
+            </form>
+          </div>
+        </section>
+
+        <footer className="footer">
+          <div className="footer-paper-texture"></div>
+          <div className="footer-inner">
+            <div className="footer-masthead-rule thick"></div>
+            <div className="footer-masthead-rule thin"></div>
+
+            <p className="footer-tagline">The Premier Aviation &amp; Aerospace Chronicle</p>
+
+            <div className="footer-masthead-rule thin"></div>
+
+            <div className="footer-columns">
+              <div className="footer-col">
+                <h4 className="footer-col-title">Navigate</h4>
+                <ul className="footer-links">
+                  <li><a href="/" id="footer-home">Home</a></li>
+                  <li><Link to="/blogs" id="footer-articles">Dispatches</Link></li>
+                  <li><a href="#motive" id="footer-about">About</a></li>
+                  <li><a href="#contact" id="footer-contact">Contact</a></li>
+                </ul>
+              </div>
+              <div className="footer-col">
+                <h4 className="footer-col-title">Dispatches</h4>
+                <ul className="footer-links">
+                  {articles.slice(0, 4).map((p) => (
+                    <li key={p._id}>
+                      <Link to={`/blog/${p.slug || p.id}`} id={`footer-post-${p.slug || p.id}`}>{p.title.substring(0, 38)}…</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="footer-col">
+                <h4 className="footer-col-title">The Correspondent</h4>
+                <p className="footer-bio">
+                  Diwakar Nagar , aviation enthusiast, engineering student, and blogger. Writing about the skies so you
+                  can understand them better.
+                </p>
+                <div className="footer-social">
+                  <a href="https://www.linkedin.com/in/diwakarnagar/" className="footer-social-link" id="footer-linkedin">in</a>
+                  <a href="https://x.com/diwakar_nagar01" className="footer-social-link" id="footer-twitter">𝕏</a>
+                  <a href="https://www.instagram.com/diwakar_nagar01" className="footer-social-link" id="footer-instagram">ig</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="footer-masthead-rule thin"></div>
+            <div className="footer-bottom">
+              <span>© 2026 AeroXplore.in · Diwakar Nagar · All Rights Reserved</span>
+              <span className="footer-bottom-right">Crafted with passion for aviation</span>
+            </div>
+            <div className="footer-masthead-rule thick"></div>
+          </div>
+        </footer>
+        <div style={{ textAlign: 'center', padding: '10px', fontSize: '0.75rem', color: '#888', background: '#0a0a0a' }}>
+          I'm here to help spark ideas and provide a great starting point, but for anything mission-critical, it’s always a good move to double-check with official documentation or expert sources just to be safe!
+        </div>
+      </div>
+    </>
   );
 }

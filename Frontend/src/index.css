@@ -9,10 +9,13 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background-color: #0d0d0d;
 }
 
 body {
   font-family: 'Inter', sans-serif;
+  background-color: #0d0d0d;
+  color: #1a0f05;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -50,4 +53,200 @@ input, textarea {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #e8c06a;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   GLOBAL ARTICLE THEME COLOR PALETTE (For Cards Across All Pages)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* 1. Classic Parchment (Default) */
+.blog-card.theme-article-bg,
+.ab-card.theme-article-bg,
+.ma-home-card.theme-article-bg {
+  background-color: #f2e8d0 !important;
+  border-color: rgba(44, 24, 16, 0.3) !important;
+  color: #1a0f05 !important;
+}
+.blog-card.theme-article-bg .blog-card-body,
+.ab-card.theme-article-bg .ab-card-body,
+.ma-home-card.theme-article-bg .blog-card-body {
+  background-color: #f2e8d0 !important;
+  border-top-color: rgba(44, 24, 16, 0.2) !important;
+}
+.blog-card.theme-article-bg .blog-card-category,
+.ab-card.theme-article-bg .ab-card-category,
+.ma-home-card.theme-article-bg .blog-card-category {
+  background: #1a0f05 !important;
+  color: #f0e6cc !important;
+}
+.blog-card.theme-article-bg:hover,
+.ab-card.theme-article-bg:hover,
+.ma-home-card.theme-article-bg:hover {
+  border-color: rgba(44, 24, 16, 0.65) !important;
+  box-shadow: 0 12px 30px rgba(44, 24, 16, 0.2) !important;
+}
+
+/* 2. Olive Green */
+.blog-card.theme-article-bg-green,
+.ab-card.theme-article-bg-green,
+.ma-home-card.theme-article-bg-green {
+  background-color: #d6e2cf !important;
+  border-color: rgba(28, 48, 26, 0.38) !important;
+  color: #111d10 !important;
+}
+.blog-card.theme-article-bg-green .blog-card-body,
+.ab-card.theme-article-bg-green .ab-card-body,
+.ma-home-card.theme-article-bg-green .blog-card-body {
+  background-color: #d6e2cf !important;
+  border-top-color: rgba(28, 48, 26, 0.22) !important;
+}
+.blog-card.theme-article-bg-green .blog-card-category,
+.ab-card.theme-article-bg-green .ab-card-category,
+.ma-home-card.theme-article-bg-green .blog-card-category {
+  background: #1c301a !important;
+  color: #eef4ec !important;
+}
+.blog-card.theme-article-bg-green .blog-card-title,
+.ab-card.theme-article-bg-green .ab-card-title,
+.ma-home-card.theme-article-bg-green .blog-card-title {
+  color: #111d10 !important;
+}
+.blog-card.theme-article-bg-green .blog-card-meta,
+.ab-card.theme-article-bg-green .ab-card-meta,
+.ma-home-card.theme-article-bg-green .blog-card-meta {
+  color: #1f331d !important;
+}
+.blog-card.theme-article-bg-green:hover,
+.ab-card.theme-article-bg-green:hover,
+.ma-home-card.theme-article-bg-green:hover {
+  border-color: rgba(28, 48, 26, 0.75) !important;
+  box-shadow: 0 12px 30px rgba(28, 48, 26, 0.22) !important;
+}
+.ma-home-card.theme-article-bg-green .ma-pill-read {
+  background: rgba(28, 48, 26, 0.1) !important;
+  border-color: rgba(28, 48, 26, 0.35) !important;
+  color: #1c301a !important;
+}
+.ma-home-card.theme-article-bg-green .ma-pill-read:hover {
+  background: #1c301a !important;
+  color: #eef4ec !important;
+}
+.ma-home-card.theme-article-bg-green .ma-pill-edit {
+  background: rgba(56, 102, 65, 0.12) !important;
+  border-color: rgba(56, 102, 65, 0.4) !important;
+  color: #274c2e !important;
+}
+.ma-home-card.theme-article-bg-green .ma-pill-edit:hover {
+  background: #274c2e !important;
+  color: #ffffff !important;
+}
+
+/* 3. Aero Blue */
+.blog-card.theme-article-bg-blue,
+.ab-card.theme-article-bg-blue,
+.ma-home-card.theme-article-bg-blue {
+  background-color: #d4e2eb !important;
+  border-color: rgba(18, 38, 54, 0.38) !important;
+  color: #081520 !important;
+}
+.blog-card.theme-article-bg-blue .blog-card-body,
+.ab-card.theme-article-bg-blue .ab-card-body,
+.ma-home-card.theme-article-bg-blue .blog-card-body {
+  background-color: #d4e2eb !important;
+  border-top-color: rgba(18, 38, 54, 0.22) !important;
+}
+.blog-card.theme-article-bg-blue .blog-card-category,
+.ab-card.theme-article-bg-blue .ab-card-category,
+.ma-home-card.theme-article-bg-blue .blog-card-category {
+  background: #122636 !important;
+  color: #edf4f9 !important;
+}
+.blog-card.theme-article-bg-blue .blog-card-title,
+.ab-card.theme-article-bg-blue .ab-card-title,
+.ma-home-card.theme-article-bg-blue .blog-card-title {
+  color: #081520 !important;
+}
+.blog-card.theme-article-bg-blue .blog-card-meta,
+.ab-card.theme-article-bg-blue .ab-card-meta,
+.ma-home-card.theme-article-bg-blue .blog-card-meta {
+  color: #172c3d !important;
+}
+.blog-card.theme-article-bg-blue:hover,
+.ab-card.theme-article-bg-blue:hover,
+.ma-home-card.theme-article-bg-blue:hover {
+  border-color: rgba(18, 38, 54, 0.75) !important;
+  box-shadow: 0 12px 30px rgba(18, 38, 54, 0.22) !important;
+}
+.ma-home-card.theme-article-bg-blue .ma-pill-read {
+  background: rgba(18, 38, 54, 0.1) !important;
+  border-color: rgba(18, 38, 54, 0.35) !important;
+  color: #122636 !important;
+}
+.ma-home-card.theme-article-bg-blue .ma-pill-read:hover {
+  background: #122636 !important;
+  color: #edf4f9 !important;
+}
+.ma-home-card.theme-article-bg-blue .ma-pill-edit {
+  background: rgba(42, 111, 151, 0.12) !important;
+  border-color: rgba(42, 111, 151, 0.4) !important;
+  color: #1d5272 !important;
+}
+.ma-home-card.theme-article-bg-blue .ma-pill-edit:hover {
+  background: #1d5272 !important;
+  color: #ffffff !important;
+}
+
+/* 4. Crimson Pink */
+.blog-card.theme-article-bg-pink,
+.ab-card.theme-article-bg-pink,
+.ma-home-card.theme-article-bg-pink {
+  background-color: #ebd5d9 !important;
+  border-color: rgba(58, 23, 32, 0.38) !important;
+  color: #1f080e !important;
+}
+.blog-card.theme-article-bg-pink .blog-card-body,
+.ab-card.theme-article-bg-pink .ab-card-body,
+.ma-home-card.theme-article-bg-pink .blog-card-body {
+  background-color: #ebd5d9 !important;
+  border-top-color: rgba(58, 23, 32, 0.22) !important;
+}
+.blog-card.theme-article-bg-pink .blog-card-category,
+.ab-card.theme-article-bg-pink .ab-card-category,
+.ma-home-card.theme-article-bg-pink .blog-card-category {
+  background: #3a1720 !important;
+  color: #fbf2f4 !important;
+}
+.blog-card.theme-article-bg-pink .blog-card-title,
+.ab-card.theme-article-bg-pink .ab-card-title,
+.ma-home-card.theme-article-bg-pink .blog-card-title {
+  color: #1f080e !important;
+}
+.blog-card.theme-article-bg-pink .blog-card-meta,
+.ab-card.theme-article-bg-pink .ab-card-meta,
+.ma-home-card.theme-article-bg-pink .blog-card-meta {
+  color: #30141b !important;
+}
+.blog-card.theme-article-bg-pink:hover,
+.ab-card.theme-article-bg-pink:hover,
+.ma-home-card.theme-article-bg-pink:hover {
+  border-color: rgba(58, 23, 32, 0.75) !important;
+  box-shadow: 0 12px 30px rgba(58, 23, 32, 0.22) !important;
+}
+.ma-home-card.theme-article-bg-pink .ma-pill-read {
+  background: rgba(58, 23, 32, 0.1) !important;
+  border-color: rgba(58, 23, 32, 0.35) !important;
+  color: #3a1720 !important;
+}
+.ma-home-card.theme-article-bg-pink .ma-pill-read:hover {
+  background: #3a1720 !important;
+  color: #fbf2f4 !important;
+}
+.ma-home-card.theme-article-bg-pink .ma-pill-edit {
+  background: rgba(155, 34, 38, 0.12) !important;
+  border-color: rgba(155, 34, 38, 0.4) !important;
+  color: #721619 !important;
+}
+.ma-home-card.theme-article-bg-pink .ma-pill-edit:hover {
+  background: #721619 !important;
+  color: #ffffff !important;
 }

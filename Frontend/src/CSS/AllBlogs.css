@@ -41,6 +41,15 @@
 }
 
 /* ─── Back Link ──────────────────────────────────────────── */
+.ab-top-bar {
+  position: relative;
+  z-index: 2147483647;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
 .ab-back-link {
   display: inline-block;
   font-family: 'Cormorant Garamond', serif;
@@ -52,7 +61,7 @@
   text-decoration: none;
   opacity: 0.65;
   transition: opacity 0.2s ease, letter-spacing 0.2s ease;
-  margin-bottom: 1.8rem;
+  margin-bottom: 0;
 }
 
 .ab-back-link:hover {
@@ -263,6 +272,22 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   padding: 3px 8px;
+}
+
+.ab-community-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #2c1810;
+  color: #ffd978;
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid rgba(212, 168, 75, 0.4);
 }
 
 .ab-card-body {

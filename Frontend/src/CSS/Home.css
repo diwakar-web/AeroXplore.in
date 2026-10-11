@@ -45,6 +45,20 @@
   padding: 0 2rem;
 }
 
+.newspaper-hero {
+  position: relative;
+}
+
+.newspaper-header-actions {
+  position: absolute;
+  top: 0.85rem;
+  right: 2rem;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
 .newspaper-masthead {
   text-align: center;
   padding-bottom: 1rem;
@@ -868,6 +882,12 @@
 }
 
 @media (max-width: 768px) {
+  .newspaper-header-actions {
+    top: 0.7rem;
+    right: 1.25rem;
+    gap: 0.25rem;
+  }
+
   .blog-cards-grid {
     grid-template-columns: 1fr;
   }
@@ -926,6 +946,16 @@
 }
 
 @media (max-width: 480px) {
+  .newspaper-section {
+    padding-top: 3.2rem;
+  }
+
+  .newspaper-header-actions {
+    top: 0.6rem;
+    right: 0.75rem;
+    gap: 0.22rem;
+  }
+
   .newspaper-inner {
     padding: 0 1rem;
   }

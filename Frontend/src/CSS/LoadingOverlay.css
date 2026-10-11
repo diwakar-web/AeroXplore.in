@@ -1,0 +1,258 @@
+/* LoadingOverlay.css - Minimal Floating Aviation Radar Loader */
+
+.aero-loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(14, 10, 8, 0.18);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  padding: 1.5rem;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s;
+}
+
+.aero-loading-overlay.aero-fade-in {
+  opacity: 1;
+  visibility: visible;
+}
+
+.aero-loading-overlay.aero-fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Floating Loader Container (No card border/background) */
+.aero-floating-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  animation: aeroFloatIn 0.4s ease-out forwards;
+}
+
+@keyframes aeroFloatIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Radar / Compass Visual ── */
+.aero-radar-disk {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1a251b 0%, #0d1610 70%, #050b07 100%);
+  border: 3px solid #2c1810;
+  box-shadow:
+    0 0 0 2px #d4a84b,
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    inset 0 0 24px rgba(40, 167, 69, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Concentric rings */
+.aero-radar-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(72, 199, 116, 0.28);
+  pointer-events: none;
+}
+
+.aero-radar-ring.ring-1 {
+  width: 42px;
+  height: 42px;
+}
+
+.aero-radar-ring.ring-2 {
+  width: 80px;
+  height: 80px;
+}
+
+.aero-radar-ring.ring-3 {
+  width: 118px;
+  height: 118px;
+  border-style: solid;
+  border-color: rgba(72, 199, 116, 0.35);
+}
+
+/* Radar crosshairs */
+.aero-radar-crosshair {
+  position: absolute;
+  background: rgba(72, 199, 116, 0.25);
+  pointer-events: none;
+}
+
+.aero-radar-crosshair.horizontal {
+  width: 100%;
+  height: 1px;
+}
+
+.aero-radar-crosshair.vertical {
+  width: 1px;
+  height: 100%;
+}
+
+/* Rotating Radar Beam Sweep */
+.aero-radar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(72, 199, 116, 0.45) 0deg,
+    rgba(72, 199, 116, 0.08) 45deg,
+    transparent 75deg,
+    transparent 360deg
+  );
+  animation: aeroRadarSpin 2.4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes aeroRadarSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Center Fighter Jet Silhouette */
+.aero-jet-silhouette {
+  position: relative;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4a84b;
+  animation: aeroJetHover 2.4s ease-in-out infinite alternate;
+}
+
+.aero-jet-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 8px rgba(212, 168, 75, 0.6));
+}
+
+@keyframes aeroJetHover {
+  0% {
+    transform: translateY(2px) scale(0.97);
+  }
+  100% {
+    transform: translateY(-2px) scale(1.03);
+  }
+}
+
+/* Supersonic Shockwave Pulses */
+.aero-mach-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1.5px solid rgba(212, 168, 75, 0.8);
+  pointer-events: none;
+  animation: aeroMachRings 2s cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
+}
+
+.aero-mach-pulse.pulse-2 {
+  animation-delay: 1s;
+}
+
+@keyframes aeroMachRings {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 0.9;
+  }
+  100% {
+    width: 130px;
+    height: 130px;
+    opacity: 0;
+  }
+}
+
+/* Compass points */
+.aero-cardinal {
+  position: absolute;
+  font-family: 'Cinzel Decorative', 'Georgia', serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: rgba(212, 168, 75, 0.85);
+  pointer-events: none;
+}
+
+.aero-cardinal.north { top: 4px; }
+.aero-cardinal.east { right: 6px; }
+.aero-cardinal.south { bottom: 4px; }
+.aero-cardinal.west { left: 6px; }
+
+/* ── Minimal Floating Status Capsule ── */
+.aero-loading-status {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2c1810;
+  background: rgba(244, 237, 216, 0.88);
+  padding: 0.45rem 1.15rem;
+  border-radius: 20px;
+  border: 1px solid rgba(44, 24, 16, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  letter-spacing: 0.04em;
+  margin: 0;
+  min-height: 1.3rem;
+  animation: aeroStatusFade 0.4s ease forwards;
+}
+
+@keyframes aeroStatusFade {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Blurred Page Content Mode ── */
+.aero-page-blurred {
+  filter: blur(14px) brightness(0.97);
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.5s ease;
+}
+
+.aero-page-sharp {
+  filter: blur(0px) brightness(1);
+  transition: filter 0.5s ease;
+}
+
+@media (max-width: 600px) {
+  .aero-radar-disk {
+    width: 120px;
+    height: 120px;
+  }
+  .aero-loading-status {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.9rem;
+  }
+}

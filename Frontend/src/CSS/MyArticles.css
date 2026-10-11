@@ -1,0 +1,522 @@
+/* ── My Articles Page (Newspaper Archive Aesthetic) ── */
+
+.ma-root {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f0e6cc;
+  color: #1a0f05;
+  padding: 2.5rem 0 5rem;
+}
+
+.ma-paper-texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px, transparent 24px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px, transparent 100%);
+  z-index: 0;
+}
+
+.ma-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* ── Top Bar ── */
+.ma-top-bar {
+  position: relative;
+  z-index: 2147483647;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.ma-back-link {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #2c1810;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.ma-back-link:hover {
+  color: #8c6721;
+  transform: translateX(-3px);
+}
+
+/* ── Masthead ── */
+.ma-masthead {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ma-rule {
+  width: 100%;
+  border: none;
+}
+
+.ma-rule.thick {
+  border-top: 4px solid #2c1810;
+  margin-bottom: 3px;
+}
+
+.ma-rule.thin {
+  border-top: 1.5px solid #2c1810;
+  margin: 4px 0;
+}
+
+.ma-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: #1a0f05;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0.25rem 0;
+}
+
+.ma-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #2c1810;
+  opacity: 0.8;
+  margin-bottom: 0.35rem;
+}
+
+.ma-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.85rem;
+  color: #3b2314;
+}
+
+/* ── Action Row ── */
+.ma-action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1.5px solid rgba(44, 24, 16, 0.2);
+}
+
+.ma-section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #1a0f05;
+  margin: 0;
+}
+
+.ma-create-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.15rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: #2c1810;
+  color: #fdfbf7;
+  border: 1.5px solid #2c1810;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0px rgba(44, 24, 16, 0.15);
+}
+
+.ma-create-btn:hover {
+  background-color: #160c08;
+  color: #ffd978;
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0px rgba(44, 24, 16, 0.3);
+}
+
+/* ── Alerts ── */
+.ma-alert-error {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  border-radius: 3px;
+  background-color: #fbeae8;
+  border: 1.5px solid #c93b2b;
+  color: #9c2718;
+  margin-bottom: 1.5rem;
+}
+
+.ma-loading {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  padding: 5rem 0;
+  color: #2c1810;
+}
+
+/* ── Empty State ── */
+.ma-empty-state {
+  text-align: center;
+  padding: 4.5rem 2rem;
+  background-color: #fdfbf7;
+  border: 2px dashed rgba(44, 24, 16, 0.3);
+  border-radius: 4px;
+}
+
+.ma-empty-ornament {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  color: #8c6721;
+}
+
+.ma-empty-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1a0f05;
+  margin-bottom: 0.5rem;
+}
+
+.ma-empty-desc {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #665544;
+  max-width: 500px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.5;
+}
+
+.ma-empty-btn {
+  display: inline-block;
+  padding: 0.65rem 1.4rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: #2c1810;
+  color: #ffd978;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.ma-empty-btn:hover {
+  background-color: #000;
+  transform: translateY(-1px);
+}
+
+/* ── Developer Superpower Tabs ── */
+.ma-admin-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(44, 24, 16, 0.2);
+  padding-bottom: 0.25rem;
+}
+
+.ma-tab-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #665544;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  margin-bottom: -0.35rem;
+}
+
+.ma-tab-btn:hover {
+  color: #1a0f05;
+}
+
+.ma-tab-btn.active {
+  color: #2c1810;
+  border-bottom-color: #2c1810;
+}
+
+.ma-tab-btn.superpower {
+  color: #8c6721;
+}
+
+.ma-tab-btn.superpower.active {
+  color: #8c6721;
+  border-bottom-color: #8c6721;
+}
+
+/* ── Grid of Articles (Matching Home Page) ── */
+.ma-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ── Blog Card (Matching Home Page .blog-card) ── */
+.blog-card.ma-home-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1.5px solid rgba(44, 24, 16, 0.2);
+  overflow: hidden;
+  text-decoration: none;
+  color: #1a0f05;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.blog-card.ma-home-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(44, 24, 16, 0.18);
+  border-color: rgba(44, 24, 16, 0.5);
+}
+
+.ma-home-card .blog-card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 170px;
+  display: block;
+  background: #e8ded0;
+}
+
+.ma-home-card .blog-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(15%) contrast(1.05);
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.ma-home-card:hover .blog-card-img {
+  transform: scale(1.06);
+}
+
+.ma-home-card .blog-card-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #1a0f05;
+  color: #f0e6cc;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+.ma-home-card .blog-card-body {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1.5px solid rgba(44, 24, 16, 0.2);
+}
+
+.ma-home-card .blog-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: #1a0f05;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ma-card-title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ma-card-title-link:hover {
+  color: #8c6721;
+}
+
+.ma-home-card .blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #1a0f05;
+  opacity: 0.75;
+  flex-wrap: wrap;
+}
+
+.ma-home-card .blog-card-sep {
+  opacity: 0.4;
+}
+
+.ma-author-email {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-style: normal;
+  color: #776655;
+}
+
+/* ── 4 Options In Bottom Single Row ── */
+.ma-card-bottom-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(44, 24, 16, 0.15);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ma-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 4px;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.56rem, 1.25vw, 0.65rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.18s ease;
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+/* Option 1: Status Pill */
+.ma-pill-status {
+  cursor: default;
+  font-weight: 800;
+}
+
+.ma-pill-status.published {
+  background-color: #eafaf1;
+  color: #1e824c;
+  border-color: #a3e4d7;
+}
+
+.ma-pill-status.draft {
+  background-color: #fef9e7;
+  color: #b7950b;
+  border-color: #f9e79f;
+}
+
+/* Option 2: Read Pill */
+.ma-pill-read {
+  color: #2c1810;
+  background: rgba(44, 24, 16, 0.06);
+  border-color: rgba(44, 24, 16, 0.25);
+}
+
+.ma-pill-read:hover {
+  background: #2c1810;
+  color: #ffd978;
+  border-color: #2c1810;
+  transform: translateY(-1px);
+}
+
+/* Option 3: Edit Pill */
+.ma-pill-edit {
+  color: #8c6721;
+  background: rgba(140, 103, 33, 0.08);
+  border-color: rgba(140, 103, 33, 0.35);
+}
+
+.ma-pill-edit:hover {
+  background: #8c6721;
+  color: #fdfbf7;
+  border-color: #8c6721;
+  transform: translateY(-1px);
+}
+
+/* Option 4: Delete Pill */
+.ma-pill-delete {
+  color: #9c2718;
+  background: transparent;
+  border-color: rgba(156, 39, 24, 0.35);
+}
+
+.ma-pill-delete:hover:not(:disabled) {
+  background-color: #9c2718;
+  color: #ffffff;
+  border-color: #9c2718;
+  transform: translateY(-1px);
+}
+
+.ma-pill-delete:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Responsive Layout ── */
+@media (max-width: 950px) {
+  .ma-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .ma-action-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .ma-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .ma-admin-tabs {
+    flex-direction: column;
+    border-bottom: none;
+  }
+  .ma-tab-btn {
+    border-bottom: none;
+    border-left: 3px solid transparent;
+    padding: 0.35rem 0.5rem;
+  }
+  .ma-tab-btn.active {
+    border-left-color: #2c1810;
+  }
+  .ma-pill {
+    font-size: 0.6rem;
+    padding: 0 2px;
+  }
+}
