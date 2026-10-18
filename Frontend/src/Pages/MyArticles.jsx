@@ -34,11 +34,16 @@ export default function MyArticles() {
     setFetching(true);
     setError('');
     try {
-      const endpoint = showAll ? `${API_BASE}/articles/my?all=true` : `${API_BASE}/articles/my`;
+      const endpoint = showAll
+        ? `${API_BASE}/articles/my?all=true&_t=${Date.now()}`
+        : `${API_BASE}/articles/my?_t=${Date.now()}`;
       const res = await fetch(endpoint, {
+        cache: 'no-store',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
         },
       });
       const data = await res.json();

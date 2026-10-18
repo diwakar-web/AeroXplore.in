@@ -59,7 +59,7 @@ const DEFAULT_DISPATCHES = [
 ];
 
 export default function Home() {
-  const [articles, setArticles] = useState(DEFAULT_DISPATCHES);
+  const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -73,7 +73,13 @@ export default function Home() {
 
     const fetchArticles = async () => {
       try {
-        const res = await fetch(`${API_BASE}/articles`);
+        const res = await fetch(`${API_BASE}/articles?_t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+          },
+        });
         const data = await res.json();
         if (res.ok && data.success && Array.isArray(data.articles) && data.articles.length > 0) {
           const formatted = data.articles.map((art) => ({
@@ -97,9 +103,14 @@ export default function Home() {
           if (isMounted) {
             setArticles(formatted);
           }
+        } else if (isMounted) {
+          setArticles(DEFAULT_DISPATCHES);
         }
       } catch (err) {
         console.error('Failed to load dispatches from DB:', err);
+        if (isMounted) {
+          setArticles(DEFAULT_DISPATCHES);
+        }
       } finally {
         const elapsed = Date.now() - startTime;
         const remaining = Math.max(0, Math.min(2000 - elapsed, 400));
@@ -117,7 +128,7 @@ export default function Home() {
   }, []);
 
   const featuredPost = articles[0] || null;
-  const displayPosts = articles.length > 3 ? articles.slice(1, 4) : articles.slice(0, 3);
+  const displayPosts = articles.length > 1 ? articles.slice(1, 4) : [];
 
   useScrollReveal([articles, loading]);
 

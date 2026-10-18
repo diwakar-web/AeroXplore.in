@@ -48,6 +48,17 @@ app.use(async (req, res, next) => {
   }
 });
 
+// Prevent client & edge caching on dynamic API routes so newly created/updated articles appear instantly
+app.use('/api', (req, res, next) => {
+  res.set({
+    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0',
+    'Surrogate-Control': 'no-store',
+  });
+  next();
+});
+
 app.use('/api', subscribeRoutes);
 app.use('/api', contactRoutes);
 app.use('/api', blogStatRoutes);

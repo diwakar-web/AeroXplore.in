@@ -5,9 +5,9 @@
 // ============================================================
 
 // EDIT THESE 3 LINES EVERY WEEK:
-const ARTICLE_TITLE = "The Great Aviation Rivalry: Boeing vs. Airbus";
-const ARTICLE_LINK = "https://www.aeroxplore.in/blog/airbus&boeing";
-const ARTICLE_EXCERPT = "Two aerospace titans. One global skyway. Step into the high-stakes arena where Boeing and Airbus fight for multi-billion dollar dominance, pushing engineering to its limits and dictating how humanity moves across the globe. Are you ready to see who really rules the air?"
+const ARTICLE_TITLE = "Sharing the Skies: A Strategy for Flight Path Deconfliction and Vulture Conservation";
+const ARTICLE_LINK = "https://www.aeroxplore.in/blog/sharing-the-skies-a-strategy-for-flight-path-deconfliction-and-vulture-conservation-9692";
+const ARTICLE_EXCERPT = "Human infrastructure bisects ancient migratory flyways—putting flights and soaring birds at risk. Can we deconflict flight paths using thermal radar tracking, Vulture Restaurants, and dedicated wildlife refuges? Read Dr Satheesan S M's appeal to global aviation regulators & IUCN"
 // ============================================================
 // DO NOT EDIT BELOW THIS LINE
 // ============================================================

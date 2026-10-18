@@ -44,8 +44,15 @@ export default function BlogPost() {
       setError('');
       try {
         const authToken = token || localStorage.getItem('aeroxplore_auth_token') || localStorage.getItem('aeroxplore_token');
-        const headers = authToken ? { Authorization: `Bearer ${authToken}` } : {};
-        const res = await fetch(`${API_BASE}/articles/${encodeURIComponent(id)}`, { headers });
+        const headers = {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
+          ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
+        };
+        const res = await fetch(`${API_BASE}/articles/${encodeURIComponent(id)}?_t=${Date.now()}`, {
+          cache: 'no-store',
+          headers,
+        });
         const data = await res.json();
         if (res.ok && data.success && data.article) {
           const art = data.article;

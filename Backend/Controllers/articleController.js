@@ -163,6 +163,13 @@ exports.deleteArticle = async (req, res) => {
 // 4. Get articles for My Articles page (supports ?all=true for developer superpower)
 exports.getMyArticles = async (req, res) => {
   try {
+    res.set({
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+      'Surrogate-Control': 'no-store',
+    });
+
     const isAllRequested = req.query.all === 'true';
 
     // If developer superpower requests all articles
@@ -206,6 +213,13 @@ exports.getMyArticles = async (req, res) => {
 // 5. Get all published articles (Public for AllBlogs archive and Home feed)
 exports.getAllArticles = async (req, res) => {
   try {
+    res.set({
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+      'Surrogate-Control': 'no-store',
+    });
+
     const articles = await Article.find({ status: 'published' })
       .sort({ createdAt: -1 })
       .populate('author', 'name email photoURL');
@@ -224,6 +238,13 @@ exports.getAllArticles = async (req, res) => {
 // 6. Get single article by ID or slug
 exports.getArticleById = async (req, res) => {
   try {
+    res.set({
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+      'Surrogate-Control': 'no-store',
+    });
+
     const { id } = req.params;
     let article = null;
     if (id.match(/^[0-9a-fA-F]{24}$/)) {

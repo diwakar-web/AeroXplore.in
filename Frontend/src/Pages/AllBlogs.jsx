@@ -24,7 +24,13 @@ export default function AllBlogs() {
     const fetchArticles = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${API_BASE}/articles`);
+        const res = await fetch(`${API_BASE}/articles?_t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+          },
+        });
         const data = await res.json();
         if (res.ok && data.success && Array.isArray(data.articles)) {
           const formatted = data.articles.map((art) => ({
