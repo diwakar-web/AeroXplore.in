@@ -6,33 +6,39 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import AuthButton from '../components/AuthButton';
 import LoadingOverlay from '../components/LoadingOverlay';
 import { API_BASE } from '../utils/api';
+import { ALL_DEFAULT_DISPATCHES } from '../utils/defaultDispatches';
 
 export default function AllBlogs() {
   const [query, setQuery] = useState('');
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(ALL_DEFAULT_DISPATCHES);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
-    const startTime = Date.now();
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
 
-    // Safety timeout: Never load for more than 2 seconds
+    // Safety timeout: Never hang in loading state
     const maxSafetyTimer = setTimeout(() => {
-      if (isMounted) setLoading(false);
-    }, 2000);
+      if (isMounted) {
+        setLoading(false);
+        setArticles((prev) => (prev && prev.length > 0 ? prev : ALL_DEFAULT_DISPATCHES));
+      }
+    }, 1800);
 
     const fetchArticles = async () => {
-      setLoading(true);
       try {
         const res = await fetch(`${API_BASE}/articles?_t=${Date.now()}`, {
+          signal: controller.signal,
           cache: 'no-store',
           headers: {
             'Cache-Control': 'no-cache',
             'Pragma': 'no-cache',
           },
         });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        if (res.ok && data.success && Array.isArray(data.articles)) {
+        if (data.success && Array.isArray(data.articles) && data.articles.length > 0) {
           const formatted = data.articles.map((art) => ({
             _id: art._id,
             id: art.slug || art._id,
@@ -51,19 +57,22 @@ export default function AllBlogs() {
           if (isMounted) setArticles(formatted);
         }
       } catch (err) {
-        console.error('Failed to fetch DB articles:', err);
+        console.warn('AllBlogs archive loaded from fallback manifest:', err.message);
+        if (isMounted) {
+          setArticles((prev) => (prev && prev.length > 0 ? prev : ALL_DEFAULT_DISPATCHES));
+        }
       } finally {
-        const elapsed = Date.now() - startTime;
-        const remaining = Math.max(0, Math.min(2000 - elapsed, 400));
-        setTimeout(() => {
-          if (isMounted) setLoading(false);
-        }, remaining);
+        clearTimeout(timeoutId);
+        clearTimeout(maxSafetyTimer);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchArticles();
     return () => {
       isMounted = false;
+      controller.abort();
+      clearTimeout(timeoutId);
       clearTimeout(maxSafetyTimer);
     };
   }, []);

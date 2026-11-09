@@ -1,4 +1,4 @@
-/* LoadingOverlay.css - Minimal Floating Aviation Radar Loader */
+/* LoadingOverlay.css - Full-Screen Aviation Radar Chronicle Loader */
 
 .aero-loading-overlay {
   position: fixed;
@@ -7,11 +7,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(14, 10, 8, 0.18);
-  backdrop-filter: blur(12px) saturate(1.1);
-  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  background: radial-gradient(ellipse at center, #1b140f 0%, #0d0a08 100%);
   padding: 1.5rem;
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s ease;
 }
 
 .aero-loading-overlay.aero-fade-in {
@@ -25,14 +23,50 @@
   pointer-events: none;
 }
 
-/* Floating Loader Container (No card border/background) */
+/* Floating Loader Container (Full-screen centered brand presentation) */
 .aero-floating-loader {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.25rem;
+  gap: 1.4rem;
   animation: aeroFloatIn 0.4s ease-out forwards;
+}
+
+/* Chronicle Header inside Loader */
+.aero-loader-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aero-loader-kicker {
+  font-family: 'Cinzel Decorative', 'Georgia', serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #d4a84b;
+  opacity: 0.9;
+  margin-bottom: 0.3rem;
+}
+
+.aero-loader-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: #f4edd8;
+  margin: 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.aero-loader-rule {
+  width: 72px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4a84b, transparent);
+  margin-top: 0.5rem;
 }
 
 @keyframes aeroFloatIn {
@@ -233,17 +267,16 @@
   }
 }
 
-/* ── Blurred Page Content Mode ── */
+/* ── Page Content State during loading ── */
 .aero-page-blurred {
-  filter: blur(14px) brightness(0.97);
   pointer-events: none;
   user-select: none;
-  transition: filter 0.5s ease;
 }
 
 .aero-page-sharp {
-  filter: blur(0px) brightness(1);
-  transition: filter 0.5s ease;
+  pointer-events: auto;
+  user-select: auto;
+  transition: opacity 0.3s ease;
 }
 
 @media (max-width: 600px) {

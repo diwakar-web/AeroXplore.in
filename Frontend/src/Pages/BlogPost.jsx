@@ -7,6 +7,7 @@ import { useAuth } from '../context/AuthContext';
 import LoadingOverlay from '../components/LoadingOverlay';
 import '../CSS/LoadingOverlay.css';
 import { API_BASE } from '../utils/api';
+import { DEFAULT_POSTS_MAP } from '../utils/defaultDispatches';
 
 const THEME_BACKGROUNDS = {
   'article-bg': '/images/Article-bg.png',
@@ -19,28 +20,51 @@ export default function BlogPost() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user, token } = useAuth();
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+  // Helper to format default article fallback
+  const getFallbackPost = (targetId) => {
+    const raw = DEFAULT_POSTS_MAP[targetId];
+    if (!raw) return null;
+    return {
+      _id: `default-${targetId}`,
+      id: targetId,
+      slug: targetId,
+      status: 'published',
+      title: raw.title,
+      date: raw.date,
+      author: raw.author || 'Diwakar Nagar',
+      image: raw.image || '/images/Background.png',
+      category: raw.category || 'Defence Aviation',
+      thought: raw.thought || '',
+      content: Array.isArray(raw.content) ? raw.content : [raw.content],
+      theme: 'article-bg',
+    };
+  };
+
+  const [post, setPost] = useState(() => getFallbackPost(id));
+  const [loading, setLoading] = useState(!getFallbackPost(id));
   const [error, setError] = useState('');
   const [deleting, setDeleting] = useState(false);
 
   useScrollReveal([post, loading]);
 
-  const [stats, setStats] = useState({ likes: 0, dislikes: 0 });
+  const [_stats, setStats] = useState({ likes: 0, dislikes: 0 });
   const [voted, setVoted] = useState(false);
   const [userChoice, setUserChoice] = useState(null);
 
-  // Fetch article purely from MongoDB
+  // Fetch article from MongoDB
   useEffect(() => {
     if (!id) return;
 
-    // Safety timeout: Never load for more than 2 seconds
+    let isMounted = true;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
+
     const maxSafetyTimer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+      if (isMounted) setLoading(false);
+    }, 1800);
 
     const fetchArticle = async () => {
-      setLoading(true);
       setError('');
       try {
         const authToken = token || localStorage.getItem('aeroxplore_auth_token') || localStorage.getItem('aeroxplore_token');
@@ -50,46 +74,66 @@ export default function BlogPost() {
           ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
         };
         const res = await fetch(`${API_BASE}/articles/${encodeURIComponent(id)}?_t=${Date.now()}`, {
+          signal: controller.signal,
           cache: 'no-store',
           headers,
         });
         const data = await res.json();
         if (res.ok && data.success && data.article) {
           const art = data.article;
-          setPost({
-            _id: art._id,
-            authorId: art.author?._id ? String(art.author._id) : (art.author ? String(art.author) : ''),
-            authorEmail: art.author?.email || '',
-            title: art.title,
-            slug: art.slug,
-            status: art.status,
-            date: new Date(art.createdAt).toLocaleDateString('en-US', {
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric',
-            }),
-            author: art.authorName || art.author?.name || 'AeroXplore Aviator',
-            image: art.image || '/images/Background.png',
-            category: art.category || 'Defence Aviation',
-            thought: art.thought || '',
-            content: Array.isArray(art.content) ? art.content : [art.content],
-            theme: art.theme || 'article-bg',
-          });
+          if (isMounted) {
+            setPost({
+              _id: art._id,
+              authorId: art.author?._id ? String(art.author._id) : (art.author ? String(art.author) : ''),
+              authorEmail: art.author?.email || '',
+              title: art.title,
+              slug: art.slug,
+              status: art.status,
+              date: new Date(art.createdAt).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              }),
+              author: art.authorName || art.author?.name || 'AeroXplore Aviator',
+              image: art.image || '/images/Background.png',
+              category: art.category || 'Defence Aviation',
+              thought: art.thought || '',
+              content: Array.isArray(art.content) ? art.content : [art.content],
+              theme: art.theme || 'article-bg',
+            });
+          }
         } else if (res.status === 403) {
-          setError(data.message || 'This dispatch is an unpublished draft. Only its author and administrators can access it.');
+          if (isMounted) {
+            setError(data.message || 'This dispatch is an unpublished draft. Only its author and administrators can access it.');
+          }
         } else {
-          setError('The dispatch you’re looking for doesn’t exist.');
+          const fallback = getFallbackPost(id);
+          if (fallback) {
+            if (isMounted) setPost(fallback);
+          } else if (isMounted) {
+            setError('The dispatch you’re looking for doesn’t exist.');
+          }
         }
       } catch (err) {
-        console.error('Failed to load article:', err);
-        setError('Failed to load dispatch. Please check your network connection.');
+        console.warn('Article loaded from fallback cache:', err.message);
+        const fallback = getFallbackPost(id);
+        if (fallback) {
+          if (isMounted) setPost(fallback);
+        } else if (isMounted) {
+          setError('Failed to load dispatch. Please check your network connection.');
+        }
       } finally {
-        setLoading(false);
+        clearTimeout(timeoutId);
+        clearTimeout(maxSafetyTimer);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchArticle();
     return () => {
+      isMounted = false;
+      controller.abort();
+      clearTimeout(timeoutId);
       clearTimeout(maxSafetyTimer);
     };
   }, [id, token]);

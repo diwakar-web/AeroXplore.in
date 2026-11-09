@@ -7,81 +7,38 @@ import logo from '../assets/logo.webp';
 import AuthButton from '../components/AuthButton';
 import LoadingOverlay from '../components/LoadingOverlay';
 import { API_BASE } from '../utils/api';
-
-const DEFAULT_DISPATCHES = [
-  {
-    _id: 'default-1',
-    id: 'airbus&boeing',
-    slug: 'airbus&boeing',
-    title: "The Great Aviation Rivalry: Boeing vs. Airbus",
-    date: 'August 02, 2026',
-    author: 'Diwakar Nagar',
-    caption: 'Boeing vs. Airbus',
-    image: '/images/a-b.webp',
-    category: 'Aviation History',
-    theme: 'article-bg',
-    para1: "The duopoly between Boeing and Airbus represents one of the most intense and consequential rivalries in industrial history, dictating how humanity travels across continents while dominating global defense and aerospace technology. Boeing’s legacy began in Seattle in 1916, establishing itself as an American industrial superpower through WWII military platforms like the B-17 Flying Fortress, the pioneering 707 jetliner, and the iconic 747 jumbo jet in 1969. Conversely, Airbus was established in 1970 as a European consortium joining French, German, British, and Spanish aerospace entities to challenge American dominance.",
-    para2: "The commercial battlefield between the two giants spans single-aisle narrow-body and dual-aisle wide-body markets. In the narrow-body sector, Boeing’s ubiquitous 737 family (including the 737 MAX) competes directly with Airbus’s market-leading A320 family (notably the A320neo and long-range A321XLR variants). In wide-body, long-haul travel, Boeing relies on the 787 Dreamliner and 777/777X programs, whereas Airbus fields the A330neo and the carbon-composite A350 XWB.",
-  },
-  {
-    _id: 'default-2',
-    id: 'sekhon-ji',
-    slug: 'sekhon-ji',
-    title: "The Man Who Refused to Turn Back: Nirmal Jit Singh Sekhon",
-    date: 'August 01, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/sekhon.webp',
-    category: 'Trailblazing Personalities',
-    theme: 'article-bg',
-  },
-  {
-    _id: 'default-3',
-    id: 'mig-21',
-    slug: 'mig-21',
-    title: "The MiG-21: Hero, Villain or Both?",
-    date: 'July 31, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/mig-21.webp',
-    category: 'Defence Aviation',
-    theme: 'article-bg',
-  },
-  {
-    _id: 'default-4',
-    id: 'boeing',
-    slug: 'boeing',
-    title: "The Birth of Boeing: From Timber to Titans",
-    date: 'July 30, 2026',
-    author: 'Diwakar Nagar',
-    image: '/images/boeing.webp',
-    category: 'Aviation History',
-    theme: 'article-bg',
-  },
-];
+import { DEFAULT_DISPATCHES } from '../utils/defaultDispatches';
 
 export default function Home() {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(DEFAULT_DISPATCHES);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
-    const startTime = Date.now();
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
 
-    // Safety timeout: Never load for more than 2 seconds
+    // Safety timeout: Never hang in loading state
     const maxSafetyTimer = setTimeout(() => {
-      if (isMounted) setLoading(false);
-    }, 2000);
+      if (isMounted) {
+        setLoading(false);
+        setArticles((prev) => (prev && prev.length > 0 ? prev : DEFAULT_DISPATCHES));
+      }
+    }, 1800);
 
     const fetchArticles = async () => {
       try {
         const res = await fetch(`${API_BASE}/articles?_t=${Date.now()}`, {
+          signal: controller.signal,
           cache: 'no-store',
           headers: {
             'Cache-Control': 'no-cache',
             'Pragma': 'no-cache',
           },
         });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        if (res.ok && data.success && Array.isArray(data.articles) && data.articles.length > 0) {
+        if (data.success && Array.isArray(data.articles) && data.articles.length > 0) {
           const formatted = data.articles.map((art) => ({
             _id: art._id,
             id: art.slug || art._id,
@@ -97,38 +54,42 @@ export default function Home() {
             category: art.category || 'Defence Aviation',
             theme: art.theme || 'article-bg',
             caption: art.category || art.title,
-            para1: Array.isArray(art.content) && art.content[0] ? art.content[0] : '',
+            para1: Array.isArray(art.content) && art.content[0] ? art.content[0] : (typeof art.content === 'string' ? art.content : ''),
             para2: Array.isArray(art.content) && art.content[1] ? art.content[1] : '',
           }));
           if (isMounted) {
             setArticles(formatted);
           }
-        } else if (isMounted) {
-          setArticles(DEFAULT_DISPATCHES);
         }
       } catch (err) {
-        console.error('Failed to load dispatches from DB:', err);
+        console.warn('Dispatches loaded from fallback manifest:', err.message);
         if (isMounted) {
-          setArticles(DEFAULT_DISPATCHES);
+          setArticles((prev) => (prev && prev.length > 0 ? prev : DEFAULT_DISPATCHES));
         }
       } finally {
-        const elapsed = Date.now() - startTime;
-        const remaining = Math.max(0, Math.min(2000 - elapsed, 400));
-        setTimeout(() => {
-          if (isMounted) setLoading(false);
-        }, remaining);
+        clearTimeout(timeoutId);
+        clearTimeout(maxSafetyTimer);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchArticles();
     return () => {
       isMounted = false;
+      controller.abort();
+      clearTimeout(timeoutId);
       clearTimeout(maxSafetyTimer);
     };
   }, []);
 
-  const featuredPost = articles[0] || null;
-  const displayPosts = articles.length > 1 ? articles.slice(1, 4) : [];
+  // Guarantee that dispatches load completely without blank banners
+  const featuredPost = articles[0] || DEFAULT_DISPATCHES[0];
+  const recentPool = articles.length > 1
+    ? articles.slice(1)
+    : DEFAULT_DISPATCHES.filter((d) => d.slug !== featuredPost?.slug && d.id !== featuredPost?.id);
+  const displayPosts = recentPool.slice(0, 3);
 
   useScrollReveal([articles, loading]);
 

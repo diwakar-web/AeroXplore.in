@@ -2,6 +2,11 @@
 // Resolves the backend API base URL automatically based on the runtime environment
 
 export const getApiBase = () => {
+  // If explicitly configured in environment variables, prioritize it
+  if (import.meta.env.VITE_API_BASE) {
+    return import.meta.env.VITE_API_BASE;
+  }
+
   if (typeof window !== 'undefined') {
     const { hostname } = window.location;
     if (
@@ -13,8 +18,9 @@ export const getApiBase = () => {
       return 'http://localhost:5000/api';
     }
   }
-  return import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
+  return 'http://localhost:5000/api';
 };
 
 export const API_BASE = getApiBase();
 export default API_BASE;
+

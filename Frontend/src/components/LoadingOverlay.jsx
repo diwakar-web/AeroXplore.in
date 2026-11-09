@@ -21,32 +21,46 @@ export default function LoadingOverlay({ isVisible, maxDisplayDuration = 2000, o
     return () => clearInterval(interval);
   }, [isVisible]);
 
-  // Handle smooth fadeout transition capped strictly at 2 seconds
+  // Handle smooth fadeout transition
   useEffect(() => {
+    let fadeTimer;
+    let removeTimer;
+    let maxTimer;
+
     if (!isVisible) {
-      setFadingOut(true);
-      const timer = setTimeout(() => {
-        setShouldRender(false);
-        if (onDone) onDone();
-      }, 250);
-      return () => clearTimeout(timer);
+      fadeTimer = setTimeout(() => {
+        setFadingOut(true);
+        removeTimer = setTimeout(() => {
+          setShouldRender(false);
+          if (onDone) onDone();
+        }, 250);
+      }, 0);
+      return () => {
+        clearTimeout(fadeTimer);
+        clearTimeout(removeTimer);
+      };
     }
 
-    setShouldRender(true);
-    setFadingOut(false);
+    fadeTimer = setTimeout(() => {
+      setShouldRender(true);
+      setFadingOut(false);
+    }, 0);
 
-    // Hard limit: strictly no more than 2 seconds total display time
+    // Hard limit: strictly no more than maxDisplayDuration total display time
     const fadeOutDelay = Math.max(0, maxDisplayDuration - 250);
-    const maxTimer = setTimeout(() => {
+    maxTimer = setTimeout(() => {
       setFadingOut(true);
-      const doneTimer = setTimeout(() => {
+      removeTimer = setTimeout(() => {
         setShouldRender(false);
         if (onDone) onDone();
       }, 250);
-      return () => clearTimeout(doneTimer);
     }, fadeOutDelay);
 
-    return () => clearTimeout(maxTimer);
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+      clearTimeout(maxTimer);
+    };
   }, [isVisible, maxDisplayDuration, onDone]);
 
   if (!shouldRender) return null;
@@ -59,7 +73,13 @@ export default function LoadingOverlay({ isVisible, maxDisplayDuration = 2000, o
       id="aero-loading-screen"
     >
       <div className="aero-floating-loader">
-        {/* Floating Aviation Radar */}
+        <div className="aero-loader-header">
+          <span className="aero-loader-kicker">Flight Operations &amp; Intelligence</span>
+          <h2 className="aero-loader-title">AeroXplore</h2>
+          <div className="aero-loader-rule" />
+        </div>
+
+        {/* Aviation Radar */}
         <div className="aero-radar-disk">
           <div className="aero-radar-ring ring-1" />
           <div className="aero-radar-ring ring-2" />
