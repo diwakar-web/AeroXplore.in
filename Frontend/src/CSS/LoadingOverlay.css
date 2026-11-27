@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════
-   AEROXPLORE - TRANSPARENT RADAR HUD LOADING OVERLAY
-   Modern Glassmorphism · Zero Brown Tint · Fluid Transparency
+   AEROXPLORE - RADAR TELEMETRY HUD LOADER (GOLD & GREEN)
+   Heavily Blurred Frosted Glass · Classic Gold & Radar Green
    ═══════════════════════════════════════════════════════════ */
 
 .aero-loading-overlay {
@@ -10,17 +10,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 15, 29, 0.72);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(8, 12, 10, 0.78);
+  backdrop-filter: blur(36px) saturate(150%);
+  -webkit-backdrop-filter: blur(36px) saturate(150%);
   padding: 1.5rem;
   transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
 }
 
 [data-theme='light'] .aero-loading-overlay {
-  background: rgba(248, 250, 252, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(248, 250, 248, 0.82);
+  backdrop-filter: blur(36px) saturate(150%);
+  -webkit-backdrop-filter: blur(36px) saturate(150%);
 }
 
 .aero-loading-overlay.aero-fade-in {
@@ -56,12 +56,12 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--accent-cyan, #00e5ff);
+  color: #d4a84b;
   opacity: 0.95;
   margin-bottom: 0.35rem;
-  text-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+  text-shadow: 0 0 14px rgba(212, 168, 75, 0.45);
 }
 
 .aero-loader-title {
@@ -69,18 +69,18 @@
   font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--text-primary, #ffffff);
+  color: #ffffff;
   margin: 0;
-  background: linear-gradient(135deg, var(--text-primary, #ffffff) 40%, var(--accent-cyan, #00e5ff) 100%);
+  background: linear-gradient(135deg, #ffffff 30%, #ffd778 70%, #d4a84b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.25));
+  filter: drop-shadow(0 0 20px rgba(212, 168, 75, 0.3));
 }
 
 .aero-loader-rule {
   width: 90px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-cyan, #00e5ff), transparent);
+  background: linear-gradient(90deg, transparent, #d4a84b, transparent);
   margin-top: 0.6rem;
 }
 
@@ -95,22 +95,23 @@
   }
 }
 
-/* ── Modern Transparent High-Tech Radar HUD ── */
+/* ── Radar Disk (Classic Gold & Phosphor Green) ── */
 .aero-radar-disk {
   position: relative;
-  width: 146px;
-  height: 146px;
+  width: 148px;
+  height: 148px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(0, 229, 255, 0.1) 0%,
-    rgba(10, 20, 35, 0.65) 70%,
-    rgba(5, 10, 20, 0.85) 100%
+    rgba(16, 185, 129, 0.16) 0%,
+    rgba(10, 24, 18, 0.85) 70%,
+    rgba(5, 14, 10, 0.95) 100%
   );
-  border: 1.5px solid rgba(0, 229, 255, 0.4);
+  border: 2px solid #d4a84b;
   box-shadow:
-    0 0 30px rgba(0, 229, 255, 0.2),
-    inset 0 0 25px rgba(0, 229, 255, 0.1);
+    0 0 28px rgba(72, 199, 116, 0.28),
+    0 0 0 1px rgba(212, 168, 75, 0.35),
+    inset 0 0 25px rgba(72, 199, 116, 0.2);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: flex;
@@ -122,19 +123,19 @@
 [data-theme='light'] .aero-radar-disk {
   background: radial-gradient(
     circle,
-    rgba(0, 145, 255, 0.12) 0%,
-    rgba(241, 245, 249, 0.85) 70%,
-    rgba(226, 232, 240, 0.95) 100%
+    rgba(16, 185, 129, 0.18) 0%,
+    rgba(235, 245, 238, 0.9) 70%,
+    rgba(215, 235, 222, 0.98) 100%
   );
-  border-color: rgba(0, 145, 255, 0.4);
-  box-shadow: 0 0 25px rgba(0, 145, 255, 0.18);
+  border-color: #c0953a;
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.25);
 }
 
-/* Concentric rings */
+/* Concentric rings (Phosphor Green) */
 .aero-radar-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px dashed rgba(0, 229, 255, 0.3);
+  border: 1px dashed rgba(72, 199, 116, 0.42);
   pointer-events: none;
 }
 
@@ -152,13 +153,13 @@
   width: 126px;
   height: 126px;
   border-style: solid;
-  border-color: rgba(0, 229, 255, 0.22);
+  border-color: rgba(72, 199, 116, 0.32);
 }
 
-/* Radar crosshairs */
+/* Radar crosshairs (Phosphor Green) */
 .aero-radar-crosshair {
   position: absolute;
-  background: rgba(0, 229, 255, 0.2);
+  background: rgba(72, 199, 116, 0.3);
   pointer-events: none;
 }
 
@@ -172,15 +173,15 @@
   height: 100%;
 }
 
-/* Rotating Radar Beam Sweep */
+/* Rotating Radar Beam Sweep (Phosphor Green Sweep) */
 .aero-radar-sweep {
   position: absolute;
   inset: 0;
   border-radius: 50%;
   background: conic-gradient(
     from 0deg,
-    rgba(0, 229, 255, 0.5) 0deg,
-    rgba(0, 229, 255, 0.1) 45deg,
+    rgba(72, 199, 116, 0.58) 0deg,
+    rgba(72, 199, 116, 0.12) 45deg,
     transparent 75deg,
     transparent 360deg
   );
@@ -197,7 +198,7 @@
   }
 }
 
-/* Center Fighter Jet Silhouette */
+/* Center Fighter Jet Silhouette (Glowing Gold) */
 .aero-jet-silhouette {
   position: relative;
   z-index: 3;
@@ -206,14 +207,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-cyan, #00e5ff);
+  color: #ffd778;
   animation: aeroJetHover 2.2s ease-in-out infinite alternate;
 }
 
 .aero-jet-svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.65));
+  filter: drop-shadow(0 0 10px rgba(212, 168, 75, 0.75));
 }
 
 @keyframes aeroJetHover {
@@ -225,14 +226,14 @@
   }
 }
 
-/* Supersonic Shockwave Pulses */
+/* Supersonic Shockwave Pulses (Gold) */
 .aero-mach-pulse {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  border: 1.5px solid rgba(0, 229, 255, 0.7);
+  border: 1.5px solid rgba(212, 168, 75, 0.85);
   pointer-events: none;
   animation: aeroMachRings 2s cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
 }
@@ -254,14 +255,15 @@
   }
 }
 
-/* Compass points */
+/* Compass points (Gold) */
 .aero-cardinal {
   position: absolute;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.64rem;
   font-weight: 700;
-  color: rgba(0, 229, 255, 0.85);
+  color: #ffd778;
   pointer-events: none;
+  text-shadow: 0 0 8px rgba(212, 168, 75, 0.5);
 }
 
 .aero-cardinal.north { top: 5px; }
@@ -269,29 +271,32 @@
 .aero-cardinal.south { bottom: 5px; }
 .aero-cardinal.west { left: 7px; }
 
-/* ── Transparent Glass Status Capsule ── */
+/* ── Status Capsule (Frosted Glass with Gold Accent) ── */
 .aero-loading-status {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--accent-cyan, #00e5ff);
-  background: rgba(0, 229, 255, 0.08);
-  padding: 0.5rem 1.35rem;
+  color: #ffd778;
+  background: rgba(16, 26, 20, 0.75);
+  padding: 0.55rem 1.4rem;
   border-radius: 999px;
-  border: 1px solid rgba(0, 229, 255, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(212, 168, 75, 0.45);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.35),
+    0 0 16px rgba(72, 199, 116, 0.15);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
   margin: 0;
   min-height: 1.3rem;
   animation: aeroStatusFade 0.35s ease forwards;
 }
 
 [data-theme='light'] .aero-loading-status {
-  background: rgba(0, 145, 255, 0.08);
-  border-color: rgba(0, 145, 255, 0.3);
-  color: #0070f3;
+  background: rgba(240, 248, 242, 0.85);
+  border-color: rgba(192, 149, 58, 0.5);
+  color: #94691e;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
 @keyframes aeroStatusFade {
@@ -305,19 +310,21 @@
   }
 }
 
-/* ── Page Content State during loading ── */
+/* ── Page Content State during loading (Heavy Blur) ── */
 .aero-page-blurred {
   pointer-events: none;
   user-select: none;
-  filter: blur(3px);
-  transition: filter 0.3s ease;
+  filter: blur(18px) saturate(80%);
+  -webkit-filter: blur(18px) saturate(80%);
+  transition: filter 0.35s ease;
 }
 
 .aero-page-sharp {
   pointer-events: auto;
   user-select: auto;
   filter: none;
-  transition: filter 0.3s ease, opacity 0.3s ease;
+  -webkit-filter: none;
+  transition: filter 0.35s ease, opacity 0.35s ease;
 }
 
 @media (max-width: 600px) {
@@ -327,6 +334,6 @@
   }
   .aero-loading-status {
     font-size: 0.76rem;
-    padding: 0.4rem 1rem;
+    padding: 0.45rem 1.1rem;
   }
 }
