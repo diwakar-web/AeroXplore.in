@@ -11,21 +11,13 @@ import { API_BASE } from '../utils/api';
 import { DEFAULT_DISPATCHES } from '../utils/defaultDispatches';
 
 export default function Home() {
-  const [articles, setArticles] = useState(DEFAULT_DISPATCHES);
+  const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3500);
-
-    // Safety timeout: Never hang in loading state
-    const maxSafetyTimer = setTimeout(() => {
-      if (isMounted) {
-        setLoading(false);
-        setArticles((prev) => (prev && prev.length > 0 ? prev : DEFAULT_DISPATCHES));
-      }
-    }, 1800);
+    const timeoutId = setTimeout(() => controller.abort(), 4000);
 
     const fetchArticles = async () => {
       try {
@@ -61,15 +53,18 @@ export default function Home() {
           if (isMounted) {
             setArticles(formatted);
           }
+        } else {
+          if (isMounted) {
+            setArticles(DEFAULT_DISPATCHES);
+          }
         }
       } catch (err) {
         console.warn('Dispatches loaded from fallback manifest:', err.message);
         if (isMounted) {
-          setArticles((prev) => (prev && prev.length > 0 ? prev : DEFAULT_DISPATCHES));
+          setArticles(DEFAULT_DISPATCHES);
         }
       } finally {
         clearTimeout(timeoutId);
-        clearTimeout(maxSafetyTimer);
         if (isMounted) {
           setLoading(false);
         }
@@ -81,15 +76,12 @@ export default function Home() {
       isMounted = false;
       controller.abort();
       clearTimeout(timeoutId);
-      clearTimeout(maxSafetyTimer);
     };
   }, []);
 
-  // Guarantee that dispatches load completely without blank banners
-  const featuredPost = articles[0] || DEFAULT_DISPATCHES[0];
-  const recentPool = articles.length > 1
-    ? articles.slice(1)
-    : DEFAULT_DISPATCHES.filter((d) => d.slug !== featuredPost?.slug && d.id !== featuredPost?.id);
+  // Guarantee that dispatches load cleanly without static flashing
+  const featuredPost = articles.length > 0 ? articles[0] : null;
+  const recentPool = articles.length > 1 ? articles.slice(1) : [];
   const displayPosts = recentPool.slice(0, 3);
 
   useScrollReveal([articles, loading]);
@@ -200,7 +192,7 @@ export default function Home() {
                 <div className="section-label-line"></div>
               </div>
 
-              {featuredPost && (
+              {featuredPost ? (
                 <article className="featured-article">
                   <div className="featured-left" data-reveal="fade-left" style={{ '--reveal-delay': '0.15s' }}>
                     <h2 className="featured-headline">{featuredPost.title}</h2>
@@ -228,6 +220,19 @@ export default function Home() {
                     </div>
                   </div>
                 </article>
+              ) : (
+                <article className="featured-article featured-skeleton">
+                  <div className="featured-left">
+                    <div className="skeleton-line skeleton-title" />
+                    <div className="skeleton-line skeleton-byline" />
+                    <div className="featured-rule" />
+                    <div className="skeleton-line skeleton-para" />
+                    <div className="skeleton-line skeleton-para short" />
+                  </div>
+                  <div className="featured-right">
+                    <div className="featured-photo-frame skeleton-box" />
+                  </div>
+                </article>
               )}
             </div>
 
@@ -239,34 +244,46 @@ export default function Home() {
               </div>
 
               <div className="blog-cards-grid">
-                {displayPosts.map((post, i) => (
-                  <Link
-                    to={`/blog/${post.slug || post.id}`}
-                    key={post._id}
-                    className={`blog-card theme-${post.theme || 'article-bg'}`}
-                    id={`blog-card-${post.slug || post.id}`}
-                    data-reveal="fade-up"
-                    style={{ '--reveal-delay': `${i * 0.1}s` }}
-                  >
-                    <div className="blog-card-img-wrap">
-                      <LazyImage
-                        src={post.image}
-                        alt={post.title}
-                        className="blog-card-img"
-                        fallbackSrc="/images/Background.webp"
-                      />
-                      <span className="blog-card-category">{post.category}</span>
-                    </div>
-                    <div className="blog-card-body">
-                      <h3 className="blog-card-title">{post.title}</h3>
-                      <div className="blog-card-meta">
-                        <span className="blog-card-date">{post.date}</span>
-                        <span className="blog-card-sep">·</span>
-                        <span className="blog-card-author">{post.author}</span>
+                {displayPosts.length > 0 ? (
+                  displayPosts.map((post, i) => (
+                    <Link
+                      to={`/blog/${post.slug || post.id}`}
+                      key={post._id}
+                      className={`blog-card theme-${post.theme || 'article-bg'}`}
+                      id={`blog-card-${post.slug || post.id}`}
+                      data-reveal="fade-up"
+                      style={{ '--reveal-delay': `${i * 0.1}s` }}
+                    >
+                      <div className="blog-card-img-wrap">
+                        <LazyImage
+                          src={post.image}
+                          alt={post.title}
+                          className="blog-card-img"
+                          fallbackSrc="/images/Background.webp"
+                        />
+                        <span className="blog-card-category">{post.category}</span>
+                      </div>
+                      <div className="blog-card-body">
+                        <h3 className="blog-card-title">{post.title}</h3>
+                        <div className="blog-card-meta">
+                          <span className="blog-card-date">{post.date}</span>
+                          <span className="blog-card-sep">·</span>
+                          <span className="blog-card-author">{post.author}</span>
+                        </div>
+                      </div>
+                    </Link>
+                  ))
+                ) : (
+                  [1, 2, 3].map((n) => (
+                    <div key={n} className="blog-card blog-card-skeleton">
+                      <div className="blog-card-img-wrap skeleton-box" />
+                      <div className="blog-card-body">
+                        <div className="skeleton-line skeleton-card-title" />
+                        <div className="skeleton-line skeleton-card-meta" />
                       </div>
                     </div>
-                  </Link>
-                ))}
+                  ))
+                )}
               </div>
 
               <div className="view-all-wrap" data-reveal="fade-up" style={{ '--reveal-delay': '0.2s' }}>

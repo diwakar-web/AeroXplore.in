@@ -42,8 +42,8 @@ export default function BlogPost() {
     };
   };
 
-  const [post, setPost] = useState(() => getFallbackPost(id));
-  const [loading, setLoading] = useState(!getFallbackPost(id));
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [deleting, setDeleting] = useState(false);
 
@@ -59,11 +59,7 @@ export default function BlogPost() {
 
     let isMounted = true;
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3500);
-
-    const maxSafetyTimer = setTimeout(() => {
-      if (isMounted) setLoading(false);
-    }, 1800);
+    const timeoutId = setTimeout(() => controller.abort(), 4000);
 
     const fetchArticle = async () => {
       setError('');
@@ -125,7 +121,6 @@ export default function BlogPost() {
         }
       } finally {
         clearTimeout(timeoutId);
-        clearTimeout(maxSafetyTimer);
         if (isMounted) setLoading(false);
       }
     };
@@ -135,7 +130,6 @@ export default function BlogPost() {
       isMounted = false;
       controller.abort();
       clearTimeout(timeoutId);
-      clearTimeout(maxSafetyTimer);
     };
   }, [id, token]);
 

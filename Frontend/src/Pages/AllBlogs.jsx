@@ -11,21 +11,13 @@ import { ALL_DEFAULT_DISPATCHES } from '../utils/defaultDispatches';
 
 export default function AllBlogs() {
   const [query, setQuery] = useState('');
-  const [articles, setArticles] = useState(ALL_DEFAULT_DISPATCHES);
+  const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3500);
-
-    // Safety timeout: Never hang in loading state
-    const maxSafetyTimer = setTimeout(() => {
-      if (isMounted) {
-        setLoading(false);
-        setArticles((prev) => (prev && prev.length > 0 ? prev : ALL_DEFAULT_DISPATCHES));
-      }
-    }, 1800);
+    const timeoutId = setTimeout(() => controller.abort(), 4000);
 
     const fetchArticles = async () => {
       try {
@@ -56,15 +48,16 @@ export default function AllBlogs() {
             theme: art.theme || 'article-bg',
           }));
           if (isMounted) setArticles(formatted);
+        } else {
+          if (isMounted) setArticles(ALL_DEFAULT_DISPATCHES);
         }
       } catch (err) {
         console.warn('AllBlogs archive loaded from fallback manifest:', err.message);
         if (isMounted) {
-          setArticles((prev) => (prev && prev.length > 0 ? prev : ALL_DEFAULT_DISPATCHES));
+          setArticles(ALL_DEFAULT_DISPATCHES);
         }
       } finally {
         clearTimeout(timeoutId);
-        clearTimeout(maxSafetyTimer);
         if (isMounted) setLoading(false);
       }
     };
@@ -74,7 +67,6 @@ export default function AllBlogs() {
       isMounted = false;
       controller.abort();
       clearTimeout(timeoutId);
-      clearTimeout(maxSafetyTimer);
     };
   }, []);
 
@@ -160,7 +152,19 @@ export default function AllBlogs() {
           </div>
 
           {/* ── Cards Grid ── */}
-          {filtered.length > 0 ? (
+          {loading && articles.length === 0 ? (
+            <div className="ab-cards-grid">
+              {[1, 2, 3, 4, 5, 6].map((n) => (
+                <div key={n} className="ab-card ab-card-skeleton">
+                  <div className="ab-card-img-wrap skeleton-box" />
+                  <div className="ab-card-body">
+                    <div className="skeleton-line skeleton-card-title" />
+                    <div className="skeleton-line skeleton-card-meta" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : filtered.length > 0 ? (
             <div className="ab-cards-grid">
               {filtered.map((post, i) => (
                 <Link
@@ -195,7 +199,7 @@ export default function AllBlogs() {
             <div className="ab-no-results">
               <p className="ab-no-results-icon">✦</p>
               <p className="ab-no-results-msg">
-                {loading ? 'Retrieving dispatches from archive...' : `No dispatches found for "${query}"`}
+                No dispatches found for "{query}"
               </p>
               {query && (
                 <button className="ab-no-results-clear" onClick={() => setQuery('')} id="ab-no-results-clear-btn">
