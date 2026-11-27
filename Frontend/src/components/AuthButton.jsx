@@ -120,6 +120,8 @@ export default function AuthButton() {
                 alt={displayName}
                 className="auth-avatar-img"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
               />
             ) : (
               <span className="auth-avatar-initials">{initials}</span>

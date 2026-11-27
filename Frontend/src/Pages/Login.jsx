@@ -392,7 +392,13 @@ export default function Login() {
           <div className="login-card-header">
             <div className="login-card-rule thick" />
             <div className="login-card-rule thin" />
-            <img src={logo} alt="AeroXplore" className="login-card-logo" />
+            <img
+              src={logo}
+              alt="AeroXplore"
+              className="login-card-logo"
+              loading="eager"
+              decoding="async"
+            />
             <p className="login-card-tagline">
               {mode === 'forgot'
                 ? 'Security & Password Recovery Terminal'

@@ -6,6 +6,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import logo from '../assets/logo.webp';
 import AuthButton from '../components/AuthButton';
 import LoadingOverlay from '../components/LoadingOverlay';
+import LazyImage from '../components/LazyImage';
 import { API_BASE } from '../utils/api';
 import { DEFAULT_DISPATCHES } from '../utils/defaultDispatches';
 
@@ -50,7 +51,7 @@ export default function Home() {
               day: 'numeric',
             }),
             author: art.authorName || art.author?.name || 'AeroXplore Aviator',
-            image: art.image || '/images/Background.png',
+            image: art.image || '/images/Background.webp',
             category: art.category || 'Defence Aviation',
             theme: art.theme || 'article-bg',
             caption: art.category || art.title,
@@ -175,6 +176,9 @@ export default function Home() {
                     src={logo}
                     alt="AeroXplore"
                     className="masthead-logo-img"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
                   />
                 </h1>
                 <p className="masthead-subtitle">The Premier Aviation &amp; Aerospace Chronicle</p>
@@ -214,10 +218,11 @@ export default function Home() {
                   </div>
                   <div className="featured-right" data-reveal="fade-right" style={{ '--reveal-delay': '0.3s' }}>
                     <div className="featured-photo-frame">
-                      <img
+                      <LazyImage
                         src={featuredPost.image}
                         alt={featuredPost.title}
                         className="featured-photo"
+                        fallbackSrc="/images/Background.webp"
                       />
                       <p className="featured-caption">{featuredPost.caption}</p>
                     </div>
@@ -244,7 +249,12 @@ export default function Home() {
                     style={{ '--reveal-delay': `${i * 0.1}s` }}
                   >
                     <div className="blog-card-img-wrap">
-                      <img src={post.image} alt={post.title} className="blog-card-img" />
+                      <LazyImage
+                        src={post.image}
+                        alt={post.title}
+                        className="blog-card-img"
+                        fallbackSrc="/images/Background.webp"
+                      />
                       <span className="blog-card-category">{post.category}</span>
                     </div>
                     <div className="blog-card-body">

@@ -51,7 +51,7 @@ exports.createArticle = async (req, res) => {
       category: category || 'Defence Aviation',
       thought: thought ? thought.trim() : '',
       theme: finalTheme,
-      image: image && image.trim() ? image.trim() : '/images/Background.png',
+      image: image && image.trim() ? image.trim() : '/images/Background.webp',
       content: parsedContent,
       status: status === 'draft' ? 'draft' : 'published',
     });

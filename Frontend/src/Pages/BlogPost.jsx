@@ -5,15 +5,16 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import AuthButton from '../components/AuthButton';
 import { useAuth } from '../context/AuthContext';
 import LoadingOverlay from '../components/LoadingOverlay';
+import LazyImage from '../components/LazyImage';
 import '../CSS/LoadingOverlay.css';
 import { API_BASE } from '../utils/api';
 import { DEFAULT_POSTS_MAP } from '../utils/defaultDispatches';
 
 const THEME_BACKGROUNDS = {
-  'article-bg': '/images/Article-bg.png',
-  'article-bg-blue': '/images/Article-bg-blue.png',
-  'article-bg-green': '/images/Article-bg-green.png',
-  'article-bg-pink': '/images/Article-bg-pink.png',
+  'article-bg': '/images/Article-bg.webp',
+  'article-bg-blue': '/images/Article-bg-blue.webp',
+  'article-bg-green': '/images/Article-bg-green.webp',
+  'article-bg-pink': '/images/Article-bg-pink.webp',
 };
 
 export default function BlogPost() {
@@ -33,7 +34,7 @@ export default function BlogPost() {
       title: raw.title,
       date: raw.date,
       author: raw.author || 'Diwakar Nagar',
-      image: raw.image || '/images/Background.png',
+      image: raw.image || '/images/Background.webp',
       category: raw.category || 'Defence Aviation',
       thought: raw.thought || '',
       content: Array.isArray(raw.content) ? raw.content : [raw.content],
@@ -95,7 +96,7 @@ export default function BlogPost() {
                 year: 'numeric',
               }),
               author: art.authorName || art.author?.name || 'AeroXplore Aviator',
-              image: art.image || '/images/Background.png',
+              image: art.image || '/images/Background.webp',
               category: art.category || 'Defence Aviation',
               thought: art.thought || '',
               content: Array.isArray(art.content) ? art.content : [art.content],
@@ -237,7 +238,7 @@ export default function BlogPost() {
     );
   }
 
-  const themeBg = (post && THEME_BACKGROUNDS[post.theme]) || '/images/Article-bg.png';
+  const themeBg = (post && THEME_BACKGROUNDS[post.theme]) || '/images/Article-bg.webp';
 
   return (
     <>
@@ -295,7 +296,13 @@ export default function BlogPost() {
             <div className="bp-paper-rule thin"></div>
 
             <div className="bp-hero-img-wrap">
-              <img src={post.image} alt={post.title} className="bp-hero-img" />
+              <LazyImage
+                src={post.image}
+                alt={post.title}
+                className="bp-hero-img"
+                fallbackSrc="/images/Background.webp"
+                priority={true}
+              />
             </div>
 
             <div className="bp-paper-rule thin"></div>

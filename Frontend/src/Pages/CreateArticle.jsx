@@ -30,10 +30,10 @@ const CATEGORIES = [
 ];
 
 const THEMES = [
-  { id: 'article-bg', label: 'Classic Parchment', bg: '/images/Article-bg.png', tint: '#2c1810', accent: '#8c6721' },
-  { id: 'article-bg-blue', label: 'Aero Blue', bg: '/images/Article-bg-blue.png', tint: '#16324f', accent: '#2a6f97' },
-  { id: 'article-bg-green', label: 'Olive Green', bg: '/images/Article-bg-green.png', tint: '#1e3820', accent: '#386641' },
-  { id: 'article-bg-pink', label: 'Crimson Pink', bg: '/images/Article-bg-pink.png', tint: '#4a1525', accent: '#9b2226' },
+  { id: 'article-bg', label: 'Classic Parchment', bg: '/images/Article-bg.webp', tint: '#2c1810', accent: '#8c6721' },
+  { id: 'article-bg-blue', label: 'Aero Blue', bg: '/images/Article-bg-blue.webp', tint: '#16324f', accent: '#2a6f97' },
+  { id: 'article-bg-green', label: 'Olive Green', bg: '/images/Article-bg-green.webp', tint: '#1e3820', accent: '#386641' },
+  { id: 'article-bg-pink', label: 'Crimson Pink', bg: '/images/Article-bg-pink.webp', tint: '#4a1525', accent: '#9b2226' },
 ];
 
 export default function CreateArticle() {
@@ -62,7 +62,7 @@ export default function CreateArticle() {
     category: 'Defence Aviation',
     thought: '',
     theme: 'article-bg',
-    image: '/images/Background.png',
+    image: '/images/Background.webp',
     content: '',
     status: 'published',
   });
@@ -222,7 +222,7 @@ export default function CreateArticle() {
             category: art.category || 'Defence Aviation',
             thought: art.thought || '',
             theme: art.theme || 'article-bg',
-            image: art.image || '/images/Background.png',
+            image: art.image || '/images/Background.webp',
             content: Array.isArray(art.content) ? art.content.join('\n\n') : art.content || '',
             status: art.status || 'published',
           });
@@ -745,13 +745,13 @@ export default function CreateArticle() {
               </div>
             )}
 
-            {formData.image && formData.image !== '/images/Background.png' && (
+            {formData.image && formData.image !== '/images/Background.webp' && (
               <div className="ca-attached-image-bar">
                 <span className="ca-attached-text">Custom Feature Image Attached</span>
                 <button
                   type="button"
                   className="ca-attached-remove-btn"
-                  onClick={() => setFormData((prev) => ({ ...prev, image: '/images/Background.png' }))}
+                  onClick={() => setFormData((prev) => ({ ...prev, image: '/images/Background.webp' }))}
                   title="Remove custom image"
                 >
                   Remove

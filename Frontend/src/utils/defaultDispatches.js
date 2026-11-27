@@ -350,7 +350,7 @@ export const ALL_DEFAULT_DISPATCHES = Object.keys(DEFAULT_POSTS_MAP).map((key, i
     title: p.title,
     date: p.date,
     author: p.author || 'Diwakar Nagar',
-    image: p.image || '/images/Background.png',
+    image: p.image || '/images/Background.webp',
     category: p.category || 'Defence Aviation',
     theme: 'article-bg',
     thought: p.thought || '',

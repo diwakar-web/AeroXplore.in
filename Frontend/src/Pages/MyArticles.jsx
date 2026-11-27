@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AuthButton from '../components/AuthButton';
+import LazyImage from '../components/LazyImage';
 import { API_BASE } from '../utils/api';
 import '../CSS/MyArticles.css';
 
@@ -207,13 +208,11 @@ export default function MyArticles() {
             {articles.map((art) => (
               <article key={art._id} className={`blog-card ma-home-card theme-${art.theme || 'article-bg'}`}>
                 <Link to={`/blog/${art.slug || art._id}`} className="blog-card-img-wrap">
-                  <img
-                    src={art.image || '/images/Background.png'}
+                  <LazyImage
+                    src={art.image || '/images/Background.webp'}
                     alt={art.title}
                     className="blog-card-img"
-                    onError={(e) => {
-                      e.target.src = '/images/Background.png';
-                    }}
+                    fallbackSrc="/images/Background.webp"
                   />
                   <span className="blog-card-category">{art.category}</span>
                 </Link>

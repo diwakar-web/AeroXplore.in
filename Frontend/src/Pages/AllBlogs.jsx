@@ -5,6 +5,7 @@ import '../CSS/LoadingOverlay.css';
 import useScrollReveal from '../hooks/useScrollReveal';
 import AuthButton from '../components/AuthButton';
 import LoadingOverlay from '../components/LoadingOverlay';
+import LazyImage from '../components/LazyImage';
 import { API_BASE } from '../utils/api';
 import { ALL_DEFAULT_DISPATCHES } from '../utils/defaultDispatches';
 
@@ -50,7 +51,7 @@ export default function AllBlogs() {
               day: 'numeric',
             }),
             author: art.authorName || art.author?.name || 'AeroXplore Aviator',
-            image: art.image || '/images/Background.png',
+            image: art.image || '/images/Background.webp',
             category: art.category || 'Defence Aviation',
             theme: art.theme || 'article-bg',
           }));
@@ -171,7 +172,12 @@ export default function AllBlogs() {
                   style={{ '--reveal-delay': `${i * 0.08}s` }}
                 >
                   <div className="ab-card-img-wrap">
-                    <img src={post.image} alt={post.title} className="ab-card-img" />
+                    <LazyImage
+                      src={post.image}
+                      alt={post.title}
+                      className="ab-card-img"
+                      fallbackSrc="/images/Background.webp"
+                    />
                     <span className="ab-card-category">{post.category}</span>
                   </div>
                   <div className="ab-card-body">

@@ -32,7 +32,7 @@ const articleSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      default: '/images/Background.png',
+      default: '/images/Background.webp',
     },
     content: {
       type: [String],
