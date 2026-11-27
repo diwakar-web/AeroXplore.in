@@ -1,9 +1,9 @@
-# ✈️ AeroXplore.in  
+#  AeroXplore.in  
 ### The Premier Aviation & Aerospace Chronicle  
 
 ---
 
-## 🌌 About AeroXplore
+##  About AeroXplore
 
 **AeroXplore** is a passion-driven platform dedicated to aviation and aerospace insights. It focuses on simplifying complex aerospace concepts, analyzing industry developments, and sharing ideas that inspire curiosity about flight and space exploration.
 
@@ -17,17 +17,17 @@ This platform is my attempt to bridge the gap between engineering classrooms and
 
 ---
 
-## 🚀 Features
+##  Features
 
-- 📰 Aviation & aerospace articles  
-- 🌍 Industry insights and analysis  
-- ✍️ Editorial-style content  
-- 🔍 Simplified explanations of complex topics  
-- 📡 Continuous updates and new posts  
+-  Aviation & aerospace articles  
+-  Industry insights and analysis  
+-  Editorial-style content  
+-  Simplified explanations of complex topics  
+-  Continuous updates and new posts  
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend:** React
 - **Backend:** Node.js, Express.js  
